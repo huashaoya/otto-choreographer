@@ -23,7 +23,14 @@ SOFTWARE.
 ---
 
 Scope note: this license covers the page code and test files of this
-repository. It does NOT cover the embedded robot model (derived from
-XiaoPeng OttoRobot 3MF assets), which remains under
-CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/).
-Redistributing the single-file HTML means complying with both.
+repository. It does NOT cover two embedded assets:
+
+1. The robot model, derived from XiaoPeng OttoRobot 3MF assets, which
+   remains under CC BY-NC-SA 4.0
+   (https://creativecommons.org/licenses/by-nc-sa/4.0/).
+2. The Archivo Narrow webfont (latin subset, weights 400 and 700),
+   copyright (c) 2017 The Archivo Narrow Project Authors, which remains
+   under the SIL Open Font License 1.1
+   (https://github.com/Omnibus-Type/ArchivoNarrow/blob/master/OFL.txt).
+
+Redistributing the single-file HTML means complying with all three.

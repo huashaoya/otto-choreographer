@@ -107,8 +107,11 @@ JSON-RPC 外层封装如下：
 otto-choreographer\              # git 仓库根 = 项目根
 ├─ otto-choreographer.html       # 唯一生产源码/运行入口
 ├─ README.md                     # 当前使用与维护说明
+├─ DESIGN.md                     # 视觉设计系统：令牌、规则、组件
+├─ PRODUCT.md                    # 产品定位、用户与硬约束
 ├─ assets\                       # 源头素材（已入库）：原始3MF、模型尺寸JSON
 ├─ docs\grid-views\              # 五类网格三视图（外观迭代对照参考）
+├─ .impeccable\                  # 设计系统机读层（design.json + surfaces）
 ├─ otto-tests\                   # 独立离线测试；不属于运行依赖
 │  ├─ run.py                     # 统一测试入口，检查失败返回非零
 │  ├─ static-check.cjs            # 两段内嵌脚本语法/规则fixture
@@ -118,8 +121,10 @@ otto-choreographer\              # git 仓库根 = 项目根
 │  ├─ fullscreen.js              # 全屏/退出/布局恢复
 │  ├─ ui.js                      # 最近UI与腿脚对齐检查
 │  └─ results\                   # 按次生成报告/截图（.gitignore，不入库）
-└─ .gitignore                    # 仅排除 results 与 Python 缓存
+└─ .gitignore                    # 排除 results、Python 缓存与设计过程稿
 ```
+
+`DESIGN.md` 记录的是当前界面实际落地的规则（金菊纸床面、票根斜架、单一字号、零圆角、无投影），改界面之前先读它；`.impeccable/design.json` 是同一套令牌的机读版本，供设计工具消费。决策草图与过程截图不入库。
 
 历史交接文档、变更记录与验收记录已清理出工作区（仅存 git 历史，可随时找回）。固件/后端相关的本地改动存档与一键脚本在作者本机维护，不在本仓库。
 
@@ -202,8 +207,9 @@ HTML SHA256：`A528E7066253225A0063E24DAA25831BA409688F0056E5DC60622B99FE0163B6`
 ## 许可与来源
 
 - 页面代码与测试：[MIT](LICENSE)。
+- 字体：内嵌 Archivo Narrow（latin 子集，400/700，base64 woff2），SIL Open Font License 1.1，版权归 The Archivo Narrow Project Authors；字体本身不受 MIT 覆盖，再分发请保留 OFL 声明。中文不内嵌，走系统无衬线。
 - 模型：小鹏 OttoRobot，来源 `https://makerworld.com.cn/zh/models/1117966-ottorobot-xiao-zhi-ai#profileId-1284462`，采用原始 3MF 网格。
-- 模型许可：CC BY-NC-SA 4.0，`https://creativecommons.org/licenses/by-nc-sa/4.0/`。MIT 只覆盖自写代码，**不覆盖内嵌模型**；公开分发本 HTML 需同时满足两者（署名、来源、非商业及相同方式共享）。
+- 模型许可：CC BY-NC-SA 4.0，`https://creativecommons.org/licenses/by-nc-sa/4.0/`。MIT 只覆盖自写代码，**不覆盖内嵌模型与字体**；公开分发本 HTML 需同时满足三者（署名、来源、非商业及相同方式共享）。
 - 内嵌 Three.js 采用 MIT，库内版权/许可文本保留。不删掉它们来减小文件。
 
 ## 未完成与验收缺口

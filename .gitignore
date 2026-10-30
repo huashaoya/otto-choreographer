@@ -6,3 +6,17 @@
 /otto-tests/results/
 __pycache__/
 *.pyc
+
+# ---- 设计过程产物（决策草图、截图、探针）----
+# 只提交设计系统的结论；过程稿留在本机
+.impeccable/mocks/
+.impeccable/shots*/
+.impeccable/probe/
+.impeccable/readme/
+.impeccable/review/
+.impeccable/surface-brief.md
+
+
+# ---- 字体与截图的中间产物 ----
+.impeccable/font/
+.impeccable/readme*/

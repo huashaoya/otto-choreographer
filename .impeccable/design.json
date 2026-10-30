@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T06:42:00+08:00",
+  "title": "Design System: Otto 在线编舞台",
+  "extensions": {
+    "colorMeta": {
+      "bed": {
+        "role": "primary",
+        "displayName": "灯台金菊 Goldenrod Bed",
+        "canonical": "#C8912C",
+        "tonalRamp": [
+          "#8E6019",
+          "#A9751F",
+          "#C8912C",
+          "#D6A34A"
+        ],
+        "purpose": "Page ground and the left panel's stock. The field the slides lie on; roughly half the visible surface."
+      },
+      "carbon": {
+        "role": "neutral",
+        "displayName": "碳黑 Carbon",
+        "canonical": "#1C1913",
+        "tonalRamp": [
+          "#14110D",
+          "#1C1913",
+          "#26221A",
+          "#2C3A40"
+        ],
+        "purpose": "The stage and the rack — everything the robot is watched on, plus inputs and the code strip."
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "圣经象牙 Bible Ivory",
+        "canonical": "#F2EAD6",
+        "tonalRamp": [
+          "#CFC4A8",
+          "#B4A98D",
+          "#F2EAD6",
+          "#FFFBF0"
+        ],
+        "purpose": "The reversed surface: the selected frame, the modal sheet, a hovered neutral button."
+      },
+      "vermilion": {
+        "role": "secondary",
+        "displayName": "朱红 Vermilion",
+        "canonical": "#C4442B",
+        "tonalRamp": [
+          "#5E1A0B",
+          "#A83318",
+          "#C4442B",
+          "#EE8A6A"
+        ],
+        "purpose": "The armed state: osc labels, the playing frame edge, warnings, focus rings, danger hover. Never a background for body text."
+      },
+      "bottle": {
+        "role": "tertiary",
+        "displayName": "瓶绿 Bottle Green",
+        "canonical": "#23503F",
+        "tonalRamp": [
+          "#16332A",
+          "#23503F",
+          "#2F6B4F",
+          "#9FD3B6"
+        ],
+        "purpose": "The confirmed connection: one 8px dot, plus the status word when connected (#9FD3B6 at 10.41:1 on carbon)."
+      }
+    },
+    "typographyMeta": {
+      "ui": {
+        "displayName": "One Size",
+        "purpose": "Every label, value and heading in the interface, set in Archivo Narrow (embedded base64 woff2, latin subset, 400/700). Measured 10x'M' at 13px = 88.80px; the Arial fallback would be 108.30px."
+      },
+      "ui-mobile": {
+        "displayName": "One Size, Handheld",
+        "purpose": "The same single size raised for a phone held at arm's length."
+      },
+      "data": {
+        "displayName": "Code Strip",
+        "purpose": "The sequence JSON. A different substance from a label, so it gets the mono stack at 11.5px."
+      },
+      "data-inline": {
+        "displayName": "Inline Tokens",
+        "purpose": "Angle pairs inside frame cards and the refdes chips beside each axis name."
+      }
+    },
+    "shadows": [
+      {
+        "name": "bed-lip-offset",
+        "value": "0 2px 0 #A9751F",
+        "purpose": "The only depth cue: a sheet sitting on the bed casts a 2px hard edge in the bed's lip tone. No blur, no spread."
+      },
+      {
+        "name": "slab-offset",
+        "value": "0 2px 0 rgba(0,0,0,.28)",
+        "purpose": "The carbon slabs' hard edge against the bed."
+      },
+      {
+        "name": "sheet-inner-light",
+        "value": "inset 0 1px 0 rgba(255,255,255,.16)",
+        "purpose": "One hairline of light on the goldenrod panel's top edge so the stock reads as paper, not as a fill."
+      },
+      {
+        "name": "playing-edge",
+        "value": "inset 3px 0 0 #C4442B",
+        "purpose": "The frame being previewed. An edge, not a glow."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 2px solid #F2EAD6 (offset 1px) + box-shadow: 0 0 0 4px #1C1913",
+        "purpose": "Two-tone, because one colour cannot survive three grounds: carbon halo 6.30:1 on goldenrod, ivory ring 14.62:1 on carbon. Single vermilion measured only 1.79:1 on the bed."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-fill",
+        "value": "background .12s linear, color .12s linear",
+        "purpose": "Button and preset hover/active fills."
+      },
+      {
+        "name": "toast-in",
+        "value": "opacity .18s linear, transform .18s linear",
+        "purpose": "The only element that moves on its own."
+      }
+    ],
+    "gradients": [
+      {
+        "name": "stage-light-pool",
+        "value": "radial-gradient(115% 78% at 50% 40%, #2B2520 0%, #1C1913 72%)",
+        "purpose": "The lamp behind the robot. Light, not elevation — the only soft gradient in the interface."
+      },
+      {
+        "name": "servo-scale",
+        "value": "repeating-linear-gradient(90deg, rgba(28,25,19,.45) 0 1px, transparent 1px 15px) over a 1px rule",
+        "purpose": "A graduation scale for 0–180°, one tick every 15°. Functional measurement, not decoration."
+      },
+      {
+        "name": "ruler-scale",
+        "value": "repeating-linear-gradient major every 50px / minor every 10px",
+        "purpose": "The acetate ruler's graduation under the stage; the playhead chip rides it."
+      },
+      {
+        "name": "bed-lamp",
+        "value": "radial-gradient(115% 88% at 50% 26%, #D19B33 0%, #C8912C 58%)",
+        "purpose": "The same lamp that lights the stage falls on the bed: a 4% value lift so the goldenrod reads as lit paper rather than flat paint."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "desk-narrow",
+        "value": "1180px",
+        "note": "Columns tighten, bed gutters drop to 10px."
+      },
+      {
+        "name": "stack",
+        "value": "1100px",
+        "note": "One stack, stage first via order:-1; page scrolls; the pose library stops scrolling internally."
+      },
+      {
+        "name": "handheld",
+        "value": "600px",
+        "note": "Type 13→15px, bed margin 8px, 42px touch targets, frame actions wrap to their own row."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Section Head",
+      "kind": "custom",
+      "refersTo": "panel-stock",
+      "description": "Uppercase tracked title with a right-aligned micro tag, separated by a single hairline. No background, no box.",
+      "html": "<div class=\"panel-head\"><span>舵机姿态</span><span class=\"tag\">R1–R6 · 0–180</span></div>",
+      "css": ".panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 12px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#1C1913;border-bottom:1px solid rgba(28,25,19,.26)}.panel-head .tag{font-weight:400;letter-spacing:.1em;color:#3A2C08}"
+    },
+    {
+      "name": "Servo Row",
+      "kind": "input",
+      "refersTo": "panel-stock",
+      "description": "One axis: name, reversed mono key chip, value, ticked track with a 3px bar thumb, range description. Right-side servos carry the vermilion-deep value so side is legible without a second colour.",
+      "html": "<div class=\"servo right\"><div class=\"servo-head\"><label class=\"servo-name\">右腿<span class=\"servo-desc\">RL</span></label><span class=\"servo-val\">90°</span></div><input type=\"range\" value=\"90\" max=\"180\"><div class=\"servo-help\">0内收 / 90中立 / 180外展</div></div>",
+      "css": ".servo{padding:4px 0 2px;border-bottom:1px solid rgba(28,25,19,.26)}.servo-name{font-weight:700;display:flex;gap:6px}.servo-desc{font-family:'Cascadia Mono',Consolas,monospace;background:#1C1913;color:#C8912C;padding:0 4px;text-transform:uppercase}.servo-val{margin-left:auto;font-weight:700}.servo.right .servo-val{color:#5E1A0B}.servo-help{color:#3A2C08}input[type=range]{-webkit-appearance:none;height:18px;background:transparent;width:100%}input[type=range]::-webkit-slider-runnable-track{height:18px;background:repeating-linear-gradient(90deg,rgba(28,25,19,.45) 0 1px,transparent 1px 15px) left center/100% 7px no-repeat,linear-gradient(rgba(28,25,19,.55),rgba(28,25,19,.55)) left center/100% 1px no-repeat}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:3px;height:18px;border-radius:0;background:#1C1913}.servo.right input[type=range]::-webkit-slider-thumb{background:#C4442B}"
+    },
+    {
+      "name": "Frame Card",
+      "kind": "card",
+      "refersTo": "frame-card",
+      "description": "A slide in the rack. A sheared ticket carries the number and the type; the body carries one line of mono angle pairs and a meta line whose actions sit flush right. Selection reverses the whole card to ivory.",
+      "html": "<div class=\"frame active\"><div class=\"ticket\"><b>#1</b><span>姿态</span></div><div class=\"fbody\"><div class=\"frame-angles\"><span><b>ll</b>90</span><span><b>rl</b>90</span></div><div class=\"frow\"><div class=\"frame-meta\">v=800ms · d=100ms</div><div class=\"frame-actions\"><button>↑</button><button>↓</button><button>编辑</button><button>删除</button></div></div></div></div>",
+      "css": ".frame{display:grid;grid-template-columns:54px minmax(0,1fr);margin-bottom:5px;cursor:pointer;background:#2C3A40;color:#F2EAD6;border:1px solid rgba(242,234,214,.12);border-left:0}.frame .ticket{display:flex;flex-direction:column;justify-content:center;padding:4px 11px 4px 6px;white-space:nowrap;background:rgba(242,234,214,.1);border-right:1px solid rgba(242,234,214,.14);clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%)}.frame .ticket b{font-family:'Cascadia Mono',Consolas,monospace;font-weight:500}.frame .ticket span{letter-spacing:.1em;color:#CFC4A8}.frame .ticket span.osc{color:#EE8A6A}.frame.active{background:#F2EAD6;color:#1C1913;border-color:#F2EAD6}.frame.active .ticket{background:#1C1913;border-right-color:#1C1913}.frame.active .ticket b,.frame.active .ticket span{color:#C8912C}.frame.playing{box-shadow:inset 3px 0 0 #C4442B}.frame-angles{display:flex;flex-wrap:wrap;gap:9px;font-family:'Cascadia Mono',Consolas,monospace}.frame-angles b{color:#B4A98D;font-weight:400;margin-right:2px}.frame.active .frame-angles b{color:rgba(28,25,19,.6)}.frame-meta{font-family:'Cascadia Mono',Consolas,monospace;color:#B4A98D}.frame.active .frame-meta{color:rgba(28,25,19,.62)}"
+    },
+    {
+      "name": "Tick Rail",
+      "kind": "custom",
+      "refersTo": "frame-card",
+      "description": "A 16px index column beside the rack: one tick per frame, the current one wider and vermilion. It shows the extent of the sequence, not a proportional timeline.",
+      "html": "<div class=\"rail\"><i></i><i class=\"on\"></i><i></i></div>",
+      "css": ".rail{position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:3px 0 6px;border-right:1px solid rgba(242,234,214,.15)}.rail::before{content:'';position:absolute;right:3px;top:2px;bottom:8px;width:1px;background:rgba(242,234,214,.22)}.rail i{display:block;height:2px;width:6px;margin-left:1px;background:rgba(242,234,214,.34)}.rail i.on{width:12px;height:4px;margin-left:-3px;background:#C4442B}"
+    },
+    {
+      "name": "Ruler + Playhead",
+      "kind": "custom",
+      "refersTo": "panel-slab",
+      "description": "A 26px graduated strip under the stage. The playhead chip is the only goldenrod fill inside the carbon stage.",
+      "html": "<div class=\"ruler\"><span class=\"playhead\">3 / 4</span></div>",
+      "css": ".ruler{height:26px;display:flex;align-items:center;border-top:1px solid rgba(242,234,214,.14);border-bottom:1px solid rgba(242,234,214,.14);background:repeating-linear-gradient(90deg,rgba(242,234,214,.34) 0 1px,transparent 1px 50px) left bottom/100% 9px no-repeat,repeating-linear-gradient(90deg,rgba(242,234,214,.18) 0 1px,transparent 1px 10px) left bottom/100% 4px no-repeat}.playhead{margin:5px 0 5px auto;padding:0 7px;font-family:'Cascadia Mono',Consolas,monospace;color:#1C1913;background:#C8912C;line-height:16px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "灯台上的斜架幻灯片 — The Lit Slide Rack",
+    "overview": "The tool is a 1971 pocket timetable read as a raked rack of tinted glass slides lying on a lit goldenrod bed. The bed is the field; three sheets sit on it — goldenrod stock holding the six axes, a carbon stage holding the robot, a carbon rack holding the frames. A frame joins the show by sliding into the rack, and its ticket is the thing you read.\n\nThe system is narrow on purpose. One type size; rank comes from weight, case, tracking, reversal and rule. One radius: zero. No elevation, no icon set, no gradient used as surface treatment. Every colour names a job — bed, ground, glass, reversal, armed, confirmed — and a colour that cannot name its job is decoration and does not ship.\n\nThe point of the world is that the old look (three dark panels, blue accents) could have belonged to any of ten thousand tools. This one belongs to a place: a departure hall, a printer's bench, a sheet of stock under a lamp.",
+    "keyCharacteristics": [
+      "Goldenrod bed carrying roughly half the surface, visible around every panel as a field",
+      "Rank by weight, case, tracking, reversal and rule — never by size",
+      "Frame tickets sheared 8px on one axis so the rack reads as a stack of slides",
+      "Drawn scales: a ticked slider track and a graduated ruler",
+      "Square corners and 1px rules everywhere; a 2px hard offset is the only depth",
+      "Vermilion as an edge and a label colour, never behind body text"
+    ],
+    "rules": [
+      {
+        "name": "The Bed Is Visible Rule",
+        "body": "Every panel is a sheet on the bed, so the bed must remain visible around and between panels. A layout that lets panels touch the viewport edge has turned the gold into a background fill and broken the world.",
+        "section": "layout"
+      },
+      {
+        "name": "One Size Rule",
+        "body": "There is exactly one type size, 13px (15px below 600px). Hierarchy is spent on weight, case, tracking, reversal and rule. Adding a second size is the fastest way to make this interface look like the generic tool it replaced.",
+        "section": "typography"
+      },
+      {
+        "name": "Named Job Rule",
+        "body": "Six hues, six jobs: gold is the bed, carbon is the ground, slate is glass, ivory is reversal, vermilion is armed, bottle green is confirmed. A colour without a job is decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "Solid Ink Rule",
+        "body": "Text on goldenrod uses solid ink (#1C1913 primary, #3A2C08 secondary), never an alpha tint. Alpha over a saturated ground cannot hold AA at any comfortable lightness.",
+        "section": "colors"
+      },
+      {
+        "name": "Rake Rule",
+        "body": "The ticket shear is 8px on the right edge, identical at every card height, aligned on a common axis, and never applied to text. It is the one recurring form in the system.",
+        "section": "shapes"
+      },
+      {
+        "name": "No Elevation Rule",
+        "body": "Nothing floats and nothing has a blur. Depth is which sheet is on top, marked by a 1px lip and a 2px hard offset in the bed's lip colour.",
+        "section": "elevation"
+      },
+      {
+        "name": "No Side Stripe Rule",
+        "body": "State is a filled ticket, a reversed sheet, or a drawn rule. An accent bar down one edge of a card or a toast is the generic pattern this world is trying to escape.",
+        "section": "elevation"
+      },
+      {
+        "name": "Instrument Rule",
+        "body": "A drawn instrument must print real data. The playhead shows the true frame count at rest, the ruler cursor sits at activeFrame/(n-1), and each rail tick is drawn by its own card so it cannot drift.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Keep the goldenrod bed visible around and between panels",
+      "Spend rank on weight, case, tracking, reversal and rule first",
+      "Draw a scale whenever a number has a range",
+      "Give the selected frame the ivory reversal and nothing else",
+      "Keep the six axes fixed while the pose library scrolls under them",
+      "Use the mono stack only for machine output and inline axis tokens"
+    ],
+    "donts": [
+      "Add a second type size for hierarchy",
+      "Round a corner, lift a card, or add a blurred shadow",
+      "Put vermilion behind body text",
+      "Let frame cards drift apart into floating cards",
+      "Use a gradient as surface decoration",
+      "Reintroduce an icon set — labels are the icons",
+      "Use an alpha tint for text on goldenrod"
+    ]
+  }
+}
