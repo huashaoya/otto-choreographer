@@ -105,9 +105,8 @@ JSON-RPC 外层封装如下：
 D:\jarvis\otto-choreographer\    # git 仓库根 = 项目根（2026-10-31 整仓迁入；固件/后端等在仓库外 D:\jarvis\）
 ├─ otto-choreographer.html       # 唯一生产源码/运行入口
 ├─ README.md                     # 当前使用与维护说明
-├─ CHANGELOG-otto.md              # 编舞台变更记录
-├─ assets\                       # 模型与素材（已入库）：原始3MF、网格JSON、三视图、Three.js原件、验收文档、历史补丁
-├─ patches\                      # 固件/后端本地改动存档（已入库）：firmware-local\、server-local\，各含README
+├─ assets\                       # 源头素材（已入库）：原始3MF、网格JSON、Three.js原件、模型尺寸JSON
+├─ docs\grid-views\              # 五类网格三视图（外观迭代对照参考）
 ├─ otto-tests\                   # 独立离线测试；不属于运行依赖
 │  ├─ run.py                     # 统一测试入口，检查失败返回非零
 │  ├─ static-check.cjs            # 两段内嵌脚本语法/规则fixture
@@ -116,10 +115,11 @@ D:\jarvis\otto-choreographer\    # git 仓库根 = 项目根（2026-10-31 整仓
 │  ├─ sides.js                   # 自身左右与单轴映射
 │  ├─ fullscreen.js              # 全屏/退出/布局恢复
 │  ├─ ui.js                      # 最近UI与腿脚对齐检查
-│  └─ results\                   # 按次生成报告/截图/提取脚本（.gitignore，不入库）
-├─ otto-编舞台-交接文档.md         # 历史2D交接，只作背景（路径按迁移注记解读）
-└─ Otto编舞台-AI续接交接.md        # 3D 交接（快照口径）
+│  └─ results\                   # 按次生成报告/截图（.gitignore，不入库）
+└─ .gitignore                    # 仅排除 results 与 Python 缓存
 ```
+
+已按 2026-10-31 清理决定移出工作区的项目内容（仅存 git 历史，可随时找回）：`CHANGELOG-otto.md`、两份交接文档（`otto-编舞台-交接文档.md`、`Otto编舞台-AI续接交接.md`）、`assets\docs\` 验收记录、历史 2D 截图与 `assets\legacy-patches\`。固件/后端本地改动存档在仓库外 `D:\jarvis\patches\`，固件一键脚本在 `D:\jarvis\start-xiaozhi.ps1`。
 
 仓库外（`D:\jarvis\`，不属本仓库，勿顺手改动）：`xiaozhi-esp32\`（固件生产目录，**git 仓库** = 上游 addb1ed + 本地改动 9fe5a97，编译验证通过）、`xiaozhi-esp32-server\`（后端生产目录，**git 仓库** = 上游 1a095d5 + 本地改动 fd3ab1f）、`_backup\`、`audio-work\`。固件/后端本地改动的权威存档在本仓库 `patches\`。Git 2.38.1 可用，GitHub 访问需走本机代理 `127.0.0.1:7897`（`git -c http.proxy=…`）；编舞台仓库本身未配置远程、未推送。
 
@@ -138,7 +138,7 @@ D:\jarvis\otto-choreographer\    # git 仓库根 = 项目根（2026-10-31 整仓
 - 连接：`connectWs / disconnectWs / sendSequence`。
 - 初始化与事件：`bindEvents / init`。
 
-`otto-编舞台-交接文档.md` 的 2D 绘图公式、行号、库依赖及“已完成/实测”表述不能覆盖当前源码或真实验收状态。其他目录中的历史补丁/导出 JS 也不是生产权威，不直接重跑覆盖 HTML。
+历史交接与验收记录已移出工作区（仅存 git 历史）。其他目录中的历史补丁/导出 JS 也不是生产权威，不直接重跑覆盖 HTML。
 
 ## 测试
 
@@ -192,7 +192,7 @@ HTML SHA256：`A528E7066253225A0063E24DAA25831BA409688F0056E5DC60622B99FE0163B6`
 1. 回读当前源码，明确只改哪个对象；未知装配数据保持假设标记。
 2. 改前复制当前 HTML 到 `_backup`，用语义化名称和时间戳，不覆盖已有存档。
 3. 原地修改唯一 HTML，保留库、原始网格、JSON字段、预设和协议，除非需求明确要求改变。
-4. 运行最小受影响测试，再按改动范围运行回归；检查真实截图，记录覆盖与缺口到 `CHANGELOG-otto.md`。
+4. 运行最小受影响测试，再按改动范围运行回归；检查真实截图，把覆盖与缺口写进该次 git commit 说明。
 5. 通过以后交付最新 HTML；文档或测试修改也应同步维护，不凭历史“通过”覆盖本次结果。
 
 回退前先复制个人 JSON，并确认所选备份版本；恢复到原 `otto-choreographer.html`，不要把 `_backup` 内多个版本当成当前入口。刷新无自动保存。
