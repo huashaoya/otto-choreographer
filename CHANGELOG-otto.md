@@ -2,6 +2,13 @@
 
 仅记录 `otto-choreographer.html` 及本项目维护文件。下述历史项目状态依据当前源码与本地验收资料，不能解释为实物 1:1、设备安全或真机执行已完成。
 
+## 2026-10-31 · 固件/后端接管（仓库外变更，影响 patches 与 README）
+
+- **应确认执行"基于上游镜像覆盖本地内容"**：快照基线经 ZIP 打包 mtime（1773 文件同刻 10-24 05:45）定位为上游 `a0fb73c`（2026-10-24 04:38 +0800）；本地改动 13 源文件 + lang_config.h（mtime 铁证，`Kconfig.projbuild` 被排除——此前 blob 分类误判）。GitHub 直连间歇性阻断，最终经本机代理 `127.0.0.1:7897` 完成镜像 clone。
+- 固件目录现为 git 仓库：上游 `addb1ed` + 合并 commit `9fe5a97`（11 文件直接覆盖 + CMakeLists/mcp_server 经 `git merge-file` 三方合并零冲突：本地 qrcodegen INCLUDE/4 屏幕工具与上游新板型/snapshot 工具并存）。**编译验证通过**（`build.py bread-compact-wifi-lcd --language zh-CN`，`Project build complete`；期间修复组件缓存损坏并离线复制 `managed_components` 737MB）。**重放固件未上真机**，烧录验证由用户执行。
+- 后端目录现为 git 仓库：上游 `1a095d5` + 合并 commit `fd3ab1f`（2 文件，方舟 Agent Plan Key 支持），`py_compile` 通过；运行数据（`data\.config.yaml`、music、models）已迁移，models 覆盖事故已 amend 修正（tracked 文件回退被还原）。
+- 旧快照 ×2（1.3GB）与上游镜像目录已删除；`welcome.ogg.bak` 原版已补存至 `patches\firmware-local\`。`patches\` 两个 README 同步新结构。生产 HTML 与编舞台文件本轮零改动。
+
 ## 2026-10-31 · 过程文件清理（当日第三次结构变更）
 
 - **应确认执行"只要最终项目文件"**：

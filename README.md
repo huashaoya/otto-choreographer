@@ -121,7 +121,7 @@ D:\jarvis\otto-choreographer\    # git 仓库根 = 项目根（2026-10-31 整仓
 └─ Otto编舞台-AI续接交接.md        # 3D 交接（快照口径）
 ```
 
-仓库外（`D:\jarvis\`，不属本仓库，勿顺手改动）：`xiaozhi-esp32\`（固件生产目录）、`xiaozhi-esp32-server\`（后端生产目录）、两个 `*-mirror\` 上游镜像、`_backup\`、`audio-work\`、历史日志。固件/后端本地改动的权威存档在本仓库 `patches\`。Git 2.38.1 可用；未配置远程、未推送。
+仓库外（`D:\jarvis\`，不属本仓库，勿顺手改动）：`xiaozhi-esp32\`（固件生产目录，**git 仓库** = 上游 addb1ed + 本地改动 9fe5a97，编译验证通过）、`xiaozhi-esp32-server\`（后端生产目录，**git 仓库** = 上游 1a095d5 + 本地改动 fd3ab1f）、`_backup\`、`audio-work\`。固件/后端本地改动的权威存档在本仓库 `patches\`。Git 2.38.1 可用，GitHub 访问需走本机代理 `127.0.0.1:7897`（`git -c http.proxy=…`）；编舞台仓库本身未配置远程、未推送。
 
 ### 源码定位
 
