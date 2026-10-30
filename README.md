@@ -183,7 +183,7 @@ python .\otto-tests\run.py --shot "实际路径\html\scripts\shot.py" --browser 
 
 ### 本轮验证基线
 
-完整运行 `python .\otto-tests\run.py` 的报告位于 `otto-tests/results/20261031-024706-317600/summary.json`。27项静态检查，以及core 68、camera 22、sides 18、fullscreen 14、ui 14项断言，在1440×900与390×844视口通过，0运行错误/警告。套件之间有重叠，宽窄屏是重复执行，不计为新的独立测试。桌面与手机截图已实际读取；实物和真机验收仍不在覆盖范围。
+完整运行 `python .\otto-tests\run.py` 的报告按次生成于 `otto-tests/results/<时间戳>/summary.json`（results 不入库，历史报告已按 2026-10-31 清理决定移除）。迁移后基线为 `20261031-043341-924473`：27项静态检查，以及core 68、camera 22、sides 18、fullscreen 14、ui 14项断言，在1440×900与390×844视口通过，0运行错误/警告。套件之间有重叠，宽窄屏是重复执行，不计为新的独立测试。桌面与手机截图已实际读取；实物和真机验收仍不在覆盖范围。
 
 HTML SHA256：`A528E7066253225A0063E24DAA25831BA409688F0056E5DC60622B99FE0163B6`。维护文件新增前后保持相同。以后修改HTML必须重跑相应测试，不将此基线作为动态最新结果。
 

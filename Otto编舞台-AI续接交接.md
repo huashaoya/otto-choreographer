@@ -218,8 +218,7 @@ python "D:\jarvis\otto-choreographer\otto-tests\run.py" --suite core --suite sid
 
 ### 8.2 已通过的基线，不是本次新跑
 
-权威完整报告：
-`D:\jarvis\otto-choreographer\otto-tests\results\20261031-024706-317600\summary.json`
+权威完整报告：`otto-tests\results\<时间戳>\summary.json`（results 不入库，历史报告已按 2026-10-31 清理决定移除）。迁移后基线 `20261031-043341-924473` 全 PASS：
 
 - 静态27项通过。
 - core68、camera22、sides18、fullscreen14、ui14，各在1440×900桌面及390×844手机重复执行通过。
@@ -258,13 +257,11 @@ python "D:\jarvis\otto-choreographer\otto-tests\run.py" --suite core --suite sid
 - `Otto腿脚对齐\侧面检查\otto-choreographer_desktop.png`：最近腿脚对齐的右侧截图。
 - `Otto腿脚对齐\左侧复核\otto-choreographer_desktop.png`：对应左侧截图。
 
-现版完整回归截图另在：
-`D:\jarvis\otto-choreographer\otto-tests\results\20261031-024706-317600\core\otto-choreographer_desktop.png`
-及 `...\ui\otto-choreographer_mobile.png`。
+现版完整回归报告按次生成于 `otto-tests\results\<时间戳>\`（results 不入库，历史报告已按 2026-10-31 清理决定移除；迁移后基线 `20261031-043341-924473` 全 PASS）。
 
 原照片曾在微信临时E盘路径，后来不可访问；不要死守过期路径。上列本地素材可先使用，若关键视角/细节仍缺，向用户索取对应实物侧面或尺寸，不能猜造。视频语义理解曾在末尾出错，像素和真实帧优先于文字摘要；曾有浏览器MP4黑画面，通过抽帧取得可读图片，不把黑画面当成无素材。
 
-历史2D截图 `D:\jarvis\otto-choreographer\otto-choreographer-current.png / otto-choreographer-preview.png` 不代表当前3D。旧过程脚本、旧验收MD和旧导出JS也不是当前源码。
+历史2D截图 `otto-choreographer-current.png / -preview.png` 已按 2026-10-31 清理决定移出工作区（仅存 git 历史），本就不代表当前3D。旧过程脚本（legacy-patches，同日移出，仅存 git 历史）、旧验收MD和旧导出JS也不是当前源码。
 
 ## 10. 剩余问题与建议续接顺序
 
