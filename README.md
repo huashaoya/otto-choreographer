@@ -6,7 +6,7 @@
 
 ## 快速开始
 
-1. 用支持 WebGL 的 Edge / Chrome 打开 `otto-choreographer.html`，当前入口为 `D:\jarvis\otto-choreographer.html`。
+1. 用支持 WebGL 的 Edge / Chrome 打开 `otto-choreographer.html`，当前入口为 `D:\jarvis\otto-choreographer\otto-choreographer.html`。
 2. 页面默认载入一段打招呼示例，**不会自动播放或连接设备**。不要把示例当成已保存的个人编舞。
 3. 左栏拖动六轴滑块；点击姿态库预设会将动作追加到时间轴。
 4. 右栏选择帧、编辑时序、添加姿态帧或六轴振荡帧；可以上下移动、编辑或删除。
@@ -102,7 +102,7 @@ JSON-RPC 外层封装如下：
 ## 目录与维护边界
 
 ```text
-D:\jarvis\                        # git 仓库根（2026-10-31 起；.gitignore 排除固件/server/镜像/_backup/日志）
+D:\jarvis\otto-choreographer\    # git 仓库根 = 项目根（2026-10-31 整仓迁入；固件/后端等在仓库外 D:\jarvis\）
 ├─ otto-choreographer.html       # 唯一生产源码/运行入口
 ├─ README.md                     # 当前使用与维护说明
 ├─ CHANGELOG-otto.md              # 编舞台变更记录
@@ -117,16 +117,11 @@ D:\jarvis\                        # git 仓库根（2026-10-31 起；.gitignore 
 │  ├─ fullscreen.js              # 全屏/退出/布局恢复
 │  ├─ ui.js                      # 最近UI与腿脚对齐检查
 │  └─ results\                   # 按次生成报告/截图/提取脚本（.gitignore，不入库）
-├─ _backup\                      # 修订前HTML存档（.gitignore，不入库），不是生产版本
-├─ otto-编舞台-交接文档.md         # 历史2D交接，只作背景
-├─ Otto编舞台-AI续接交接.md        # 3D 交接（快照口径）
-├─ xiaozhi-esp32\                # 固件生产目录（快照原样+本地改动，不入库；改动存档见 patches\firmware-local\）
-├─ xiaozhi-esp32-server\         # 后端生产目录（快照原样+2文件改动，不入库；存档见 patches\server-local\）
-├─ xiaozhi-esp32-upstream-mirror\     # 上游78/xiaozhi-esp32镜像 @addb1ed（只读参考，不build）
-└─ xiaozhi-esp32-server-mirror\       # 上游xinnan-tech镜像 @1a095d5（只读参考，不运行）
+├─ otto-编舞台-交接文档.md         # 历史2D交接，只作背景（路径按迁移注记解读）
+└─ Otto编舞台-AI续接交接.md        # 3D 交接（快照口径）
 ```
 
-`audio-work`、历史 `build_*.log`/`flash_*.log` 及 `.git` 配置不属本轮维护范围。Git 2.38.1 可用；2026-10-31 建立本地仓库并提交基线（生产 HTML SHA256 `A528E706…`），未配置远程、未推送。固件/后端快照的本地改动已逐文件用上游 git-blob 哈希比对核实并存档（见 `patches\`），生产目录原样未动。
+仓库外（`D:\jarvis\`，不属本仓库，勿顺手改动）：`xiaozhi-esp32\`（固件生产目录）、`xiaozhi-esp32-server\`（后端生产目录）、两个 `*-mirror\` 上游镜像、`_backup\`、`audio-work\`、历史日志。固件/后端本地改动的权威存档在本仓库 `patches\`。Git 2.38.1 可用；未配置远程、未推送。
 
 ### 源码定位
 
@@ -151,7 +146,7 @@ D:\jarvis\                        # git 仓库根（2026-10-31 起；.gitignore 
 
 `core.js / camera.js / sides.js / fullscreen.js / ui.js` 是由 `shot.py --eval-file` 注入页面的 async 函数体，不是可直接用 Node 运行的应用模块。使用统一 `run.py` 入口；仅 `static-check.cjs` 可独立用 Node 执行。
 
-下面的相对路径命令在 `D:\jarvis` 目录下执行。在其他目录可运行 `python "D:\jarvis\otto-tests\run.py"`；入口会自行定位项目，不依赖调用者的当前目录。
+下面的相对路径命令在 `D:\jarvis\otto-choreographer` 目录下执行。在其他目录可运行 `python "D:\jarvis\otto-choreographer\otto-tests\run.py"`；入口会自行定位项目，不依赖调用者的当前目录。
 
 静态与逻辑 fixture（没有浏览器结论）：
 

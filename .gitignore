@@ -1,18 +1,6 @@
-# Otto 编舞台仓库（D:\jarvis 原地跟踪）
+# Otto 编舞台仓库（项目根 = 仓库根；2026-10-31 自 D:\jarvis 整仓迁入）
 # 唯一生产入口: otto-choreographer.html
-# 结构变更记录见 CHANGELOG-otto.md（2026-10-31 起 git 管理）
-
-# ---- 固件/后端快照与上游镜像：独立维护，不入本仓库 ----
-/xiaozhi-esp32/
-/xiaozhi-esp32-server/
-/xiaozhi-esp32-upstream-mirror/
-/xiaozhi-esp32-server-mirror/
-/audio-work/
-
-# ---- 手工备份与产物：磁盘归档保留，不入库 ----
-/_backup/
-/otto-tests.zip
-*.log
+# 固件/后端/镜像/_backup 等在仓库外（D:\jarvis\），不适用本文件
 
 # ---- 测试运行产物 ----
 /otto-tests/results/

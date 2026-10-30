@@ -1,5 +1,7 @@
 # Otto 在线编舞台 — 交接文档
 
+> **⚠️ 2026-10-31 仓库迁移注记**：本仓库已整仓迁至 `D:\jarvis\otto-choreographer\`，本文与正文中的 `D:\jarvis\otto-choreographer.*` 等路径一律按新位置解读（如 `D:\jarvis\otto-choreographer\otto-choreographer.html`）。固件/后端/`_backup` 仍在 `D:\jarvis\` 原处。本文其余内容为历史 2D 阶段记录，仅作背景。
+
 > 写给接手的 AI：你没有本会话的任何上下文，本文档自包含。请先完整读完再动手。
 > 用户协作规则：**先给方案，用户确认后再动手改代码。不要未经确认直接开工。**
 

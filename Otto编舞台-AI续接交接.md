@@ -6,11 +6,11 @@
 
 ## 1. 一分钟接手摘要
 
-- 唯一生产源码与运行入口：`D:\jarvis\otto-choreographer.html`。原生 JS、内联 CSS、内嵌 Three.js 与五类原始网格，可离线直接打开，无 npm 构建。
-- 当前入口：`file:///D:/jarvis/otto-choreographer.html`。
+- 唯一生产源码与运行入口：`D:\jarvis\otto-choreographer\otto-choreographer.html`。原生 JS、内联 CSS、内嵌 Three.js 与五类原始网格，可离线直接打开，无 npm 构建。
+- 当前入口：`file:///D:/jarvis/otto-choreographer/otto-choreographer.html`。
 - 用户已选“单文件项目维护”：不能擅自拆 JS/CSS、引入 npm 工程或运行时 CDN，也不能改固件、服务端和现有 Git 配置。
-- 使用说明：`D:\jarvis\README.md`；变更记录：`D:\jarvis\CHANGELOG-otto.md`；测试入口：`D:\jarvis\otto-tests\run.py`。
-- 旧 `D:\jarvis\otto-编舞台-交接文档.md` 是历史 2D 文档，已保留；它的旧公式、行号、零依赖、“实测/百分百”结论不能覆盖现版。
+- 使用说明：`D:\jarvis\otto-choreographer\README.md`；变更记录：`D:\jarvis\otto-choreographer\CHANGELOG-otto.md`；测试入口：`D:\jarvis\otto-choreographer\otto-tests\run.py`。
+- 旧 `D:\jarvis\otto-choreographer\otto-编舞台-交接文档.md` 是历史 2D 文档，已保留；它的旧公式、行号、零依赖、“实测/百分百”结论不能覆盖现版。
 - 最新代码末次变化为腿脚深度对齐，后续项目维护没有修改 HTML。本次交接也只新增本文。
 - 页面没有自动保存和撤销。**不要擅自刷新用户正在使用的页面，或清空、导入其未保存编舞。** 用独立测试浏览器检查。
 - 历史未完成项是“重新校准 Otto 侧面装配”。仅有本地实现断言，不能标成实物 1:1 完成。
@@ -23,8 +23,8 @@
 - 这些是快照，不是永久版本号。接手时若不同，说明现场可能更新，先比较差异，不能用旧备份覆盖新工作。
 
 ```powershell
-Get-FileHash -LiteralPath "D:\jarvis\otto-choreographer.html" -Algorithm SHA256
-python "D:\jarvis\otto-tests\run.py" --static-only
+Get-FileHash -LiteralPath "D:\jarvis\otto-choreographer\otto-choreographer.html" -Algorithm SHA256
+python "D:\jarvis\otto-choreographer\otto-tests\run.py" --static-only
 ```
 
 ## 2. 用户目标与协作约定
@@ -197,10 +197,10 @@ function handLift(x) {
 
 ```powershell
 # 任意工作目录均可执行；不连接设备、不修改生产HTML
-python "D:\jarvis\otto-tests\run.py"
-python "D:\jarvis\otto-tests\run.py" --static-only
-python "D:\jarvis\otto-tests\run.py" --suite camera
-python "D:\jarvis\otto-tests\run.py" --suite core --suite sides --suite ui
+python "D:\jarvis\otto-choreographer\otto-tests\run.py"
+python "D:\jarvis\otto-choreographer\otto-tests\run.py" --static-only
+python "D:\jarvis\otto-choreographer\otto-tests\run.py" --suite camera
+python "D:\jarvis\otto-choreographer\otto-tests\run.py" --suite core --suite sides --suite ui
 ```
 
 测试需Python3.10+、Node；完整浏览器验证另需Playwright和HTML自检`shot.py`，这些不是页面运行依赖。`run.py`以自身位置定位HTML，自动发现shot和浏览器，支持`--shot`、`--browser`、`--html`、`--outdir`。若迁移到没有shot的环境，不能冒充完整回归已运行；不要要求新增运行时依赖以绕开。
@@ -219,7 +219,7 @@ python "D:\jarvis\otto-tests\run.py" --suite core --suite sides --suite ui
 ### 8.2 已通过的基线，不是本次新跑
 
 权威完整报告：
-`D:\jarvis\otto-tests\results\20261031-024706-317600\summary.json`
+`D:\jarvis\otto-choreographer\otto-tests\results\20261031-024706-317600\summary.json`
 
 - 静态27项通过。
 - core68、camera22、sides18、fullscreen14、ui14，各在1440×900桌面及390×844手机重复执行通过。
@@ -259,12 +259,12 @@ python "D:\jarvis\otto-tests\run.py" --suite core --suite sides --suite ui
 - `Otto腿脚对齐\左侧复核\otto-choreographer_desktop.png`：对应左侧截图。
 
 现版完整回归截图另在：
-`D:\jarvis\otto-tests\results\20261031-024706-317600\core\otto-choreographer_desktop.png`
+`D:\jarvis\otto-choreographer\otto-tests\results\20261031-024706-317600\core\otto-choreographer_desktop.png`
 及 `...\ui\otto-choreographer_mobile.png`。
 
 原照片曾在微信临时E盘路径，后来不可访问；不要死守过期路径。上列本地素材可先使用，若关键视角/细节仍缺，向用户索取对应实物侧面或尺寸，不能猜造。视频语义理解曾在末尾出错，像素和真实帧优先于文字摘要；曾有浏览器MP4黑画面，通过抽帧取得可读图片，不把黑画面当成无素材。
 
-历史2D截图 `D:\jarvis\otto-choreographer-current.png / otto-choreographer-preview.png` 不代表当前3D。旧过程脚本、旧验收MD和旧导出JS也不是当前源码。
+历史2D截图 `D:\jarvis\otto-choreographer\otto-choreographer-current.png / otto-choreographer-preview.png` 不代表当前3D。旧过程脚本、旧验收MD和旧导出JS也不是当前源码。
 
 ## 10. 剩余问题与建议续接顺序
 
@@ -309,7 +309,7 @@ python "D:\jarvis\otto-tests\run.py" --suite core --suite sides --suite ui
 ## 12. 给下一个 AI 的可粘贴开场指令
 
 ```text
-请先完整读取 D:\jarvis\Otto编舞台-AI续接交接.md、README.md、CHANGELOG-otto.md，并检查当前 otto-choreographer.html 的SHA256。唯一生产入口保留单文件，不拆JS/CSS，不改固件、服务端或现有Git配置。
+请先完整读取 D:\jarvis\otto-choreographer\Otto编舞台-AI续接交接.md、README.md、CHANGELOG-otto.md，并检查当前 otto-choreographer.html 的SHA256。唯一生产入口保留单文件，不拆JS/CSS，不改固件、服务端或现有Git配置。
 
 根据我接下来给出的具体需求继续。修改前读取当前函数与真实素材，不运行旧补丁、不刷新我未保存的编舞。左右按机器人自身；关节变化不移动相机和整机基座；初始俯角0.24；原预设、JSON和协议保留。
 

@@ -2,6 +2,16 @@
 
 仅记录 `otto-choreographer.html` 及本项目维护文件。下述历史项目状态依据当前源码与本地验收资料，不能解释为实物 1:1、设备安全或真机执行已完成。
 
+## 2026-10-31 · 整仓迁移（当日第二次结构变更）
+
+- **应确认执行整仓搬家**：git 仓库根由 `D:\jarvis\` 迁至 `D:\jarvis\otto-choreographer\`，仓库根 = 项目根。全部 76 个跟踪文件与 `.git` 一起移动，历史提交（`ce5bdd5`、`ebb1613`）完整保留，移动后 `git status` 干净。
+- 迁移后仓库外保留（`D:\jarvis\`，均未改动）：固件生产目录、后端生产目录、两个上游镜像、`_backup\`、`audio-work\`、历史 build/flash 日志、`otto-tests.zip`。
+- `.gitignore` 精简为测试产物三项（`/otto-tests/results/`、`__pycache__/`、`*.pyc`）；固件/server 等已在仓库外，无需忽略规则。
+- 路径引用更新：README（入口、目录树、测试命令）、`Otto编舞台-AI续接交接.md`（18 处；`_backup` 与固件两处按仓库外原样保留）、`otto-编舞台-交接文档.md` 顶部加迁移注记（正文历史不改写）、`patches\` 两个 README 的仓库边界表述。`otto-choreographer.html` 内容零改动（其运行时提示指向的 `_backup` 路径迁移后依然正确）。
+- **迁移暴露并修复两个测试环境问题**：① `assets\grid-views\` 五张三视图成为 HTML 兄弟目录后触发 shot.py 发布链路 lint（`assets/` 下未被 HTML 引用的图片 → error×5），已移至 `docs\grid-views\`（仓库内无代码引用，纯人工对照图，语义归 docs）；测试口径与外部 shot.py 均未改动。② 回归首次运行全套 `False(None)`：`playwright` 缺失（greenlet 残留）令 shot.py 降级 CDP 模式、`--eval` 断言不执行；已 `pip install playwright` 恢复。pip 提示的 sqlalchemy/typing-extensions 版本冲突为环境既有问题，未处理。
+- 迁移后全量回归 **PASS**（`20261031-043341-924473`）：core 68、camera 22、sides 18、fullscreen 14、ui 14，desktop/mobile 双视图全过，`production_unchanged=true`。
+- 生产 HTML SHA256 迁移前后均为 `A528E7066253225A0063E24DAA25831BA409688F0056E5DC60622B99FE0163B6`；本轮无外观/功能/真机结论。
+
 ## 2026-10-31 · 仓库化与素材归位
 
 - **素材从聊天缓存迁出**：`Otto原始模型.3mf`、`Otto真实网格.json`、五类网格三视图、`three-0.158.0.min.js`、模型尺寸 JSON 及 3 份验收文档，从豆包聊天缓存目录复制到 `assets\`（原件未动，SHA256 校验一致）；历史轮次补丁/回归脚本 25 个归入 `assets\legacy-patches\`。此前素材存放在 `C:\Users\Administrator\Doubao\chats\...`，有清缓存即丢失风险。

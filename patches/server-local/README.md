@@ -25,4 +25,4 @@
 
 - 后端两把方舟 Key 仍未填（`config.yaml` 中为占位符），设备切换自建后端前需先填 Key（见 2026-10-23 会话记录）。
 - 不要把 `xiaozhi-esp32-server-mirror` 当生产目录（无本地改动、无运行配置）。
-- 主仓库 `.gitignore` 排除 `xiaozhi-esp32-server*/`，本 patches 目录已入库。
+- 后端目录与镜像位于仓库外（`D:\jarvis\`），本 patches 目录已入库。

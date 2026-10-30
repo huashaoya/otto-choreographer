@@ -44,5 +44,5 @@
 ## 注意
 
 - 不要把 `xiaozhi-esp32-upstream-mirror` 当生产目录（无 sdkconfig、无本地改动）。
-- 主仓库 `.gitignore` 排除 `xiaozhi-esp32*/`，本 patches 目录**已入库**。
+- 固件目录与镜像位于仓库外（`D:\jarvis\`），本 patches 目录**已入库**。
 - 真机操作（烧录/串口/下发）不在自动流程内，需用户明确指示。
