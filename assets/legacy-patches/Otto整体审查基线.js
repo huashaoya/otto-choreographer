@@ -1,0 +1,12 @@
+const checks=[];const check=(name,observed)=>checks.push({name,observed});
+const initial=JSON.parse(JSON.stringify(buildSequence()));
+parseSequence({a:[{s:{ll:120},v:100,d:0},{s:{lh:160},v:100,d:0}],d:700});
+check('导入是否保留局部姿态与总延迟',buildSequence());
+selectFrame(1);check('第二帧是否继承前一帧ll120',state.pose);
+moveFrame(0,1);check('交换时选中帧身份',state.activeFrame);
+let unsafeAccepted=false;try{parseSequence({a:[{s:{lh:'<img src=x onerror=alert(1)>'},v:-1,d:0}]});unsafeAccepted=true;}catch(e){}check('非法角度字符串是否被接受',unsafeAccepted);
+parseSequence(initial);state.pose={...STAND_POSE};syncPoseSliders();drawRobot(state.pose);
+const osc={a:{lf:20},o:{lf:100},ph:{lf:90},p:500,c:2};state.frames=[oscFrame(osc,0)];openOscModal(state.frames[0]);check('编辑脚振荡是否保留原始脚参数',buildOscFromForm());closeOscModal();
+parseSequence(initial);drawRobot(STAND_POSE);setRobotView('reset');
+check('渲染基线',{geometries:robot3d.renderer.info.memory.geometries,drawCalls:robot3d.renderer.info.render.calls,triangles:robot3d.renderer.info.render.triangles});
+return checks;

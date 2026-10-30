@@ -1,0 +1,19 @@
+# Otto 编舞台仓库（D:\jarvis 原地跟踪）
+# 唯一生产入口: otto-choreographer.html
+# 结构变更记录见 CHANGELOG-otto.md（2026-10-31 起 git 管理）
+
+# ---- 固件/后端快照：独立维护，不入本仓库 ----
+/xiaozhi-esp32/
+/xiaozhi-esp32-snapshot-*/
+/xiaozhi-esp32-server/
+/audio-work/
+
+# ---- 手工备份与产物：磁盘归档保留，不入库 ----
+/_backup/
+/otto-tests.zip
+*.log
+
+# ---- 测试运行产物 ----
+/otto-tests/results/
+__pycache__/
+*.pyc
