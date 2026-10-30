@@ -8,7 +8,7 @@
 
 ## 快速开始
 
-1. 用支持 WebGL 的 Edge / Chrome 打开 `otto-choreographer.html`，当前入口为 `D:\jarvis\otto-choreographer\otto-choreographer.html`。
+1. 用支持 WebGL 的 Edge / Chrome 打开仓库里的 `otto-choreographer.html`，双击即可，无需服务器。
 2. 页面默认载入一段打招呼示例，**不会自动播放或连接设备**。不要把示例当成已保存的个人编舞。
 3. 左栏拖动六轴滑块；点击姿态库预设会将动作追加到时间轴。
 4. 右栏选择帧、编辑时序、添加姿态帧或六轴振荡帧；可以上下移动、编辑或删除。
@@ -104,10 +104,10 @@ JSON-RPC 外层封装如下：
 ## 目录与维护边界
 
 ```text
-D:\jarvis\otto-choreographer\    # git 仓库根 = 项目根（2026-10-31 整仓迁入；固件/后端等在仓库外 D:\jarvis\）
+otto-choreographer\              # git 仓库根 = 项目根
 ├─ otto-choreographer.html       # 唯一生产源码/运行入口
 ├─ README.md                     # 当前使用与维护说明
-├─ assets\                       # 源头素材（已入库）：原始3MF、网格JSON、Three.js原件、模型尺寸JSON
+├─ assets\                       # 源头素材（已入库）：原始3MF、模型尺寸JSON
 ├─ docs\grid-views\              # 五类网格三视图（外观迭代对照参考）
 ├─ otto-tests\                   # 独立离线测试；不属于运行依赖
 │  ├─ run.py                     # 统一测试入口，检查失败返回非零
@@ -121,9 +121,7 @@ D:\jarvis\otto-choreographer\    # git 仓库根 = 项目根（2026-10-31 整仓
 └─ .gitignore                    # 仅排除 results 与 Python 缓存
 ```
 
-已按 2026-10-31 清理决定移出工作区的项目内容（仅存 git 历史，可随时找回）：`CHANGELOG-otto.md`、两份交接文档（`otto-编舞台-交接文档.md`、`Otto编舞台-AI续接交接.md`）、`assets\docs\` 验收记录、历史 2D 截图与 `assets\legacy-patches\`。固件/后端本地改动存档在仓库外 `D:\jarvis\patches\`，固件一键脚本在 `D:\jarvis\start-xiaozhi.ps1`。
-
-仓库外（`D:\jarvis\`，不属本仓库，勿顺手改动）：`xiaozhi-esp32\`（固件生产目录，**git 仓库** = 上游 addb1ed + 本地改动 9fe5a97，编译验证通过）、`xiaozhi-esp32-server\`（后端生产目录，**git 仓库** = 上游 1a095d5 + 本地改动 fd3ab1f）、`_backup\`、`audio-work\`。固件/后端本地改动的权威存档在本仓库 `patches\`。Git 2.38.1 可用，GitHub 访问需走本机代理 `127.0.0.1:7897`（`git -c http.proxy=…`）；编舞台仓库本身未配置远程、未推送。
+历史交接文档、变更记录与验收记录已清理出工作区（仅存 git 历史，可随时找回）。固件/后端相关的本地改动存档与一键脚本在作者本机维护，不在本仓库。
 
 ### 源码定位
 
@@ -148,7 +146,7 @@ D:\jarvis\otto-choreographer\    # git 仓库根 = 项目根（2026-10-31 整仓
 
 `core.js / camera.js / sides.js / fullscreen.js / ui.js` 是由 `shot.py --eval-file` 注入页面的 async 函数体，不是可直接用 Node 运行的应用模块。使用统一 `run.py` 入口；仅 `static-check.cjs` 可独立用 Node 执行。
 
-下面的相对路径命令在 `D:\jarvis\otto-choreographer` 目录下执行。在其他目录可运行 `python "D:\jarvis\otto-choreographer\otto-tests\run.py"`；入口会自行定位项目，不依赖调用者的当前目录。
+下面的相对路径命令在仓库根目录下执行；`run.py` 会自行定位项目，不依赖调用者的当前目录。
 
 静态与逻辑 fixture（没有浏览器结论）：
 
@@ -185,28 +183,28 @@ python .\otto-tests\run.py --shot "实际路径\html\scripts\shot.py" --browser 
 
 ### 本轮验证基线
 
-完整运行 `python .\otto-tests\run.py` 的报告按次生成于 `otto-tests/results/<时间戳>/summary.json`（results 不入库，历史报告已按 2026-10-31 清理决定移除）。迁移后基线为 `20261031-043341-924473`：27项静态检查，以及core 68、camera 22、sides 18、fullscreen 14、ui 14项断言，在1440×900与390×844视口通过，0运行错误/警告。套件之间有重叠，宽窄屏是重复执行，不计为新的独立测试。桌面与手机截图已实际读取；实物和真机验收仍不在覆盖范围。
+完整运行 `python .\otto-tests\run.py` 的报告按次生成于 `otto-tests/results/<时间戳>/summary.json`（results 不入库）。最近一次完整回归：27 项静态检查，以及 core 68、camera 22、sides 18、fullscreen 14、ui 14 项断言，在 1440×900 与 390×844 视口通过，0 运行错误/警告。套件之间有重叠，宽窄屏是重复执行，不计为新的独立测试。桌面与手机截图需实际读取；实物和真机验收不在覆盖范围。
 
 HTML SHA256：`A528E7066253225A0063E24DAA25831BA409688F0056E5DC60622B99FE0163B6`。维护文件新增前后保持相同。以后修改HTML必须重跑相应测试，不将此基线作为动态最新结果。
 
 ## 修改、回退与发布
 
 1. 回读当前源码，明确只改哪个对象；未知装配数据保持假设标记。
-2. 改前复制当前 HTML 到 `_backup`，用语义化名称和时间戳，不覆盖已有存档。
+2. 改前备份当前 HTML（建议在仓库外自建带时间戳的备份目录），不覆盖已有存档。
 3. 原地修改唯一 HTML，保留库、原始网格、JSON字段、预设和协议，除非需求明确要求改变。
 4. 运行最小受影响测试，再按改动范围运行回归；检查真实截图，把覆盖与缺口写进该次 git commit 说明。
 5. 通过以后交付最新 HTML；文档或测试修改也应同步维护，不凭历史“通过”覆盖本次结果。
 
-回退前先复制个人 JSON，并确认所选备份版本；恢复到原 `otto-choreographer.html`，不要把 `_backup` 内多个版本当成当前入口。刷新无自动保存。
+回退前先复制个人 JSON，并确认所选备份版本；恢复到原 `otto-choreographer.html`，不要把历史备份版本当成当前入口。刷新无自动保存。
 
-没有新增构建或发布流程；转发运行工具只需这一份 HTML。要交接源码维护则一并携带 README、变更记录和测试目录，不必携带测试输出及其他固件项目。不要未经授权公开发布作者模型或推送到额外仓库。
+没有新增构建或发布流程；转发运行工具只需这一份 HTML。要交接源码维护则一并携带 README 和测试目录，不必携带测试输出。模型素材的再分发须遵守其自身许可（见下节）。
 
 ## 许可与来源
 
+- 页面代码与测试：[MIT](LICENSE)。
 - 模型：小鹏 OttoRobot，来源 `https://makerworld.com.cn/zh/models/1117966-ottorobot-xiao-zhi-ai#profileId-1284462`，采用原始 3MF 网格。
-- 模型许可：CC BY-NC-SA 4.0，`https://creativecommons.org/licenses/by-nc-sa/4.0/`。保留署名、来源、非商业及相同方式共享要求；公开分发修改模型前核对原许可。
+- 模型许可：CC BY-NC-SA 4.0，`https://creativecommons.org/licenses/by-nc-sa/4.0/`。MIT 只覆盖自写代码，**不覆盖内嵌模型**；公开分发本 HTML 需同时满足两者（署名、来源、非商业及相同方式共享）。
 - 内嵌 Three.js 采用 MIT，库内版权/许可文本保留。不删掉它们来减小文件。
-- 本项目没有重新授予作者模型许可；自写页面代码未在本轮另行指定开源许可证，不能将整个 HTML 统一标成 MIT。
 
 ## 未完成与验收缺口
 
