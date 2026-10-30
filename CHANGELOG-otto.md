@@ -2,6 +2,15 @@
 
 仅记录 `otto-choreographer.html` 及本项目维护文件。下述历史项目状态依据当前源码与本地验收资料，不能解释为实物 1:1、设备安全或真机执行已完成。
 
+## 2026-10-31 · 仓库化与素材归位
+
+- **素材从聊天缓存迁出**：`Otto原始模型.3mf`、`Otto真实网格.json`、五类网格三视图、`three-0.158.0.min.js`、模型尺寸 JSON 及 3 份验收文档，从豆包聊天缓存目录复制到 `assets\`（原件未动，SHA256 校验一致）；历史轮次补丁/回归脚本 25 个归入 `assets\legacy-patches\`。此前素材存放在 `C:\Users\Administrator\Doubao\chats\...`，有清缓存即丢失风险。
+- **建立本地 git 仓库**（原地 init 于 `D:\jarvis`）：`.gitignore` 排除固件/后端/镜像/`_backup`/日志/测试产物；基线提交 `ce5bdd5` 含生产 HTML（SHA256 `A528E7066253225A0063E24DAA25831BA409688F0056E5DC60622B99FE0163B6` 未变）、文档、测试套件与素材，共 56 文件。全局身份 `huashaoya` 复用，未配置远程、未推送。
+- **固件快照核查**（`xiaozhi-esp32`，PROJECT_VER 2.5.3）：与上游 78/xiaozhi-esp32 main（@addb1ed）逐文件 git-blob 比对（MD5 方案因 CRLF/LF 行尾污染弃用），识别本地改动 12 源文件 + 4 构建产物（屏幕工具/manual_mode/qrcodegen/欢迎语/提示文字等），全部不匹配任何上游 commit；快照主体指纹最接近 03a7c65 (10-25)。生产目录**原样未动**，改动文件级存档至 `patches\firmware-local\`（16 文件 + README）。
+- **固件上游镜像**：`xiaozhi-esp32-upstream-mirror\`（addb1ed，1819 文件）。浅仓库经多次 `--shallow-since` 叠加后 fetch 报 `error in object: unshallow`，log 可读但再次深化前需重建；镜像仅作 diff 参考。
+- **后端快照核查**（`xiaozhi-esp32-server`，xinnan-tech 上游）：本地改动恰好 2 文件（`asr/doubao_stream.py`、`tts/huoshan_double_stream.py`，10/23-24 方舟 Key 轮次，有 `.bak` 备份），其余 28 差异均匹配上游历史；存档至 `patches\server-local\`。镜像 `xiaozhi-esp32-server-mirror\`（@1a095d5）。
+- 生产 HTML、固件目录、后端目录内容均未被修改；本轮无外观/功能/真机结论。
+
 ## 未发布 · 单文件项目维护
 
 - 保留 `otto-choreographer.html` 为唯一源码和运行入口，HTML 未拆分，生产内容不修改。

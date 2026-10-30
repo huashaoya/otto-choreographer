@@ -102,10 +102,12 @@ JSON-RPC 外层封装如下：
 ## 目录与维护边界
 
 ```text
-D:\jarvis\
+D:\jarvis\                        # git 仓库根（2026-10-31 起；.gitignore 排除固件/server/镜像/_backup/日志）
 ├─ otto-choreographer.html       # 唯一生产源码/运行入口
 ├─ README.md                     # 当前使用与维护说明
 ├─ CHANGELOG-otto.md              # 编舞台变更记录
+├─ assets\                       # 模型与素材（已入库）：原始3MF、网格JSON、三视图、Three.js原件、验收文档、历史补丁
+├─ patches\                      # 固件/后端本地改动存档（已入库）：firmware-local\、server-local\，各含README
 ├─ otto-tests\                   # 独立离线测试；不属于运行依赖
 │  ├─ run.py                     # 统一测试入口，检查失败返回非零
 │  ├─ static-check.cjs            # 两段内嵌脚本语法/规则fixture
@@ -114,12 +116,17 @@ D:\jarvis\
 │  ├─ sides.js                   # 自身左右与单轴映射
 │  ├─ fullscreen.js              # 全屏/退出/布局恢复
 │  ├─ ui.js                      # 最近UI与腿脚对齐检查
-│  └─ results\                   # 按次生成报告/截图/提取脚本
-├─ _backup\                      # 修订前HTML存档，不是生产版本
-└─ otto-编舞台-交接文档.md         # 历史2D交接，只作背景
+│  └─ results\                   # 按次生成报告/截图/提取脚本（.gitignore，不入库）
+├─ _backup\                      # 修订前HTML存档（.gitignore，不入库），不是生产版本
+├─ otto-编舞台-交接文档.md         # 历史2D交接，只作背景
+├─ Otto编舞台-AI续接交接.md        # 3D 交接（快照口径）
+├─ xiaozhi-esp32\                # 固件生产目录（快照原样+本地改动，不入库；改动存档见 patches\firmware-local\）
+├─ xiaozhi-esp32-server\         # 后端生产目录（快照原样+2文件改动，不入库；存档见 patches\server-local\）
+├─ xiaozhi-esp32-upstream-mirror\     # 上游78/xiaozhi-esp32镜像 @addb1ed（只读参考，不build）
+└─ xiaozhi-esp32-server-mirror\       # 上游xinnan-tech镜像 @1a095d5（只读参考，不运行）
 ```
 
-`xiaozhi-esp32`、`xiaozhi-esp32-server`、`audio-work`、其他脚本/日志及现有 `.git` 都不属于本轮维护范围，不移动或删除。当前机器发现 `.git` 目录，但命令行未找到 Git 可执行文件；本轮没有检查提交历史、提交、推送或修改 Git 配置，不将其称为已经建立独立仓库。
+`audio-work`、历史 `build_*.log`/`flash_*.log` 及 `.git` 配置不属本轮维护范围。Git 2.38.1 可用；2026-10-31 建立本地仓库并提交基线（生产 HTML SHA256 `A528E706…`），未配置远程、未推送。固件/后端快照的本地改动已逐文件用上游 git-blob 哈希比对核实并存档（见 `patches\`），生产目录原样未动。
 
 ### 源码定位
 

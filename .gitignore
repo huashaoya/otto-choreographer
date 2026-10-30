@@ -2,10 +2,11 @@
 # 唯一生产入口: otto-choreographer.html
 # 结构变更记录见 CHANGELOG-otto.md（2026-10-31 起 git 管理）
 
-# ---- 固件/后端快照：独立维护，不入本仓库 ----
+# ---- 固件/后端快照与上游镜像：独立维护，不入本仓库 ----
 /xiaozhi-esp32/
-/xiaozhi-esp32-snapshot-*/
 /xiaozhi-esp32-server/
+/xiaozhi-esp32-upstream-mirror/
+/xiaozhi-esp32-server-mirror/
 /audio-work/
 
 # ---- 手工备份与产物：磁盘归档保留，不入库 ----
