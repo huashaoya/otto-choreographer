@@ -154,9 +154,17 @@
       "name": "Frame Row",
       "kind": "row",
       "refersTo": "page-chrome",
-      "description": "A table row on the slate block, lifted with slate-2. Mono index, type label (振荡 in goldenrod), one line of mono angle pairs with the timing after it, actions flush right behind hairlines. Active reverses the whole row to the page; previewing fills it with #8F2A12.",
+      "description": "A table row on the slate block, lifted with slate-2. Mono index, type label (振荡 in goldenrod), one line of mono angle pairs with the timing after it and nothing else — at 380px row actions cost a third of the width. Active reverses the whole row to the page; previewing fills it with #8F2A12.",
       "html": "<div class=\"frame active\"><span class=\"f-id\">F1</span><span class=\"f-type\">姿态</span><span class=\"f-params\"><em><span><b>ll</b>90</span></em><i>v=800ms · d=100ms</i></span><span class=\"f-acts\"><button>↑</button><button>↓</button><button>编辑</button><button>删除</button></span></div>",
       "css": ".frame{display:grid;grid-template-columns:30px 40px minmax(0,1fr) auto;align-items:baseline;gap:8px;position:relative;padding:5px 8px 5px 0;cursor:pointer;background:#3B484C;color:#F2EAD6;border-bottom:1px solid rgba(242,234,214,.13)}.f-id{font-family:'Cascadia Mono',Consolas,monospace;color:#B4A98D}.f-type{letter-spacing:.1em;color:#CFC4A8}.frame.osc .f-type{color:#C49031}.f-params{display:flex;flex-wrap:wrap;gap:4px 9px;font-family:'Cascadia Mono',Consolas,monospace}.f-params em{display:flex;flex-wrap:wrap;gap:8px;font-style:normal}.f-params b{color:#B4A98D;font-weight:400;margin-right:2px}.f-params i{color:#B4A98D;font-style:normal;white-space:nowrap}.frame.active{background:#F2EAD6;color:#1C1913}.frame.active .f-id,.frame.active .f-params b,.frame.active .f-params i{color:rgba(28,25,19,.78)}.frame.playing{background:#8F2A12}.f-acts{margin-left:auto;display:flex;white-space:nowrap}.f-acts button{padding:0 4px;border:0;border-left:1px solid rgba(242,234,214,.2);color:#CFC4A8;min-height:22px;line-height:20px}"
+    },
+    {
+      "name": "Frame Toolbar",
+      "kind": "custom",
+      "refersTo": "page-chrome",
+      "description": "当前帧 ↑ ↓ 编辑 删除 under the meter, acting on the selected frame and disabled when there is none. This is where row actions went when the rack narrowed to 380px.",
+      "html": "<div class=\"frame-tools\"><span class=\"ft-label\">当前帧</span><button data-tool=\"up\">↑</button><button data-tool=\"down\">↓</button><button data-tool=\"edit\">编辑</button><button data-tool=\"del\" class=\"danger\">删除</button></div>",
+      "css": ".frame-tools{display:flex;align-items:center;gap:0;padding:0 12px;border-bottom:1px solid rgba(242,234,214,.15)}.frame-tools .ft-label{color:#B4A98D;letter-spacing:.1em;margin-right:8px}.frame-tools button{padding:0 7px;border:0;border-left:1px solid rgba(242,234,214,.2);color:#CFC4A8;min-height:22px;line-height:20px}.frame-tools button:disabled{color:rgba(180,169,141,.45)}"
     },
     {
       "name": "Tick Rail",
@@ -170,8 +178,8 @@
       "name": "Ruler + Playhead",
       "kind": "custom",
       "refersTo": "page-stage",
-      "description": "A 26px graduated strip under the stage, drawn in ink on the page. The playhead chip is a goldenrod tab riding it.",
-      "html": "<div class=\"ruler\"><span class=\"playhead\">1 / 4</span></div>",
+      "description": "The last cell of the play row, as in the reference: 1 / 4 in mono ink, divided from 停止预览 by the same 1px rule as the buttons. No separate ruler strip.",
+      "html": "<span class=\"playhead\" aria-label=\"当前帧\">1 / 4</span>",
       "css": ".ruler{position:relative;height:26px;display:flex;align-items:center;padding-right:58px;border-top:1px solid rgba(28,25,19,.22);border-bottom:1px solid rgba(28,25,19,.22);background:repeating-linear-gradient(90deg,rgba(28,25,19,.42) 0 1px,transparent 1px 50px) left bottom/100% 9px no-repeat,repeating-linear-gradient(90deg,rgba(28,25,19,.2) 0 1px,transparent 1px 10px) left bottom/100% 4px no-repeat}.playhead{margin:5px 0 5px auto;padding:0 7px;font-family:'Cascadia Mono',Consolas,monospace;color:#1C1913;background:#C49031;line-height:16px}"
     },
     {
@@ -183,21 +191,21 @@
       "css": ".page-label,.page-meta{position:absolute;top:6px;z-index:2;pointer-events:none;letter-spacing:.12em;color:rgba(28,25,19,.68)}.page-label{left:9px;font-weight:700}.page-meta{right:9px;font-family:'Cascadia Mono',Consolas,monospace}.stage-foot{color:#3A2C08;font-family:'Cascadia Mono',Consolas,monospace;letter-spacing:.08em}"
     },
     {
-      "name": "Foot Bands",
+      "name": "Pane Foot + Imprint",
       "kind": "custom",
       "refersTo": "page-binding",
-      "description": "Two bands at the foot. A slate status bar (neutral angle, servo limits, the Home pose in secondary silk) and, under it, the goldenrod imprint band: 1971 · POCKET TIMETABLE No.04 · 口袋时刻表斜架.",
+      "description": "Each pane closes with its own 22px status line behind a hairline — 中立 90° / 限位 0–180° under the poses, OTTO-SEQ v1 · 离线可编 / UTF-8 · N FRAMES under the code strip — and the whole page closes with the goldenrod imprint band.",
       "html": "<footer class=\"page-foot\"><span>中立 90° · 舵机限位 0–180°</span><span>Home ll·rl 90 / lf·rf 90 / lh 45 / rh 135</span></footer><footer class=\"imprint\">1971 · POCKET TIMETABLE No.04 · 口袋时刻表斜架</footer>",
       "css": ".page-foot{height:24px;padding:0 12px;display:flex;align-items:center;gap:10px;background:#2B3A40;color:#CFC4A8;font-family:'Cascadia Mono',Consolas,monospace;letter-spacing:.06em}.imprint{height:20px;padding:0 12px;display:flex;align-items:center;background:#C49031;color:#3A2C08;font-family:'Cascadia Mono',Consolas,monospace;letter-spacing:.18em}"
     }
   ],
   "narrative": {
     "northStar": "石板边栏里的口袋时刻表 — The Pocket Timetable, Printed",
-    "overview": "The tool is a 1971 pocket timetable. Slate-printed chrome runs down both sides and across the head and foot; one cream page is bound between those margins, and the robot stands on it; a goldenrod binding holds the whole thing together. Three substances, and they never trade places.\n\nThe slate is where all the small type lives — six axes, sixteen poses, the frame table, the meter, the JSON — roughly 42% of the surface. The cream page is the stage alone, roughly 41%, and it is deliberately almost empty: that emptiness is what makes the two printed margins read as margins. The gold is about 6%: a 6px edge and one imprint band. The system is narrow on purpose: one type size, rank from weight, case, reversal and rule; one radius, zero; no elevation; no icon set; no gradient used as surface treatment.\n\nBoth earlier attempts failed the same way — they guessed the palette. The first read the gold as the field and the carbon as the stage, turning a cream timetable into a dark tool with gold trim; the second over-corrected and turned the left margin into paper. The ground truth came from measuring the reference: slate #2B3A40 at 42%, ivory #F2EAD6 at 41%, gold #C49031 at 6%. The palette in this file is a measurement, not a taste.",
+    "overview": "The tool is a 1971 pocket timetable. Slate-printed chrome runs down both sides and across the head and foot; one cream page is bound between those margins, and the robot stands on it; a goldenrod binding holds the whole thing together. Three substances, and they never trade places.\n\nThe slate is where all the small type lives — six axes, sixteen poses, the frame table, the meter, the JSON — roughly 42% of the surface. The cream page is the stage alone, roughly 41%, and it is deliberately almost empty: that emptiness is what makes the two printed margins read as margins. The gold is about 6%: a 16px edge, 9px mullions between the three panes, and one imprint band. The system is narrow on purpose: one type size, rank from weight, case, reversal and rule; one radius, zero; no elevation; no icon set; no gradient used as surface treatment.\n\nBoth earlier attempts failed the same way — they guessed the palette. The first read the gold as the field and the carbon as the stage, turning a cream timetable into a dark tool with gold trim; the second over-corrected and turned the left margin into paper. The ground truth came from measuring the reference: slate #2B3A40 at 42%, ivory #F2EAD6 at 41%, gold #C49031 at 6%. The palette in this file is a measurement, not a taste.",
     "keyCharacteristics": [
       "One continuous slate chrome around a single cream page: header, both columns and the status bar share one tone",
       "The cream page is the stage only, and it stays almost empty",
-      "Goldenrod only as the binding: a 6px edge on four sides and one imprint band",
+      "Goldenrod only as the binding: a 16px edge, 9px mullions between panes, and one imprint band",
       "The frame rack is a table: a named header row, four fixed columns, hairline rows lifted in slate-2",
       "Servo rows are two lines — name, key chip, range, value, then the ticked rule",
       "Rank by weight, case, tracking, reversal and rule — never by size",
@@ -211,7 +219,7 @@
       },
       {
         "name": "Measured Palette Rule",
-        "body": "Every tone must be sampled from the reference image, not chosen by eye. #2B3A40, #F2EAD6 and #C49031 came from pixel measurements; a 'better contrast' substitution is what turned the ground inside out twice.",
+        "body": "Every tone and every frame line must be sampled from the reference image, not chosen by eye. #2B3A40, #F2EAD6 and #C49031 came from pixel measurements, and so did the 16px edge, the 9px mullions and the 300/710/380 split; a 'better contrast' or 'easier' substitution is what turned the ground inside out twice.",
         "section": "colors"
       },
       {

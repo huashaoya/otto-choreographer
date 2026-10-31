@@ -106,7 +106,7 @@ Three substances, and they never trade places:
 
 - **Slate `#2B3A40`** — the printed chrome. The header strip, the left column (axes and pose library), the right column (frame table, meter, JSON), and the status bar at the foot. Roughly 42% of the interface, and it is where all the small type lives.
 - **Ivory `#F2EAD6`** — the page. The stage, and only the stage: the robot stands on it. Roughly 41% of the interface, deliberately almost empty — the timetable's white space is what makes the two printed margins read as margins.
-- **Goldenrod `#C49031`** — the binding. A 6px edge on all four sides plus the 20px imprint band along the bottom. About 6%, and it never becomes a working surface.
+- **Goldenrod `#C49031`** — the binding. A 16px edge on all four sides, 9px mullions between the three panes, and the 20px imprint band along the bottom. About 6%, and it never becomes a working surface.
 
 The system is deliberately narrow: one type size, one radius, no gradients as surface treatment, no shadows as depth cues, no icon set. Rank comes from weight, case, reversal and rule. Colour does a job or it is not used.
 
@@ -116,7 +116,7 @@ Six jobs, no seventh:
 
 - **Slate `#2B3A40`** — the printed chrome, front to back. Header, both columns and the status bar are the same tone, separated only by hairlines, so the interface reads as one printed sheet folded around a page. `#3B484C` is the second slate, used only to lift a frame row or a field off that block.
 - **Bible ivory `#F2EAD6`** — the page. The stage ground, all primary text on slate, and the reversed selected row.
-- **Goldenrod `#C49031`** — the binding: the page edge, the imprint band, the primary button's fill, the playhead chip. It is not a surface. Its lip `#A87722` is the only edge tone it uses.
+- **Goldenrod `#C49031`** — the binding: the 16px page edge, the 9px mullions, the imprint band, the primary button's fill. It is not a surface, and it appears in no row or field. Its lip `#A87722` is the only edge tone it uses.
 - **Vermilion `#C4442B`** — states that move or destroy: the playing row's fill (`#8F2A12`), the ruler cursor, the current frame's rail tick, the danger hover, the warning line. Its ink variants exist so the hue can pass contrast on both substances: `#EE8A6A` on slate, `#5E1A0B` on ivory and on gold.
 - **Bottle green `#23503F`** — the confirmed connection, as the dot. On slate it holds 5.6:1, so the status word beside it stays ivory and the dot carries the whole signal.
 
@@ -139,9 +139,9 @@ Machine output is the one exception: the sequence JSON sets in **Cascadia Mono /
 
 ## Layout
 
-A three-column grid between two printed margins: `302px | 1fr | 500px`, no gutters, divided by 1px hairlines. The whole assembly sits inside a 6px goldenrod binding, so the gold is visible as an edge on all four sides and the printed chrome runs continuous from the header down to the status bar.
+Three panes held by goldenrod: a 16px edge all round and 9px mullions between them, so the columns are `300px | 1fr | 380px` at 1440 (`316 / 1035` in reference pixels, measured). Each pane is its own substance — slate, paper, slate — and the gold, not a hairline, is what separates them. Inside a pane, hairlines divide rows.
 
-Vertical order in each column is fixed: a section head, then content. The left column never scrolls as a whole — the six axes are fixed at the top and the sixteen-pose library sits under them in two columns, tight enough to show all sixteen at 900px. The centre is `1fr / auto / auto / auto / auto`: stage, ruler, page caption, view row, play row. The right column is `auto / 0-1 / auto / auto / 1`: head, frame table, meter, head, code strip.
+Vertical order in each pane is fixed and each pane closes with its own status line: left — head, six axes, head, sixteen poses in two columns, `中立 90° / 限位 0–180°`; centre — stage, page caption, view row, play row (the playhead is the play row's last cell, not a separate strip); right — head, frame table, meter, timing fields, frame toolbar, head, code strip, `OTTO-SEQ v1 · 离线可编 / UTF-8 · N FRAMES`. Under all three, the goldenrod imprint band.
 
 A servo row is two lines, as in the printed original: name and key chip, the range description inline beside them, the value flush right, then the ticked rule underneath. Nothing is stacked into a third line.
 
@@ -171,11 +171,13 @@ Scales are drawn, not implied: the slider track is a 1px rule crossed by ticks e
 - **Servo row**: two lines. Line one is the name in 700 plus an outlined mono key chip (`LL`, ivory hairline on transparent — never a filled chip, which would compete with reversal), the range description inline in secondary silk, the value flush right in 700. Line two is the ticked 1px rule with a 3px ivory bar thumb.
 - **Pose cell**: a printed table cell in a two-column grid, not a button — no border box, no fill, no radius; name in 700, its number (`P01`–`P16`) in the cell's top-right corner, description beneath in secondary silk.
 - **Frame table head**: one hairline-thick row, `帧 / 类型 / 参数 · v / d`, in secondary silk. It is what makes the rack a timetable instead of a stack.
-- **Frame row**: slate-2 row on the slate block — mono index (`F1`), type label (`姿态` ivory, `振荡` goldenrod), one line of mono angle pairs with the timing after it, `↑ ↓ 编辑 删除` flush right behind hairlines. Active reverses the whole row to the page; playing fills it with `#8F2A12`.
+- **Frame row**: slate-2 row on the slate block — mono index (`F1`), type label (`姿态` ivory, `振荡` goldenrod), one line of mono angle pairs with the timing after it. Active reverses the whole row to the page; playing fills it with `#8F2A12`. Row actions do not live in the row: at 380px they cost a third of the width.
+- **Frame toolbar**: `当前帧 ↑ ↓ 编辑 删除` under the meter, acting on the selected frame and disabled when there is none. Row actions moved here when the rack narrowed to 380px.
 - **Tick rail**: a 16px column left of the frame table, one 2px tick per frame, the current frame's tick at 4px in vermilion. It is an index of the whole sequence, not a proportional minimap.
 - **Page captions**: `预览 · 正面` and `真机标定 90° · 6 DOF · 正交投影` sit inside the stage's top corners; `正视 1:1 · 网格 60px · 舵机限位 0–180°` sits under the viewport. They are printed on the page, not chrome over it.
-- **Ruler**: 26px strip under the stage carrying the playhead chip (`1 / 4`) in ink on goldenrod.
-- **Status bar**: the slate bar at the foot of the page, `中立 90° · 舵机限位 0–180°` left and the Home pose right, in secondary silk; below it the goldenrod imprint band.
+- **Playhead cell**: the last cell of the play row, `1 / 4` in mono ink, divided from 停止预览 by the same 1px rule as the buttons. The reference has no separate ruler strip, and neither does this build.
+- **Pane foot**: a 22px line closing each pane, in mono secondary silk behind a hairline — `中立 90° / 限位 0–180°` under the poses, `OTTO-SEQ v1 · 离线可编 / UTF-8 · N FRAMES` under the code strip.
+- **Imprint band**: the 20px goldenrod band across the whole page, `1971 · POCKET TIMETABLE No.04 · 口袋时刻表斜架` in ink.
 - **Buttons**: transparent with an ivory border; hover fills ivory with ink. Primary is goldenrod fill with ink. Destructive hover is `#A83318`, never bare vermilion, so ivory text holds contrast.
 - **JSON strip**: the slate block with a hairline outline, goldenrod mono, no syntax colouring.
 

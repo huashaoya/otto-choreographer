@@ -52,14 +52,14 @@
     font: var(--fs)/1.45 var(--narrow);
     font-variant-numeric: tabular-nums;
     display: flex; flex-direction: column;
-    gap: 0; padding: 6px; overflow: hidden;
+    gap: 9px; padding: 16px; overflow: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
   /* ---------- 顶部碳黑条 ---------- */
   header {
     flex: none; display: flex; align-items: center; gap: 14px;
-    padding: 0 14px; height: 44px;
+    padding: 0 14px; height: 43px;
     background: var(--slate); color: var(--ivory);
     border-bottom: 1px solid rgba(242,234,214,.16);
   }
@@ -123,10 +123,9 @@
   /* ---------- 床面上的三块幻灯片 ---------- */
   main {
     flex: 1; display: grid;
-    grid-template-columns: 302px minmax(0,1fr) 500px;
-    gap: 0; padding: 0; min-height: 0;
-    background: var(--ivory);
-    border: 1px solid rgba(28,25,19,.22);
+    grid-template-columns: 300px minmax(0,1fr) 380px;
+    gap: 9px; padding: 0; min-height: 0;
+    background: var(--bed);
   }
   .panel { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
   .stock { background: transparent; border: 0; border-right: 1px solid var(--rule); }
@@ -164,7 +163,7 @@
   }
   .servo-main { min-width: 0; }
   .servo-head { display: flex; align-items: baseline; gap: 8px; }
-  .servo-name { font-weight: 700; letter-spacing: .04em; display: flex; align-items: baseline; gap: 6px; }
+  .servo-name { font-weight: 700; letter-spacing: .04em; display: flex; align-items: baseline; gap: 6px; white-space: nowrap; flex: none; }
   .servo-desc {
     font-family: var(--mono); font-size: var(--fs); font-weight: 400;
     letter-spacing: .06em; text-transform: uppercase;
@@ -209,7 +208,7 @@
   .preset-grid { display: grid; grid-template-columns: 1fr 1fr; }
   .preset-btn {
     position: relative; display: flex; flex-direction: column; gap: 0;
-    padding: 3px 10px 3px 0; text-align: left;
+    padding: 5px 10px 5px 0; text-align: left;
     background: transparent; border: 0; border-bottom: 1px solid var(--rule);
     border-radius: 0; color: inherit; letter-spacing: 0;
   }
@@ -223,16 +222,15 @@
     letter-spacing: .02em; user-select: none;
   }
   .preset-btn .p-name { font-size: var(--fs); font-weight: 700; letter-spacing: .04em; padding-right: 20px; line-height: 1.15; }
-  .preset-btn .p-desc { font-size: var(--fs); color: var(--ink-soft); line-height: 1.14; }
+  .preset-btn .p-desc { font-size: var(--fs); color: var(--ink-soft); line-height: 1.18; }
 
   /* ---------- 舞台：碳黑板上的灯池 ---------- */
   #robotStage {
     display: grid;
     grid-template-rows: minmax(0,1fr) auto auto auto auto;
     align-items: stretch; justify-content: stretch;
-    gap: 9px; padding: 10px; min-width: 0; min-height: 0;
+    gap: 0; padding: 0; min-width: 0; min-height: 0;
     background: transparent; border: 0;
-    border-right: 1px solid var(--rule);
   }
   .robot-viewport {
     position: relative; min-width: 0; min-height: 0;
@@ -258,31 +256,17 @@
   .page-label { left: 9px; font-weight: 700; }
   .page-meta { right: 9px; font-family: var(--mono); }
   .stage-foot {
-    padding: 0 2px; color: var(--ink-soft);
+    padding: 4px 10px; color: var(--ink-soft);
     font-family: var(--mono); letter-spacing: .08em;
   }
 
-  /* 刻度尺：世界的那把醋酸尺，改成一条真的标尺 */
-  .ruler {
-    position: relative; height: 26px; display: flex; align-items: center;
-    border-top: 1px solid rgba(28,25,19,.22);
-    border-bottom: 1px solid rgba(28,25,19,.22);
-    background:
-      repeating-linear-gradient(90deg, rgba(28,25,19,.42) 0 1px, transparent 1px 50px) left bottom/100% 9px no-repeat,
-      repeating-linear-gradient(90deg, rgba(28,25,19,.2) 0 1px, transparent 1px 10px) left bottom/100% 4px no-repeat;
-  }
+  /* 播放头：播放行的最后一格，跟参考图一样待在按钮格里 */
   .playhead {
-    margin: 5px 0 5px auto; padding: 0 7px;
-    font-family: var(--mono); font-size: var(--fs); letter-spacing: .06em;
-    color: var(--carbon); background: var(--bed);
-    line-height: 16px; position: relative; z-index: 1;
+    flex: 0 0 auto; display: inline-flex; align-items: center;
+    padding: 0 10px; border-left: 1px solid rgba(28,25,19,.35);
+    font-family: var(--mono); color: var(--carbon); letter-spacing: .06em;
+    white-space: nowrap;
   }
-  .ruler { position: relative; padding-right: 58px; }
-  .ruler-cursor {
-    position: absolute; top: 0; bottom: 0; width: 2px; left: 3px;
-    background: var(--verm); transition: left .12s linear;
-  }
-  .ruler-cursor[hidden] { display: none; }
 
   /* 3D 初始化失败：仍留在舞台上，不飘成一张系统告警卡 */
   .stage-failure {
@@ -305,9 +289,10 @@
   #view3dControls button[aria-pressed="true"] {
     background: var(--bed); border-color: var(--bed); color: var(--carbon); font-weight: 700;
   }
-  #previewBtn { color: var(--verm-deep); border-color: var(--verm-deep); font-weight: 700; }
-  #previewBtn:hover:not(:disabled) { background: var(--verm-deep); color: var(--ivory); }
-  #playBtn { color: var(--carbon); }
+  #previewBtn { color: var(--carbon); border-color: rgba(28,25,19,.35); font-weight: 700; }
+  #previewBtn:hover:not(:disabled) { background: var(--carbon); color: var(--ivory); }
+  #playBtn { background: var(--carbon); border-color: var(--carbon); color: var(--ivory); }
+  #playBtn:hover:not(:disabled) { background: #3A342A; border-color: #3A342A; color: var(--ivory); }
   #stopBtn { color: var(--ink-soft); }
   .play-row { display: flex; gap: 0; align-items: stretch; }
 
@@ -318,7 +303,7 @@
     background: rgba(242,234,214,.22);
   }
   .ftable-head, .frame {
-    display: grid; grid-template-columns: 30px 40px minmax(0,1fr) auto;
+    display: grid; grid-template-columns: 28px 38px minmax(0,1fr) auto;
     align-items: baseline; gap: 8px;
   }
   .ftable-head {
@@ -348,7 +333,7 @@
   }
   .f-params b { color: var(--silk-dim); font-weight: 400; margin-right: 2px; }
   .f-params i { color: var(--silk-dim); font-style: normal; white-space: nowrap; }
-  .f-params em { display: flex; flex-wrap: wrap; gap: 8px; font-style: normal; }
+  .f-params em { display: flex; flex-wrap: wrap; gap: 6px; font-style: normal; }
   .frame.active { background: var(--ivory); color: var(--carbon); }
   .frame.active .f-id, .frame.active .f-params b,
   .frame.active .f-params i, .frame.active .f-params em { color: rgba(28,25,19,.78); }
@@ -357,7 +342,17 @@
   .frame.playing { background: #8F2A12; }
   .frame.playing .f-id, .frame.playing .f-type,
   .frame.playing .f-params b, .frame.playing .f-params i { color: var(--ivory); }
-  .f-acts { margin-left: auto; display: flex; white-space: nowrap; }
+  .f-acts {
+    position: absolute; right: 0; top: 0; bottom: 0;
+    display: flex; align-items: center; white-space: nowrap;
+    background: var(--slate-2); opacity: 0; pointer-events: none;
+    transition: opacity .12s linear;
+  }
+  .frame:hover .f-acts, .frame.active .f-acts, .frame:focus-within .f-acts {
+    opacity: 1; pointer-events: auto;
+  }
+  .frame.active .f-acts { background: var(--ivory); }
+  .frame.playing .f-acts { background: #8F2A12; }
   .f-acts button {
     padding: 0 4px; border: 0; border-left: 1px solid rgba(242,234,214,.2);
     color: var(--silk); letter-spacing: .06em; min-height: 22px; line-height: 20px;
@@ -376,6 +371,18 @@
     letter-spacing: .06em;
   }
   .sequence-summary label { display: inline-flex; align-items: center; gap: 5px; }
+  .frame-tools {
+    display: flex; align-items: center; gap: 0; padding: 0 12px;
+    border-bottom: 1px solid var(--rule-ivory);
+  }
+  .frame-tools .ft-label { color: var(--silk-dim); letter-spacing: .1em; margin-right: 8px; }
+  .frame-tools button {
+    padding: 0 7px; border: 0; border-left: 1px solid rgba(242,234,214,.2);
+    color: var(--silk); letter-spacing: .06em; min-height: 22px; line-height: 20px;
+  }
+  .frame-tools button:hover:not(:disabled) { background: rgba(242,234,214,.14); color: var(--ivory); }
+  .frame-tools button.danger:hover:not(:disabled) { background: #A83318; color: var(--ivory); }
+  .frame-tools button:disabled { color: rgba(180,169,141,.45); }
   .sequence-summary input {
     width: 86px; padding: 3px 5px;
     background: var(--carbon-2); color: var(--ivory);
@@ -399,7 +406,7 @@
 
   .json-wrap { display: flex; flex: 1; min-height: 0; padding: 9px 12px 12px; }
   .json-box {
-    width: 100%; min-height: 120px; flex: 1; resize: none;
+    width: 100%; min-height: 0; flex: 1; resize: none;
     background: var(--carbon-2); color: var(--bed);
     border: 1px solid rgba(242,234,214,.16); border-radius: 0;
     padding: 8px 9px; font-family: var(--mono); font-size: 11.5px; line-height: 1.55;
@@ -460,13 +467,17 @@
     padding: 0 2px; color: var(--ink-soft);
     font-family: var(--mono); letter-spacing: .06em;
   }
-  .page-foot {
-    height: 24px; padding: 0 12px;
-    background: var(--slate); color: var(--silk);
+  .pane-foot {
+    flex: none; display: flex; align-items: center; gap: 10px;
+    height: 22px; padding: 0 12px; margin-top: auto;
+    color: var(--silk-dim); letter-spacing: .06em;
+    border-top: 1px solid var(--rule-ivory);
+    font-family: var(--mono);
   }
   .imprint {
-    height: 20px; padding: 0 12px; letter-spacing: .18em;
-    background: var(--bed); color: var(--ink-soft);
+    flex: none; display: flex; align-items: center; gap: 10px;
+    height: 20px; padding: 0 2px; letter-spacing: .18em;
+    color: var(--ink-soft); font-family: var(--mono);
   }
 
   /* ---------- 提示条 ---------- */
@@ -525,7 +536,10 @@
     button { min-height: 44px; }
     .f-acts button { min-height: 40px; min-width: 44px; line-height: 38px; }
     .ftable-head, .frame { grid-template-columns: 28px 38px minmax(0,1fr); }
-    .f-acts { grid-column: 1 / -1; justify-content: flex-end; margin-top: 4px; }
+    .f-acts {
+      position: static; grid-column: 1 / -1; justify-content: flex-end;
+      margin-top: 4px; opacity: 1; pointer-events: auto; background: transparent;
+    }
     .frame { padding-bottom: 7px; }
     .osc-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .osc-servo:nth-child(3n) { border-right: 1px solid var(--rule); padding-right: 10px; }
@@ -553,13 +567,13 @@
   /* 窄屏：页标签与页脚必须自己让路 */
   @media (max-width: 700px) {
     .page-meta { display: none; }
-    .page-foot { height: auto; flex-wrap: wrap; gap: 0 12px; padding: 1px 0; }
-    .page-foot .spacer { display: none; }
-    .imprint { height: auto; letter-spacing: .1em; }
+    .pane-foot { height: auto; flex-wrap: wrap; gap: 0 10px; padding: 3px 12px; }
+    .pane-foot .spacer { display: none; }
+    .imprint { height: auto; letter-spacing: .1em; padding: 3px 0; }
   }
   /* ---------- 深色印刷块：页眉、左栏、右栏是同一块青石板 ---------- */
   .stock {
-    background: var(--slate); border-right-color: var(--rule-ivory);
+    background: var(--slate); border: 0;
     color: var(--ivory);
   }
   .stock .panel-head { color: var(--ivory); border-bottom-color: var(--rule-ivory); }
@@ -586,8 +600,6 @@
   .stock .preset-btn:hover { background: rgba(242,234,214,.08); }
   .stock .preset-btn:active { background: rgba(242,234,214,.14); }
   .stock .preset-btn .p-idx, .stock .preset-btn .p-desc { color: var(--silk-dim); }
-
-  #robotStage { border-right-color: var(--rule-ivory); }
 
   .frame { background: var(--slate-2); }
   .frame:hover { background: #445055; }
@@ -622,6 +634,11 @@
       <span>姿态库</span><span class="tag">P01–P16</span>
     </div>
     <div class="panel-body" id="presetPanel" style="flex:1 1 auto;"></div>
+    <div class="pane-foot">
+      <span>中立 90°</span>
+      <span class="spacer"></span>
+      <span>限位 0–180°</span>
+    </div>
   </aside>
 
   <!-- 中：碳黑舞台 -->
@@ -636,12 +653,12 @@
          CC BY-NC-SA 4.0：https://creativecommons.org/licenses/by-nc-sa/4.0/
          改动：坐标转换、白蓝配色、镜像装配、六轴联动；原始网格未缩放。商家款侧面/爪型及真机同步尚未验收。 -->
     <div class="stage-foot">正视 1:1 · 网格 60px · 舵机限位 0–180°</div>
-    <div class="ruler"><span class="ruler-cursor" id="rulerCursor" aria-hidden="true"></span><span class="playhead" id="playhead">0 / 0</span></div>
     <div class="stage-controls" id="view3dControls"><button type="button" id="stageFullscreen" aria-pressed="false">全屏</button><button type="button" data-view="front">正面</button><button type="button" data-view="side">右侧面</button><button type="button" data-view="leftSide">左侧面</button><button type="button" data-view="back">背面</button><button type="button" data-view="reset">视角复位</button></div>
     <div class="stage-controls play-row">
       <button id="previewBtn">预览当前姿态</button>
       <button id="playBtn">播放全部</button>
       <button id="stopBtn" disabled>停止预览</button>
+      <span class="playhead" id="playhead" aria-label="当前帧">0 / 0</span>
     </div>
   </section>
 
@@ -658,6 +675,13 @@
       <div class="slides" id="timeline"></div>
     </div>
     <div class="sequence-summary"><span id="sequenceStats">0 帧</span><label>总延迟 <input id="sequenceDelay" aria-label="序列结束后延迟毫秒" type="number" min="0" max="600000" step="1" value="0"> ms</label><span id="sequenceWarnings" class="warning" role="status"></span><div id="frameTiming" hidden><label class="timing-field">选中帧耗时 <input id="frameDuration" type="number" min="100" max="3000" step="1" aria-label="选中姿态帧移动耗时"> ms</label><label class="timing-field">帧后延迟 <input id="frameDelay" type="number" min="0" max="600000" step="1" aria-label="选中姿态帧延迟"> ms</label></div></div>
+    <div class="frame-tools" id="frameTools">
+      <span class="ft-label">当前帧</span>
+      <button data-tool="up" title="上移一帧">↑</button>
+      <button data-tool="down" title="下移一帧">↓</button>
+      <button data-tool="edit" title="编辑当前帧">编辑</button>
+      <button data-tool="del" class="danger" title="删除当前帧">删除</button>
+    </div>
     <div class="panel-head" style="border-top:1px solid var(--rule-ivory);">
       <span>序列 JSON</span>
       <div style="display:flex;gap:6px;">
@@ -669,13 +693,13 @@
     <div class="json-wrap">
       <textarea class="json-box" id="jsonOut" aria-label="序列JSON（自动生成，修改请使用导入）" readonly spellcheck="false"></textarea>
     </div>
+    <div class="pane-foot">
+      <span>OTTO-SEQ v1 · 离线可编</span>
+      <span class="spacer"></span>
+      <span id="seqFoot">UTF-8 · 0 FRAMES</span>
+    </div>
   </aside>
 </main>
-<footer class="page-foot">
-  <span>中立 90° · 舵机限位 0–180°</span>
-  <span class="spacer"></span>
-  <span>Home ll·rl 90 / lf·rf 90 / lh 45 / rh 135</span>
-</footer>
 <footer class="imprint">1971 · POCKET TIMETABLE No.04 · 口袋时刻表斜架</footer>
 
 <!-- 振荡帧编辑 -->
@@ -1286,10 +1310,21 @@ function syncPlayhead(){
   cur.hidden=(n===0);
 }
 
+function syncFrameTools() {
+  const box = $('frameTools'); if (!box) return;
+  const i = state.activeFrame, n = state.frames.length;
+  const ok = i >= 0 && !!state.frames[i];
+  box.querySelectorAll('button[data-tool]').forEach(btn => {
+    const a = btn.dataset.tool;
+    btn.disabled = !ok || (a === 'up' && i === 0) || (a === 'down' && i === n - 1);
+  });
+}
+
 function renderTimeline() {
   updateSequenceSummary();
   const el = $('timeline');
   syncPlayhead();
+  syncFrameTools();
   if (state.frames.length === 0) {
     el.innerHTML = '<div class="empty-note">还没有帧，点右上角「+ 姿态帧」开始</div>';
     return;
@@ -1326,12 +1361,6 @@ function renderTimeline() {
       <span class="f-id">F${i + 1}</span>
       <span class="f-type">${f.type === 'osc' ? '振荡' : '姿态'}</span>
       <span class="f-params"><em>${angles}</em><i>${meta}</i></span>
-      <span class="f-acts">
-        <button data-act="up" title="上移">↑</button>
-        <button data-act="down" title="下移">↓</button>
-        <button data-act="edit" title="编辑">编辑</button>
-        <button data-act="del" title="删除">删除</button>
-      </span>
     `;
 
     div.addEventListener('click', e => {
@@ -1646,6 +1675,15 @@ function bindEvents() {
   $('previewBtn').addEventListener('click',()=>{if(state.playing)return;drawRobot(state.pose);toast('当前姿态已显示（仅本地预览）');});
   $('sequenceDelay').addEventListener('change',()=>{try{state.sequenceDelay=readFormNumber('sequenceDelay',0,600000,'序列总延迟');updateJson();}catch(e){$('sequenceDelay').value=state.sequenceDelay;toast(e.message,true);}});
   $('frameDuration').addEventListener('change',updateFrameTiming);$('frameDelay').addEventListener('change',updateFrameTiming);
+  const toolActs = { up: i => moveFrame(i, -1), down: i => moveFrame(i, 1),
+                     edit: i => editFrame(i), del: i => deleteFrame(i) };
+  $('frameTools').querySelectorAll('button[data-tool]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = state.activeFrame;
+      if (i < 0 || !state.frames[i]) return;
+      toolActs[btn.dataset.tool](i);
+    });
+  });
   $('addFrame').addEventListener('click', addPoseFrame);
   $('addOsc').addEventListener('click', () => openOscModal(null));
 
