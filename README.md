@@ -6,6 +6,8 @@
 
 > 当前 3D 是作者原始网格的装配候选，不是实物扫描结果。商家款侧面、圆润双瓣爪及真机运动同步仍未完整验收；测试通过不等于实物 1:1 或可以安全执行。
 
+**在线版**：[huashaoya.github.io/otto-choreographer](https://huashaoya.github.io/otto-choreographer/) —— 打开即用，可编舞、预览、导出 JSON。受浏览器混合内容限制，HTTPS 页面无法发起 `ws://` 连接，**连接真机下发仍需本地打开这份 HTML**。
+
 ## 快速开始
 
 1. 用支持 WebGL 的 Edge / Chrome 打开仓库里的 `otto-choreographer.html`，双击即可，无需服务器。
