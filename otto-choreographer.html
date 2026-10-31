@@ -153,6 +153,17 @@
     background: var(--carbon); opacity: 0; transition: opacity .12s linear;
   }
   .tip-wrap:hover::after, .tip-wrap:focus-within::after { opacity: 1; }
+  .help-btn {
+    width: 22px; height: 22px; padding: 0; display: inline-flex;
+    align-items: center; justify-content: center;
+    font-weight: 700; letter-spacing: 0; line-height: 1;
+    border-color: rgba(242,234,214,.35);
+  }
+  .pop-row { display: block; }
+  .pop-row + .pop-row {
+    margin-top: 8px; padding-top: 8px;
+    border-top: 1px solid rgba(28,25,19,.24);
+  }
   .pop {
     position: absolute; top: calc(100% + 7px); right: 12px; z-index: 30;
     width: 276px; padding: 9px 11px; text-align: left;
@@ -165,7 +176,8 @@
   .pop b { font-weight: 700; letter-spacing: .06em; margin-right: 4px; }
   .pop i { font-style: normal; font-family: var(--mono); color: var(--verm-deep); }
   .tip-wrap:hover + .pop,
-  .tip-wrap:focus-within + .pop { opacity: 1; }
+  .tip-wrap:focus-within + .pop,
+  .pop.tip-open { opacity: 1; }
 
   /* ---------- 滚动条：一条细轨 + 一枚方形齿，不用系统外观 ---------- */
   .panel-body::-webkit-scrollbar, .json-box::-webkit-scrollbar { width: 12px; height: 12px; }
@@ -713,19 +725,17 @@
     <div class="panel-head">
       <span>时间轴</span>
       <div style="display:flex;gap:6px;">
+        <button id="addFrame" style="padding:2px 8px;letter-spacing:.1em;">+ 姿态帧</button>
+        <button id="addOsc" style="padding:2px 8px;letter-spacing:.1em;">+ 振荡帧</button>
         <span class="tip-wrap">
-          <button id="addFrame" aria-describedby="tipPose" style="padding:2px 8px;letter-spacing:.1em;">+ 姿态帧</button>
+          <button id="frameHelp" class="help-btn" aria-describedby="tipFrames"
+                  aria-label="姿态帧与振荡帧的区别">?</button>
         </span>
-        <span class="pop" id="tipPose" role="tooltip">
-          <b>姿态帧</b> 一个定格的姿势 + 移动时长。机器人用 <i>v</i> 毫秒从上一帧转过来，停住 <i>d</i> 毫秒。
-          摆造型、走位、定格用它。
-        </span>
-        <span class="tip-wrap">
-          <button id="addOsc" aria-describedby="tipOsc" style="padding:2px 8px;letter-spacing:.1em;">+ 振荡帧</button>
-        </span>
-        <span class="pop" id="tipOsc" role="tooltip">
-          <b>振荡帧</b> 绕一个中心姿态往返摆动。<i>c</i> 是每秒摆几次，<i>p</i> 是一整轮多少毫秒，
-          <i>d</i> 是摆完停多久。抖腿、挥手、原地晃用它。
+        <span class="pop" id="tipFrames" role="tooltip">
+          <span class="pop-row"><b>姿态帧</b>一个定格的姿势 + 移动时长。机器人用 <i>v</i> 毫秒从上一帧转过来，
+            停住 <i>d</i> 毫秒。摆造型、走位、定格用它。</span>
+          <span class="pop-row"><b>振荡帧</b>绕一个中心姿态往返摆动。<i>c</i> 是每秒摆几次，
+            <i>p</i> 是一整轮多少毫秒，<i>d</i> 是摆完停多久。抖腿、挥手、原地晃用它。</span>
         </span>
       </div>
     </div>
@@ -1742,6 +1752,22 @@ function bindEvents() {
       toolActs[btn.dataset.tool](i);
     });
   });
+  const helpBtn = $('frameHelp'), helpPop = $('tipFrames');
+  if (helpBtn && helpPop) {
+    const setHelp = open => {
+      helpPop.classList.toggle('tip-open', open);
+      helpBtn.setAttribute('aria-expanded', String(open));
+    };
+    helpBtn.setAttribute('aria-expanded', 'false');
+    helpBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      setHelp(!helpPop.classList.contains('tip-open'));
+    });
+    document.addEventListener('click', e => {
+      if (e.target !== helpBtn && !helpPop.contains(e.target)) setHelp(false);
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setHelp(false); });
+  }
   $('addFrame').addEventListener('click', addPoseFrame);
   $('addOsc').addEventListener('click', () => openOscModal(null));
 
