@@ -8,35 +8,60 @@
         "role": "primary",
         "displayName": "青石板 Slate",
         "canonical": "#2B3A40",
-        "tonalRamp": ["#1E2A30", "#2B3A40", "#3B484C", "#4A575C"],
+        "tonalRamp": [
+          "#1E2A30",
+          "#2B3A40",
+          "#3B484C",
+          "#4A575C"
+        ],
         "purpose": "The printed chrome, front to back: header strip, left column, right column and the status bar are this one tone, separated only by hairlines."
       },
       "ivory": {
         "role": "neutral",
         "displayName": "圣经象牙 Bible Ivory",
         "canonical": "#F2EAD6",
-        "tonalRamp": ["#CFC4A8", "#B4A98D", "#F2EAD6", "#FFFBF0"],
+        "tonalRamp": [
+          "#CFC4A8",
+          "#B4A98D",
+          "#F2EAD6",
+          "#FFFBF0"
+        ],
         "purpose": "The page: the stage ground, all primary text on slate, and the reversed selected row. Roughly 41% of the interface and deliberately almost empty."
       },
       "bed": {
         "role": "secondary",
         "displayName": "装订金菊 Goldenrod Binding",
         "canonical": "#C49031",
-        "tonalRamp": ["#8E6019", "#A87722", "#C49031", "#D6A850"],
+        "tonalRamp": [
+          "#8E6019",
+          "#A87722",
+          "#C49031",
+          "#D6A850"
+        ],
         "purpose": "The binding only: 6px page edge on all four sides, the 20px imprint band, the primary button fill, the playhead chip. Never a working surface."
       },
       "vermilion": {
         "role": "accent",
         "displayName": "朱红 Vermilion",
         "canonical": "#C4442B",
-        "tonalRamp": ["#5E1A0B", "#A83318", "#C4442B", "#EE8A6A"],
+        "tonalRamp": [
+          "#5E1A0B",
+          "#A83318",
+          "#C4442B",
+          "#EE8A6A"
+        ],
         "purpose": "States that move or destroy: the playing row's fill (#8F2A12), the ruler cursor, the current frame's rail tick, the danger hover, the warning line. Never a background for body text."
       },
       "bottle": {
         "role": "tertiary",
         "displayName": "瓶绿 Bottle Green",
         "canonical": "#23503F",
-        "tonalRamp": ["#16332A", "#23503F", "#2F6B4F", "#9FD3B6"],
+        "tonalRamp": [
+          "#16332A",
+          "#23503F",
+          "#2F6B4F",
+          "#9FD3B6"
+        ],
         "purpose": "The confirmed connection, as the 8px dot. On slate it holds 5.6:1, so the status word beside it stays ivory and the dot carries the whole signal."
       }
     },
@@ -138,9 +163,9 @@
       "name": "Pose Cell",
       "kind": "button",
       "refersTo": "page-chrome",
-      "description": "A printed table cell in a two-column grid, not a button: no border box, no fill, no radius. Name in 700, the number set in the cell's top-right corner, the description beneath in secondary silk.",
-      "html": "<button class=\"preset-btn\"><span class=\"p-idx\">P01</span><span class=\"p-name\">站立</span><span class=\"p-desc\">真机 Home 姿态 lh45/rh135</span></button>",
-      "css": ".preset-grid{display:grid;grid-template-columns:1fr 1fr}.preset-btn{position:relative;display:flex;flex-direction:column;padding:3px 10px 3px 0;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(242,234,214,.15);border-radius:0;color:#F2EAD6}.preset-btn:nth-child(odd){border-right:1px solid rgba(242,234,214,.15)}.preset-btn:nth-child(even){padding-left:9px}.preset-btn .p-idx{position:absolute;top:5px;right:6px;font-family:'Cascadia Mono',Consolas,monospace;color:#B4A98D}.preset-btn .p-name{font-weight:700;line-height:1.15;padding-right:20px}.preset-btn .p-desc{color:#B4A98D;line-height:1.14}"
+      "description": "A printed table cell in a two-column grid, not a button: no border box, no fill, no radius. Name in 700 on one line, the number centred against the right edge, and the servo description carried by title and aria-label instead of printed — sixteen two-line descriptions were the densest wall in the interface.",
+      "html": "<button class=\"preset-btn\" title=\"站立 · 真机 Home 姿态 lh45/rh135\" aria-label=\"站立，真机 Home 姿态 lh45/rh135\"><span class=\"p-idx\">P01</span><span class=\"p-name\">站立</span></button>",
+      "css": ".preset-grid{flex:1 1 auto;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;align-items:stretch}.preset-btn{position:relative;display:flex;align-items:center;padding:0 10px 0 0;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(242,234,214,.15);border-radius:0;color:#F2EAD6}.preset-btn:nth-child(odd){border-right:1px solid rgba(242,234,214,.15)}.preset-btn:nth-child(even){padding-left:9px}.preset-btn .p-idx{position:absolute;top:50%;right:6px;transform:translateY(-50%);font-family:'Cascadia Mono',Consolas,monospace;color:#B4A98D}.preset-btn .p-name{font-weight:700;line-height:1.15;padding-right:20px}"
     },
     {
       "name": "Frame Table Head",
@@ -162,7 +187,7 @@
       "name": "Frame Toolbar",
       "kind": "custom",
       "refersTo": "page-chrome",
-      "description": "当前帧 ↑ ↓ 编辑 删除 under the meter, acting on the selected frame and disabled when there is none. This is where row actions went when the rack narrowed to 380px.",
+      "description": "当前帧 ↑ ↓ 编辑 删除 under the timing fields, acting on the selected frame and disabled when there is none. Row actions moved here when the rack narrowed to 380px; the timing labels stay at 耗时 / 延迟 because the row already says 当前帧.",
       "html": "<div class=\"frame-tools\"><span class=\"ft-label\">当前帧</span><button data-tool=\"up\">↑</button><button data-tool=\"down\">↓</button><button data-tool=\"edit\">编辑</button><button data-tool=\"del\" class=\"danger\">删除</button></div>",
       "css": ".frame-tools{display:flex;align-items:center;gap:0;padding:0 12px;border-bottom:1px solid rgba(242,234,214,.15)}.frame-tools .ft-label{color:#B4A98D;letter-spacing:.1em;margin-right:8px}.frame-tools button{padding:0 7px;border:0;border-left:1px solid rgba(242,234,214,.2);color:#CFC4A8;min-height:22px;line-height:20px}.frame-tools button:disabled{color:rgba(180,169,141,.45)}"
     },
@@ -209,7 +234,8 @@
       "The frame rack is a table: a named header row, four fixed columns, hairline rows lifted in slate-2",
       "Servo rows are two lines — name, key chip, range, value, then the ticked rule",
       "Rank by weight, case, tracking, reversal and rule — never by size",
-      "One real shadow: the robot's own, cast by the key light onto the page"
+      "One real shadow: the robot's own, cast by the key light onto the page",
+      "Pose cells are one line: name and number; the servo description lives in the tooltip, not on the page"
     ],
     "rules": [
       {

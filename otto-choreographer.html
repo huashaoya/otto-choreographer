@@ -132,7 +132,7 @@
   .slab  { background: var(--slate); border: 0; }
   .panel-head {
     flex: none; display: flex; align-items: center; justify-content: space-between;
-    gap: 8px; padding: 3px 12px;
+    gap: 8px; padding: 6px 12px;
     font-size: var(--fs); font-weight: 700;
     letter-spacing: .16em; text-transform: uppercase;
   }
@@ -205,10 +205,16 @@
 
   /* ---------- 姿态库：印成表格，没有按钮外壳 ---------- */
   #presetPanel { padding: 0 12px; }
-  .preset-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  #servoPanel { display: grid; grid-auto-rows: 1fr; }
+  .servo { align-content: center; }
+  #presetPanel { display: flex; flex-direction: column; }
+  .preset-grid {
+    flex: 1 1 auto; display: grid; grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr; align-items: stretch;
+  }
   .preset-btn {
-    position: relative; display: flex; flex-direction: column; gap: 0;
-    padding: 5px 10px 5px 0; text-align: left;
+    position: relative; display: flex; align-items: center; gap: 0;
+    padding: 0 10px 0 0; text-align: left;
     background: transparent; border: 0; border-bottom: 1px solid var(--rule);
     border-radius: 0; color: inherit; letter-spacing: 0;
   }
@@ -217,12 +223,11 @@
   .preset-btn:hover { background: rgba(28,25,19,.09); }
   .preset-btn:active { background: rgba(28,25,19,.16); }
   .preset-btn .p-idx {
-    position: absolute; top: 5px; right: 6px;
+    position: absolute; top: 50%; right: 6px; transform: translateY(-50%);
     font-family: var(--mono); color: var(--ink-soft);
     letter-spacing: .02em; user-select: none;
   }
   .preset-btn .p-name { font-size: var(--fs); font-weight: 700; letter-spacing: .04em; padding-right: 20px; line-height: 1.15; }
-  .preset-btn .p-desc { font-size: var(--fs); color: var(--ink-soft); line-height: 1.18; }
 
   /* ---------- 舞台：碳黑板上的灯池 ---------- */
   #robotStage {
@@ -312,7 +317,7 @@
     border-bottom: 1px solid rgba(242,234,214,.42);
   }
   .frame {
-    position: relative; padding: 5px 8px 5px 0; cursor: pointer;
+    position: relative; padding: 8px 8px 8px 0; cursor: pointer;
     background: transparent; color: var(--ivory);
     border-bottom: 1px solid rgba(242,234,214,.13);
   }
@@ -366,13 +371,13 @@
   /* ---------- 汇总条与 JSON 码条 ---------- */
   .sequence-summary {
     display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
-    padding: 7px 12px; color: var(--silk);
+    padding: 10px 12px; color: var(--silk);
     border-top: 1px solid var(--rule-ivory); border-bottom: 1px solid var(--rule-ivory);
     letter-spacing: .06em;
   }
   .sequence-summary label { display: inline-flex; align-items: center; gap: 5px; }
   .frame-tools {
-    display: flex; align-items: center; gap: 0; padding: 0 12px;
+    display: flex; align-items: center; gap: 0; padding: 4px 12px;
     border-bottom: 1px solid var(--rule-ivory);
   }
   .frame-tools .ft-label { color: var(--silk-dim); letter-spacing: .1em; margin-right: 8px; }
@@ -629,7 +634,7 @@
     <div class="panel-head">
       <span>舵机姿态</span><span class="tag">R1–R6 · 0–180</span>
     </div>
-    <div class="panel-body" id="servoPanel" style="flex:0 0 auto;"></div>
+    <div class="panel-body" id="servoPanel" style="flex:1 1 auto;"></div>
     <div class="panel-head" style="border-top:1px solid var(--rule);">
       <span>姿态库</span><span class="tag">P01–P16</span>
     </div>
@@ -674,9 +679,10 @@
     <div class="panel-body" id="rackWrap" style="flex:0 1 auto;max-height:50%;">
       <div class="slides" id="timeline"></div>
     </div>
-    <div class="sequence-summary"><span id="sequenceStats">0 帧</span><label>总延迟 <input id="sequenceDelay" aria-label="序列结束后延迟毫秒" type="number" min="0" max="600000" step="1" value="0"> ms</label><span id="sequenceWarnings" class="warning" role="status"></span><div id="frameTiming" hidden><label class="timing-field">选中帧耗时 <input id="frameDuration" type="number" min="100" max="3000" step="1" aria-label="选中姿态帧移动耗时"> ms</label><label class="timing-field">帧后延迟 <input id="frameDelay" type="number" min="0" max="600000" step="1" aria-label="选中姿态帧延迟"> ms</label></div></div>
+    <div class="sequence-summary"><span id="sequenceStats">0 帧</span><label>总延迟 <input id="sequenceDelay" aria-label="序列结束后延迟毫秒" type="number" min="0" max="600000" step="1" value="0"> ms</label><span id="sequenceWarnings" class="warning" role="status"></span><div id="frameTiming" hidden><label class="timing-field">耗时 <input id="frameDuration" type="number" min="100" max="3000" step="1" aria-label="选中姿态帧移动时长"> ms</label><label class="timing-field">延迟 <input id="frameDelay" type="number" min="0" max="600000" step="1" aria-label="选中姿态帧延迟"> ms</label></div></div>
     <div class="frame-tools" id="frameTools">
       <span class="ft-label">当前帧</span>
+      
       <button data-tool="up" title="上移一帧">↑</button>
       <button data-tool="down" title="下移一帧">↓</button>
       <button data-tool="edit" title="编辑当前帧">编辑</button>
@@ -743,12 +749,12 @@ function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"f
    常量：舵机定义（顺序与固件一致）
    ============================================================ */
 const SERVOS = [
-  { key: 'll', name: '左腿', desc: '0外展 / 90中立 / 180内收', side: 'left'  },
-  { key: 'rl', name: '右腿', desc: '0内收 / 90中立 / 180外展', side: 'right' },
-  { key: 'lf', name: '左脚', desc: '0翘起 / 90平放 / 180下压', side: 'left'  },
-  { key: 'rf', name: '右脚', desc: '0下压 / 90平放 / 180翘起', side: 'right' },
-  { key: 'lh', name: '左手', desc: '0下勾 / 45垂 / 90平举 / 180举', side: 'left'  },
-  { key: 'rh', name: '右手', desc: '0举 / 90平举 / 135垂 / 180勾', side: 'right' },
+  { key: 'll', name: '左腿', desc: '0外展 90中立 180内收', side: 'left'  },
+  { key: 'rl', name: '右腿', desc: '0内收 90中立 180外展', side: 'right' },
+  { key: 'lf', name: '左脚', desc: '0翘起 90平放 180下压', side: 'left'  },
+  { key: 'rf', name: '右脚', desc: '0下压 90平放 180翘起', side: 'right' },
+  { key: 'lh', name: '左手', desc: '0下勾 45垂 90平举 180举', side: 'left'  },
+  { key: 'rh', name: '右手', desc: '0举 90平举 135垂 180勾', side: 'right' },
 ];
 const SERVO_KEYS = SERVOS.map(s => s.key);
 
@@ -1263,10 +1269,9 @@ const PRESETS = [
 function buildPresetPanel() {
   const el = $('presetPanel');
   el.innerHTML = '<div class="preset-grid">' + PRESETS.map((p, i) => `
-    <button class="preset-btn" data-idx="${i}" title="${p.desc}">
+    <button class="preset-btn" data-idx="${i}" title="${p.name} · ${p.desc}" aria-label="${p.name}，${p.desc}">
       <span class="p-idx" aria-hidden="true">P${String(i + 1).padStart(2, '0')}</span>
       <span class="p-name">${p.name}</span>
-      <span class="p-desc">${p.desc}</span>
     </button>
   `).join('') + '</div>';
 
