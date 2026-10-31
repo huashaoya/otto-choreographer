@@ -102,7 +102,7 @@ components:
 
 The product is a single-file, offline choreography desk for a six-servo biped. One person tunes a pose beside the robot and sequences those poses into a show. The interface is not a console and not a dashboard: it is a **1971 pocket timetable** — slate-printed chrome on both sides, one cream page in the middle, a goldenrod binding around the whole thing.
 
-Three substances, and they never trade places:
+The page carries a **dark window**: the 3D viewport is a recessed slate plate with a 16px paper mat around it, so the robot is watched on darkness while the page it is printed on stays paper. Three substances, and they never trade places:
 
 - **Slate `#2B3A40`** — the printed chrome. The header strip, the left column (axes and pose library), the right column (frame table, meter, JSON), and the status bar at the foot. Roughly 42% of the interface, and it is where all the small type lives.
 - **Ivory `#F2EAD6`** — the page. The stage, and only the stage: the robot stands on it. Roughly 41% of the interface, deliberately almost empty — the timetable's white space is what makes the two printed margins read as margins.
@@ -114,7 +114,7 @@ The system is deliberately narrow: one type size, one radius, no gradients as su
 
 Six jobs, no seventh:
 
-- **Slate `#2B3A40`** — the printed chrome, front to back. Header, both columns and the status bar are the same tone, separated only by hairlines, so the interface reads as one printed sheet folded around a page. `#3B484C` is the second slate, used only to lift a frame row or a field off that block.
+- **Slate `#2B3A40`** — the printed chrome, front to back. Header, both columns and the status bar are the same tone, separated only by hairlines, so the interface reads as one printed sheet folded around a page. `#3B484C` is the second slate, used only to lift a frame row or a field off that block. `#1E2A32` is the third: the recessed window the robot stands in, one step darker than the chrome so the viewport reads as cut into the page rather than painted on it.
 - **Bible ivory `#E9E0CA`** — the page. The stage ground, all primary text on slate, and the reversed selected row. The reference measures `#F2EAD6` (L* 92.8); the shipped paper is one step down at L* 89.3 because a 710px-wide panel at L* 93 is a light box on a real screen. This is the one knowing deviation from the measured palette, and it is recorded as such: ΔL* 3.5, ΔE ≈ 2.5 — invisible as a colour, real as a glare reduction.
 - **Goldenrod `#C49031`** — the binding: the 16px page edge, the 9px mullions, the imprint band, the primary button's fill. It is not a surface, and it appears in no row or field. Its lip `#A87722` is the only edge tone it uses.
 - **Vermilion `#C4442B`** — states that move or destroy: the playing row's fill (`#8F2A12`), the ruler cursor, the current frame's rail tick, the danger hover, the warning line. Its ink variants exist so the hue can pass contrast on both substances: `#EE8A6A` on slate, `#5E1A0B` on ivory and on gold.
@@ -151,7 +151,7 @@ Below 1100px the three columns become one stack with the stage first (`order: -1
 
 There is no elevation. Nothing floats, nothing casts a drop shadow, no row lifts on hover.
 
-Depth is printing order: the binding is behind everything, the slate block is printed on it, the page is bound between the two slate margins, and the selected frame row is cut back down to the page. The only soft shading in the interface is light: the 3D stage casts a real contact shadow from its key light (`ShadowMaterial`, opacity .17) onto the page, and that shadow is the one shadow the design owns. The rig is deliberately dim — key 2.35, hemisphere 1.85, fill .95, rim 1.8, white shell `#e8edf1` with clearcoat .16 — so the model sits on the paper at L* 85 instead of glowing at 97.
+Depth is printing order: the binding is behind everything, the slate block is printed on it, the page is bound between the two slate margins, the window is cut into the page, and the selected frame row is cut back down to the page. The only soft shading in the interface is light: the 3D stage casts a real contact shadow from its key light (`ShadowMaterial`, opacity .55) into the window, and that shadow is the one shadow the design owns. The rig is now tuned for darkness — key 2.7, hemisphere 2.0 (cool floor), fill 1.1, rim 2.2, white shell `#e8edf1` with clearcoat .16 — so the shell reads at L* 90 against a window at L* 16, a 2.7× separation. On paper the same shell sat at L* 90 against L* 89: a 1.0× separation, which is why it looked weightless.
 
 **Focus is two-tone, never one colour.** `outline: 2px solid var(--ivory)` with `outline-offset: 1px` plus `box-shadow: 0 0 0 4px var(--slate)`. A single-colour ring cannot survive two substances: an ivory ring alone disappears on the page, a slate halo alone disappears on slate. Nothing in the file may set `outline: none` without replacing it.
 
@@ -166,7 +166,7 @@ Scales are drawn, not implied: the slider track is a 1px rule crossed by ticks e
 ## Components
 
 - **Printed chrome** (header, left column, right column, status bar): slate field, ivory ink, hairlines in `rgba(242,234,214,.15)`, no border boxes anywhere.
-- **Page** (stage): ivory field, ink `#1C1913`, a 1px hairline against the chrome, and nothing else — no card, no frame, no dock.
+- **Page** (stage): an ivory mat around an `#1E2A32` window. The mat carries the two printed captions and the projection line; the window carries the robot and nothing else. No card, no dock, no chrome floating over the model.
 - **Section head**: uppercase 700, `.16em` tracking, 3px padding, one hairline beneath, and a right-aligned micro tag in secondary silk (`R1–R6 · 0–180`, `P01–P16`).
 - **Servo row**: two lines. Line one is the name in 700 plus an outlined mono key chip (`LL`, ivory hairline on transparent — never a filled chip, which would compete with reversal), the range description inline in secondary silk, the value flush right in 700. Line two is the ticked 1px rule with a 3px ivory bar thumb. The six axes run `lh rh ll rl lf rf` — hands first, then legs, then feet: the hands are what a pose reads by, and the feet are what it stands on.
 - **Pose cell**: a printed table cell in a two-column grid, not a button — no border box, no fill, no radius; name in 700 on one line, its number (`P01`–`P16`) centred against the right edge, and the servo description carried by the cell's `title`/`aria-label` rather than printed. Sixteen cells of two-line descriptions were the densest wall in the interface; the name is what you pick by, the description is what you confirm by hovering.
@@ -190,7 +190,7 @@ Scales are drawn, not implied: the slider track is a 1px rule crossed by ticks e
 
 - Keep the binding visible on all four sides; the page must read as bound, not as a full-bleed screen.
 - Keep the chrome continuous: header, both columns and the status bar are one slate tone separated by hairlines.
-- Keep the stage empty. The white page is the composition; filling it with cards, docks or labels destroys the only calm surface left.
+- Keep the window empty. The dark plate is the composition; filling it with cards, docks or labels destroys the only calm surface left.
 - Spend rank on weight, case, reversal and rule before reaching for a size.
 - Give every colour a job: binding, chrome, page, lifted row, armed, confirmed. If a new colour cannot name its job, it is decoration.
 - Draw scales when a number has a range — sliders and the ruler both carry ticks.

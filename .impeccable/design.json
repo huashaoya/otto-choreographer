@@ -9,12 +9,12 @@
         "displayName": "青石板 Slate",
         "canonical": "#2B3A40",
         "tonalRamp": [
-          "#1E2A30",
+          "#1E2A32",
           "#2B3A40",
           "#3B484C",
           "#4A575C"
         ],
-        "purpose": "The printed chrome, front to back: header strip, left column, right column and the status bar are this one tone, separated only by hairlines."
+        "purpose": "The printed chrome, front to back: header, left column, right column and status bar. `#3B484C` lifts a row off it, and `#1E2A32` is the recessed window the robot stands in."
       },
       "ivory": {
         "role": "neutral",
@@ -26,7 +26,7 @@
           "#E9E0CA",
           "#F6F0E2"
         ],
-        "purpose": "The page: the stage ground, all primary text on slate, and the reversed selected row. The reference measures #F2EAD6 (L* 92.8); the shipped paper sits one step down at L* 89.3 (ΔE ~2.5) because a 710px panel at L* 93 glares on a real screen. The one recorded deviation from the measured palette."
+        "purpose": "The page: the mat around the stage window, all primary text on slate, and the reversed selected row. The reference measures #F2EAD6 (L* 92.8); the shipped paper sits one step down at L* 89.3 (ΔE ~2.5) because a 710px panel at L* 93 glares on a real screen. The one recorded deviation from the measured palette."
       },
       "bed": {
         "role": "secondary",
@@ -211,7 +211,7 @@
       "name": "Page Caption",
       "kind": "custom",
       "refersTo": "page-stage",
-      "description": "Printed on the page rather than floating over it: the stage's two top corners and the line under the viewport that declares the projection, the grid and the servo limits.",
+      "description": "Printed on the mat, not floating over the canvas: the stage's two top corners carry 预览 · 正面 and 真机标定 90° · 6 DOF · 正交投影; 正视 1:1 · 网格 60px · 舵机限位 0–180° sits under the window.",
       "html": "<span class=\"page-label\">预览 · 正面</span><span class=\"page-meta\">真机标定 90° · 6 DOF · 正交投影</span>",
       "css": ".page-label,.page-meta{position:absolute;top:6px;z-index:2;pointer-events:none;letter-spacing:.12em;color:rgba(28,25,19,.68)}.page-label{left:9px;font-weight:700}.page-meta{right:9px;font-family:'Cascadia Mono',Consolas,monospace}.stage-foot{color:#3A2C08;font-family:'Cascadia Mono',Consolas,monospace;letter-spacing:.08em}"
     },
@@ -251,7 +251,8 @@
       "Servo rows are two lines — name, key chip, range, value, then the ticked rule",
       "Rank by weight, case, tracking, reversal and rule — never by size",
       "One real shadow: the robot's own, cast by the key light onto the page",
-      "Pose cells are one line: name and number; the servo description lives in the tooltip, not on the page"
+      "Pose cells are one line: name and number; the servo description lives in the tooltip, not on the page",
+      "A dark window cut into the page: 16px ivory mat, #1E2A32 plate, the robot watched at 2.7x separation"
     ],
     "rules": [
       {
@@ -265,8 +266,8 @@
         "section": "colors"
       },
       {
-        "name": "Keep the Page Empty Rule",
-        "body": "The stage is the only calm surface in the interface. No cards, no docks, no floating chrome — only the two printed corner captions and the line under the viewport.",
+        "name": "Keep the Window Empty Rule",
+        "body": "The window is the only calm surface in the interface. No cards, no docks, no floating chrome — only the model, its shadow and the faint floor grid.",
         "section": "layout"
       },
       {
@@ -281,7 +282,7 @@
       },
       {
         "name": "No Elevation Rule",
-        "body": "Nothing floats and nothing has a blur. Depth is printing order — binding, chrome, page — and selection is the page showing back through the chrome.",
+        "body": "Nothing floats and nothing has a blur. Depth is printing order — binding, chrome, page, window — and selection is the page showing back through the chrome.",
         "section": "elevation"
       },
       {
