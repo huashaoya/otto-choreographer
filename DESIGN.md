@@ -4,7 +4,7 @@ description: 六轴双足机器人的动作编排台，单文件离线运行；�
 colors:
   slate: "#2B3A40"
   slate-2: "#3B484C"
-  ivory: "#F2EAD6"
+  ivory: "#E9E0CA"
   bed: "#C49031"
   bed-lip: "#A87722"
   silk: "#CFC4A8"
@@ -115,12 +115,12 @@ The system is deliberately narrow: one type size, one radius, no gradients as su
 Six jobs, no seventh:
 
 - **Slate `#2B3A40`** — the printed chrome, front to back. Header, both columns and the status bar are the same tone, separated only by hairlines, so the interface reads as one printed sheet folded around a page. `#3B484C` is the second slate, used only to lift a frame row or a field off that block.
-- **Bible ivory `#F2EAD6`** — the page. The stage ground, all primary text on slate, and the reversed selected row.
+- **Bible ivory `#E9E0CA`** — the page. The stage ground, all primary text on slate, and the reversed selected row. The reference measures `#F2EAD6` (L* 92.8); the shipped paper is one step down at L* 89.3 because a 710px-wide panel at L* 93 is a light box on a real screen. This is the one knowing deviation from the measured palette, and it is recorded as such: ΔL* 3.5, ΔE ≈ 2.5 — invisible as a colour, real as a glare reduction.
 - **Goldenrod `#C49031`** — the binding: the 16px page edge, the 9px mullions, the imprint band, the primary button's fill. It is not a surface, and it appears in no row or field. Its lip `#A87722` is the only edge tone it uses.
 - **Vermilion `#C4442B`** — states that move or destroy: the playing row's fill (`#8F2A12`), the ruler cursor, the current frame's rail tick, the danger hover, the warning line. Its ink variants exist so the hue can pass contrast on both substances: `#EE8A6A` on slate, `#5E1A0B` on ivory and on gold.
 - **Bottle green `#23503F`** — the confirmed connection, as the dot. On slate it holds 5.6:1, so the status word beside it stays ivory and the dot carries the whole signal.
 
-Ink on the page is `#1C1913` at 14.62:1 and `#3A2C08` at 11.35:1. On slate, primary is `#F2EAD6` at 10.5:1 and secondary is `#B4A98D` at 6.2:1. On the binding, text is `#3A2C08` at 4.9:1. All are solid values — alpha over a saturated ground fails AA at any comfortable lightness.
+Ink on the page is `#1C1913` at 14.62:1 and `#3A2C08` at 11.35:1. On slate, primary is `#E9E0CA` at 9.6:1 and secondary is `#B4A98D` at 6.2:1. On the binding, text is `#3A2C08` at 4.9:1. All are solid values — alpha over a saturated ground fails AA at any comfortable lightness.
 
 ## Typography
 
@@ -151,7 +151,7 @@ Below 1100px the three columns become one stack with the stage first (`order: -1
 
 There is no elevation. Nothing floats, nothing casts a drop shadow, no row lifts on hover.
 
-Depth is printing order: the binding is behind everything, the slate block is printed on it, the page is bound between the two slate margins, and the selected frame row is cut back down to the page. The only soft shading in the interface is light: the 3D stage casts a real contact shadow from its key light (`ShadowMaterial`, opacity .17) onto the page, and that shadow is the one shadow the design owns.
+Depth is printing order: the binding is behind everything, the slate block is printed on it, the page is bound between the two slate margins, and the selected frame row is cut back down to the page. The only soft shading in the interface is light: the 3D stage casts a real contact shadow from its key light (`ShadowMaterial`, opacity .17) onto the page, and that shadow is the one shadow the design owns. The rig is deliberately dim — key 2.35, hemisphere 1.85, fill .95, rim 1.8, white shell `#e8edf1` with clearcoat .16 — so the model sits on the paper at L* 85 instead of glowing at 97.
 
 **Focus is two-tone, never one colour.** `outline: 2px solid var(--ivory)` with `outline-offset: 1px` plus `box-shadow: 0 0 0 4px var(--slate)`. A single-colour ring cannot survive two substances: an ivory ring alone disappears on the page, a slate halo alone disappears on slate. Nothing in the file may set `outline: none` without replacing it.
 

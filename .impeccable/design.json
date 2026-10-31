@@ -19,14 +19,14 @@
       "ivory": {
         "role": "neutral",
         "displayName": "圣经象牙 Bible Ivory",
-        "canonical": "#F2EAD6",
+        "canonical": "#E9E0CA",
         "tonalRamp": [
           "#CFC4A8",
           "#B4A98D",
-          "#F2EAD6",
-          "#FFFBF0"
+          "#E9E0CA",
+          "#F6F0E2"
         ],
-        "purpose": "The page: the stage ground, all primary text on slate, and the reversed selected row. Roughly 41% of the interface and deliberately almost empty."
+        "purpose": "The page: the stage ground, all primary text on slate, and the reversed selected row. The reference measures #F2EAD6 (L* 92.8); the shipped paper sits one step down at L* 89.3 (ΔE ~2.5) because a 710px panel at L* 93 glares on a real screen. The one recorded deviation from the measured palette."
       },
       "bed": {
         "role": "secondary",
@@ -293,6 +293,10 @@
         "name": "Instrument Rule",
         "body": "A drawn instrument must print real data. The playhead shows the true frame count at rest, the ruler cursor sits at activeFrame/(n-1), and each rail tick is drawn by its own row so it cannot drift.",
         "section": "components"
+      },
+      {
+        "name": "Glare Rule",
+        "body": "Measured colour is the starting point, not the endpoint: a tone that is right in a still can be wrong at full size. The page was pulled from L* 92.8 to 89.3 and the model's rig dimmed (key 2.35, hemi 1.85) because the centre panel behaved like a light box. Every such step is measured before and after and written down; a step without numbers is a guess."
       }
     ],
     "dos": [
