@@ -100,13 +100,15 @@ components:
 
 ## Overview
 
-The product is a single-file, offline choreography desk for a six-servo biped. One person tunes a pose beside the robot and sequences those poses into a show. The interface is not a console and not a dashboard: it is a **1971 pocket timetable** — slate-printed chrome on both sides, one cream page in the middle, a goldenrod binding around the whole thing.
+The product is a single-file, offline choreography desk for a six-servo biped. One person tunes a pose beside the robot and sequences those poses into a show. The interface is not a console and not a dashboard: it is a **1971 pocket timetable printed in two darknesses** — slate chrome for the margins, a deeper plate for the stage — bound in goldenrod.
 
-The page carries a **dark window**: the 3D viewport is a recessed slate plate with a 16px paper mat around it, so the robot is watched on darkness while the page it is printed on stays paper. Three substances, and they never trade places:
+Three surfaces, and they never trade places:
 
-- **Slate `#2B3A40`** — the printed chrome. The header strip, the left column (axes and pose library), the right column (frame table, meter, JSON), and the status bar at the foot. Roughly 42% of the interface, and it is where all the small type lives.
-- **Ivory `#F2EAD6`** — the page. The stage, and only the stage: the robot stands on it. Roughly 41% of the interface, deliberately almost empty — the timetable's white space is what makes the two printed margins read as margins.
+- **Slate `#2B3A40`** — the printed chrome. The header strip, the left column (axes and pose library), the right column (frame table, meter, JSON), and the status bar at the foot. It is where all the small type lives.
+- **Window `#1E2A32`** — the stage. One step darker than the chrome, so the centre reads as a plate recessed into the page rather than printed on it. The robot stands there, and that is all that stands there. `#3B484C` lifts a frame row off the chrome; nothing lifts the window.
 - **Goldenrod `#C49031`** — the binding. A 16px edge on all four sides, 9px mullions between the three panes, and the 20px imprint band along the bottom. About 6%, and it never becomes a working surface.
+
+Ivory is no longer a surface at page scale. `#E9E0CA` is ink — the type on both dark tones, the reversed selected row, the primary action's fill, the modal and the tooltip. There is no paper anywhere in the page, and that is the point: a white robot on cream was 1.0× separation and looked weightless; on the window it is 2.7× and reads as an object.
 
 The system is deliberately narrow: one type size, one radius, no gradients as surface treatment, no shadows as depth cues, no icon set. Rank comes from weight, case, reversal and rule. Colour does a job or it is not used.
 
@@ -114,8 +116,9 @@ The system is deliberately narrow: one type size, one radius, no gradients as su
 
 Six jobs, no seventh:
 
-- **Slate `#2B3A40`** — the printed chrome, front to back. Header, both columns and the status bar are the same tone, separated only by hairlines, so the interface reads as one printed sheet folded around a page. `#3B484C` is the second slate, used only to lift a frame row or a field off that block. `#1E2A32` is the third: the recessed window the robot stands in, one step darker than the chrome so the viewport reads as cut into the page rather than painted on it.
-- **Bible ivory `#E9E0CA`** — the page. The stage ground, all primary text on slate, and the reversed selected row. The reference measures `#F2EAD6` (L* 92.8); the shipped paper is one step down at L* 89.3 because a 710px-wide panel at L* 93 is a light box on a real screen. This is the one knowing deviation from the measured palette, and it is recorded as such: ΔL* 3.5, ΔE ≈ 2.5 — invisible as a colour, real as a glare reduction.
+- **Slate `#2B3A40`** — the printed chrome, front to back. Header, both columns and the status bar are the same tone, separated only by hairlines, so the interface reads as one printed sheet. `#3B484C` lifts a frame row or a field off that block.
+- **Window `#1E2A32`** — the stage plate, one step darker than the chrome so the centre reads as recessed. It is the only place the model is ever watched, and the only place a shadow falls.
+- **Ivory `#E9E0CA`** — ink, not a surface. All primary type on slate and on the window, the reversed selected row, the primary button's fill, the modal, the tooltip. The reference measures `#F2EAD6` (L* 92.8); the shipped ivory is one step down at L* 89.3 — a recorded deviation, ΔL* 3.5, ΔE ≈ 2.5, invisible as a colour and real as a glare reduction when it last sat under a 710px panel.
 - **Goldenrod `#C49031`** — the binding: the 16px page edge, the 9px mullions, the imprint band, the primary button's fill. It is not a surface, and it appears in no row or field. Its lip `#A87722` is the only edge tone it uses.
 - **Vermilion `#C4442B`** — states that move or destroy: the playing row's fill (`#8F2A12`), the ruler cursor, the current frame's rail tick, the danger hover, the warning line. Its ink variants exist so the hue can pass contrast on both substances: `#EE8A6A` on slate, `#5E1A0B` on ivory and on gold.
 - **Bottle green `#23503F`** — the confirmed connection, as the dot. On slate it holds 5.6:1, so the status word beside it stays ivory and the dot carries the whole signal.
@@ -139,7 +142,7 @@ Machine output is the one exception: the sequence JSON sets in **Cascadia Mono /
 
 ## Layout
 
-Three panes held by goldenrod: a 16px edge all round and 9px mullions between them, so the columns are `300px | 1fr | 380px` at 1440 (`316 / 1035` in reference pixels, measured). Each pane is its own substance — slate, paper, slate — and the gold, not a hairline, is what separates them. Inside a pane, hairlines divide rows.
+Three dark panes held by goldenrod: a 16px edge all round and 9px mullions between them, so the columns are `300px | 1fr | 380px` at 1440 (`316 / 1035` in reference pixels, measured). The panes are two darknesses — slate, window, slate — and the gold, not a hairline, is what separates them. Inside a pane, hairlines divide rows.
 
 Vertical order in each pane is fixed and each pane closes with its own status line: left — head, six axes, head, sixteen poses in two columns, `中立 90° / 限位 0–180°`; centre — stage, page caption, view row, play row (the playhead is the play row's last cell, not a separate strip); right — head, frame table, meter, timing fields, frame toolbar, head, code strip, `OTTO-SEQ v1 · 离线可编 / UTF-8 · N FRAMES`. Under all three, the goldenrod imprint band.
 
@@ -151,7 +154,7 @@ Below 1100px the three columns become one stack with the stage first (`order: -1
 
 There is no elevation. Nothing floats, nothing casts a drop shadow, no row lifts on hover.
 
-Depth is printing order: the binding is behind everything, the slate block is printed on it, the page is bound between the two slate margins, the window is cut into the page, and the selected frame row is cut back down to the page. The only soft shading in the interface is light: the 3D stage casts a real contact shadow from its key light (`ShadowMaterial`, opacity .55) into the window, and that shadow is the one shadow the design owns. The rig is now tuned for darkness — key 2.7, hemisphere 2.0 (cool floor), fill 1.1, rim 2.2, white shell `#e8edf1` with clearcoat .16 — so the shell reads at L* 90 against a window at L* 16, a 2.7× separation. On paper the same shell sat at L* 90 against L* 89: a 1.0× separation, which is why it looked weightless.
+Depth is three things only: the binding behind everything, the slate chrome printed on it, and the window sunk one tone below the chrome. There is no fourth plane, and nothing is ever raised above any of them — the selected frame row is the one exception, reversed to ivory so it reads as cut back down through the chrome. The only soft shading in the interface is light: the 3D stage casts a real contact shadow from its key light (`ShadowMaterial`, opacity .55) into the window, and that shadow is the one shadow the design owns. The rig is now tuned for darkness — key 2.7, hemisphere 2.0 (cool floor), fill 1.1, rim 2.2, white shell `#e8edf1` with clearcoat .16 — so the shell reads at L* 90 against a window at L* 16, a 2.7× separation. On paper the same shell sat at L* 90 against L* 89: a 1.0× separation, which is why it looked weightless.
 
 **Focus is two-tone, never one colour.** `outline: 2px solid var(--ivory)` with `outline-offset: 1px` plus `box-shadow: 0 0 0 4px var(--slate)`. A single-colour ring cannot survive two substances: an ivory ring alone disappears on the page, a slate halo alone disappears on slate. Nothing in the file may set `outline: none` without replacing it.
 
@@ -166,7 +169,7 @@ Scales are drawn, not implied: the slider track is a 1px rule crossed by ticks e
 ## Components
 
 - **Printed chrome** (header, left column, right column, status bar): slate field, ivory ink, hairlines in `rgba(242,234,214,.15)`, no border boxes anywhere.
-- **Page** (stage): an ivory mat around an `#1E2A32` window. The mat carries the two printed captions and the projection line; the window carries the robot and nothing else. No card, no dock, no chrome floating over the model.
+- **Window** (stage): the `#1E2A32` plate, edge to edge inside the pane, with the two captions in ivory at its top corners and the projection line in silk beneath it. The robot, its shadow and the faint floor grid — nothing else. No card, no dock, no panel floating over the model.
 - **Section head**: uppercase 700, `.16em` tracking, 3px padding, one hairline beneath, and a right-aligned micro tag in secondary silk (`R1–R6 · 0–180`, `P01–P16`).
 - **Servo row**: two lines. Line one is the name in 700 plus an outlined mono key chip (`LL`, ivory hairline on transparent — never a filled chip, which would compete with reversal), the range description inline in secondary silk, the value flush right in 700. Line two is the ticked 1px rule with a 3px ivory bar thumb. The six axes run `lh rh ll rl lf rf` — hands first, then legs, then feet: the hands are what a pose reads by, and the feet are what it stands on.
 - **Pose cell**: a printed table cell in a two-column grid, not a button — no border box, no fill, no radius; name in 700 on one line, its number (`P01`–`P16`) centred against the right edge, and the servo description carried by the cell's `title`/`aria-label` rather than printed. Sixteen cells of two-line descriptions were the densest wall in the interface; the name is what you pick by, the description is what you confirm by hovering.
@@ -175,12 +178,13 @@ Scales are drawn, not implied: the slider track is a 1px rule crossed by ticks e
 - **Frame toolbar**: `当前帧 ↑ ↓ 编辑 删除` under the timing fields, acting on the selected frame and disabled when there is none. Row actions moved here when the rack narrowed to 380px.
 - **Timing fields**: `耗时 / 延迟` on one row under the meter — short labels, because the sequence delay above them already says which number is the show's and these two belong to the selected frame.
 - **Tick rail**: a 16px column left of the frame table, one 2px tick per frame, the current frame's tick at 4px in vermilion. It is an index of the whole sequence, not a proportional minimap.
-- **Page captions**: `预览 · 正面` and `真机标定 90° · 6 DOF · 正交投影` sit inside the stage's top corners; `正视 1:1 · 网格 60px · 舵机限位 0–180°` sits under the viewport. They are printed on the page, not chrome over it.
+- **Window captions**: `预览 · 正面` and `真机标定 90° · 6 DOF · 正交投影` in ivory at the window's top corners; `正视 1:1 · 网格 60px · 舵机限位 0–180°` in silk under it. They are printed on the plate at 11.4:1, not chrome floating over it.
 - **Playhead cell**: the last cell of the play row, `1 / 4` in mono ink, divided from 停止预览 by the same 1px rule as the buttons. The reference has no separate ruler strip, and neither does this build.
 - **Pane foot**: a 22px line closing each pane, in mono secondary silk behind a hairline — `中立 90° / 限位 0–180°` under the poses, `OTTO-SEQ v1 · 离线可编 / UTF-8 · N FRAMES` under the code strip.
 - **Imprint band**: the 20px goldenrod band across the whole page, `1971 · POCKET TIMETABLE No.04` in ink. The Chinese half of that imprint (`口袋时刻表斜架`) was cut at the owner's request — it named the world instead of the tool.
-- **Buttons**: transparent with an ivory border; hover fills ivory with ink. Primary is goldenrod fill with ink. Destructive hover is `#A83318`, never bare vermilion, so ivory text holds contrast.
+- **Buttons**: transparent with an ivory border; hover fills a 12% ivory. Primary is the inverse — ivory fill, ink text — because on a dark plate the emphasis is the light one. Destructive hover is `#A83318`, never bare vermilion, so ivory text holds contrast.
 - **JSON strip**: the slate block with a hairline outline, goldenrod mono, no syntax colouring.
+- **Two Darknesses**: slate `#2B3A40` for the chrome, window `#1E2A32` for the stage, and no third dark tone. They are never swapped, and a paper surface never appears at page scale.
 - **Hover note**: one `?` button at the end of the timeline head row — 22px square, 1px ivory hairline, the same outline as every other button — opens a single 276px ivory card with a 1px ink border, square corners and no shadow, hanging 7px under it and joined to the button by an 8px connector line. The card carries both definitions as two rows divided by a hairline (姿态帧, then 振荡帧); the variable names (`v`, `d`, `c`, `p`) set in mono vermilion so they match the tokens in the frame rows. Shown on hover, on keyboard focus (`:focus-within` plus `aria-describedby`), and — because a phone has no hover — pinned open by clicking the button (Esc or a click outside dismisses it), never as the browser's own tooltip — a native tip would be rounded, shadowed and in the system font.
 - **Scrollbar**: drawn, never the system's. A 12px lane with a 1px hairline down its inner edge and a 4px square ivory thumb (4px transparent border inside `background-clip: content-box`, so the visible bar is narrower than its hit area). No buttons, no arrows, no rounded caps. Hover brightens to `.62`, drag fills it with the binding gold. Chromium ignores `::-webkit-scrollbar*` as soon as `scrollbar-width` or `scrollbar-color` is declared, so those standard properties are deliberately absent from the file.
 
@@ -190,9 +194,9 @@ Scales are drawn, not implied: the slider track is a 1px rule crossed by ticks e
 
 - Keep the binding visible on all four sides; the page must read as bound, not as a full-bleed screen.
 - Keep the chrome continuous: header, both columns and the status bar are one slate tone separated by hairlines.
-- Keep the window empty. The dark plate is the composition; filling it with cards, docks or labels destroys the only calm surface left.
+- Keep the window empty. The dark plate is the composition; filling it with cards, docks, paper or labels destroys the only calm surface left.
 - Spend rank on weight, case, reversal and rule before reaching for a size.
-- Give every colour a job: binding, chrome, page, lifted row, armed, confirmed. If a new colour cannot name its job, it is decoration.
+- Give every colour a job: binding, chrome, window, ink, lifted row, armed, confirmed. If a new colour cannot name its job, it is decoration.
 - Draw scales when a number has a range — sliders and the ruler both carry ticks.
 - Print the row number in the margin (R1–R6, P01–P16) when a section header promises a count.
 - Order the axes by how a pose is read — hands, legs, feet — not by the firmware's pin order.
@@ -200,8 +204,8 @@ Scales are drawn, not implied: the slider track is a 1px rule crossed by ticks e
 
 **Don't**
 
-- Don't sample a palette by eye. Every tone in this file came from a pixel measurement of the reference (`#2B3A40`, `#F2EAD6`, `#C49031`); a "better contrast" substitution is how the first two attempts turned the ground inside out.
-- Don't make the stage a second chrome surface, and don't make the chrome a second page.
+- Don't sample a palette by eye. Every tone in this file came from a pixel measurement of the reference (`#2B3A40`, `#E9E0CA`, `#C49031`); the third (`#1E2A32`) came from measuring the complaint — 37% of the screen at L* 86 against chrome at L* 29. A "better contrast" substitution is how the first two attempts turned the ground inside out.
+- Don't give the stage a paper mat, and don't give the chrome a paper panel. Ivory is ink; the moment it becomes a surface the page turns back into a light box.
 - Don't add a second type size for hierarchy.
 - Don't round a corner, lift a row, or add a blurred shadow.
 - Don't put vermilion behind body text; it is an edge and a label colour.

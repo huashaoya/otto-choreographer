@@ -291,14 +291,14 @@
     grid-template-rows: minmax(0,1fr) auto auto auto auto;
     align-items: stretch; justify-content: stretch;
     gap: 0; padding: 0; min-width: 0; min-height: 0;
-    background: var(--ivory); border: 0;
+    background: #1E2A32; border: 0;
   }
   .robot-viewport {
-    margin: 26px 16px 10px;
+    margin: 0;
     position: relative; min-width: 0; min-height: 0;
     overflow: hidden; width: auto; height: auto;
     background: #1E2A32;
-    border: 1px solid rgba(28,25,19,.55);
+    border: 0;
   }
   #robotStage .robot-viewport canvas {
     position: absolute; inset: 0; display: block;
@@ -313,20 +313,20 @@
   .stage canvas { display: block; }
   .page-label, .page-meta {
     position: absolute; top: 6px; z-index: 2; pointer-events: none;
-    letter-spacing: .12em; color: rgba(28,25,19,.68);
+    letter-spacing: .12em; color: var(--ivory);
   }
   .page-label { left: 16px; font-weight: 700; }
   .page-meta { right: 16px; font-family: var(--mono); }
   .stage-foot {
-    padding: 4px 10px; color: var(--ink-soft);
+    padding: 4px 10px; color: var(--silk-dim);
     font-family: var(--mono); letter-spacing: .08em;
   }
 
   /* 播放头：播放行的最后一格，跟参考图一样待在按钮格里 */
   .playhead {
     flex: 0 0 auto; display: inline-flex; align-items: center;
-    padding: 0 10px; border-left: 1px solid rgba(28,25,19,.35);
-    font-family: var(--mono); color: var(--carbon); letter-spacing: .06em;
+    padding: 0 10px; border-left: 1px solid rgba(242,234,214,.3);
+    font-family: var(--mono); color: var(--ivory); letter-spacing: .06em;
     white-space: nowrap;
   }
 
@@ -343,19 +343,19 @@
   .stage-controls { display: flex; flex-wrap: wrap; gap: 0; }
   .stage-controls button {
     flex: 1 1 auto; padding: 6px 10px;
-    color: var(--carbon); border-color: rgba(28,25,19,.35);
+    color: var(--ivory); border-color: rgba(242,234,214,.3);
     border-right-width: 0; letter-spacing: .12em; white-space: nowrap;
   }
   .stage-controls button:last-child { border-right-width: 1px; }
-  .stage-controls button:hover:not(:disabled) { background: rgba(28,25,19,.1); color: var(--carbon); }
+  .stage-controls button:hover:not(:disabled) { background: rgba(242,234,214,.12); color: var(--ivory); }
   #view3dControls button[aria-pressed="true"] {
     background: var(--bed); border-color: var(--bed); color: var(--carbon); font-weight: 700;
   }
-  #previewBtn { color: var(--carbon); border-color: rgba(28,25,19,.35); font-weight: 700; }
-  #previewBtn:hover:not(:disabled) { background: var(--carbon); color: var(--ivory); }
-  #playBtn { background: var(--carbon); border-color: var(--carbon); color: var(--ivory); }
-  #playBtn:hover:not(:disabled) { background: #3A342A; border-color: #3A342A; color: var(--ivory); }
-  #stopBtn { color: var(--ink-soft); }
+  #previewBtn { color: var(--ivory); border-color: rgba(242,234,214,.3); font-weight: 700; }
+  #previewBtn:hover:not(:disabled) { background: rgba(242,234,214,.14); color: var(--ivory); }
+  #playBtn { background: var(--ivory); border-color: var(--ivory); color: var(--carbon); }
+  #playBtn:hover:not(:disabled) { background: #FFFBF0; border-color: #FFFBF0; color: var(--carbon); }
+  #stopBtn { color: var(--silk-dim); }
   .play-row { display: flex; gap: 0; align-items: stretch; }
 
   /* ---------- 时间轴：一张表，表头 + 发丝分隔 ---------- */

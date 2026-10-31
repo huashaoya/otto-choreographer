@@ -241,18 +241,16 @@
     }
   ],
   "narrative": {
-    "northStar": "石板边栏里的口袋时刻表 — The Pocket Timetable, Printed",
-    "overview": "The tool is a 1971 pocket timetable. Slate-printed chrome runs down both sides and across the head and foot; one cream page is bound between those margins, and the robot stands on it; a goldenrod binding holds the whole thing together. Three substances, and they never trade places.\n\nThe slate is where all the small type lives — six axes, sixteen poses, the frame table, the meter, the JSON — roughly 42% of the surface. The cream page is the stage alone, roughly 41%, and it is deliberately almost empty: that emptiness is what makes the two printed margins read as margins. The gold is about 6%: a 16px edge, 9px mullions between the three panes, and one imprint band. The system is narrow on purpose: one type size, rank from weight, case, reversal and rule; one radius, zero; no elevation; no icon set; no gradient used as surface treatment.\n\nBoth earlier attempts failed the same way — they guessed the palette. The first read the gold as the field and the carbon as the stage, turning a cream timetable into a dark tool with gold trim; the second over-corrected and turned the left margin into paper. The ground truth came from measuring the reference: slate #2B3A40 at 42%, ivory #F2EAD6 at 41%, gold #C49031 at 6%. The palette in this file is a measurement, not a taste.",
+    "northStar": "两重黑的时刻表 — The Timetable in Two Darknesses",
+    "overview": "The tool is a 1971 pocket timetable printed in two darknesses. Slate #2B3A40 runs the chrome — header, both columns, status bar. A deeper #1E2A32 is the stage plate, sunk one tone so the centre reads as recessed rather than printed. A goldenrod binding holds the whole page.\n\nThere is no paper at page scale. Ivory #E9E0CA is ink: type on both dark tones, the reversed selected row, the primary action's fill, the modal, the tooltip. A white robot on cream measured 1.0x separation and looked weightless; on the window it measures 2.7x and reads as an object.\n\nBoth earlier attempts failed the same way — they guessed, then over-corrected. The palette came from pixel measurement, and the third dark tone came from measuring the complaint: the stage was 37% of the screen at L* 86 while the chrome sat at L* 29. Removing the paper took the page from L* 55.7 to 31.7.",
     "keyCharacteristics": [
-      "One continuous slate chrome around a single cream page: header, both columns and the status bar share one tone",
-      "The cream page is the stage only, and it stays almost empty",
-      "Goldenrod only as the binding: a 16px edge, 9px mullions between panes, and one imprint band",
+      "Two darknesses only: slate chrome, a deeper window for the stage",
+      "No paper surface at page scale — ivory is ink and reversal, never a panel",
+      "Goldenrod only as the binding: a 16px edge, 9px mullions, one imprint band",
       "The frame rack is a table: a named header row, four fixed columns, hairline rows lifted in slate-2",
       "Servo rows are two lines — name, key chip, range, value, then the ticked rule",
-      "Rank by weight, case, tracking, reversal and rule — never by size",
-      "One real shadow: the robot's own, cast by the key light onto the page",
-      "Pose cells are one line: name and number; the servo description lives in the tooltip, not on the page",
-      "A dark window cut into the page: 16px ivory mat, #1E2A32 plate, the robot watched at 2.7x separation"
+      "White shell at L* 90 against a window at L* 16: a 2.7x separation",
+      "One real shadow: the robot's own, cast by the key light into the window"
     ],
     "rules": [
       {
@@ -267,7 +265,7 @@
       },
       {
         "name": "Keep the Window Empty Rule",
-        "body": "The window is the only calm surface in the interface. No cards, no docks, no floating chrome — only the model, its shadow and the faint floor grid.",
+        "body": "The window is the only calm surface in the interface. No cards, no docks, no paper, no floating chrome — only the model, its shadow and the faint floor grid.",
         "section": "layout"
       },
       {
@@ -303,12 +301,12 @@
     "dos": [
       "Keep the goldenrod binding visible on all four sides",
       "Keep the slate chrome continuous from the header to the status bar",
-      "Leave the cream page almost empty",
       "Sample every colour from the reference before using it",
       "Print the row number in the margin (R1–R6, P01–P16) when a head promises a count",
       "Draw a scale whenever a number has a range",
       "Use the mono stack only for machine output, timings and inline axis tokens",
-      "Order the axes by how a pose is read — hands, legs, feet — not by pin order"
+      "Order the axes by how a pose is read — hands, legs, feet — not by pin order",
+      "Treat ivory as ink — never lay a cream panel at page scale"
     ],
     "donts": [
       "Pick a palette by eye or by contrast preference",
@@ -320,7 +318,8 @@
       "Let the frame table drift apart into floating cards",
       "Use a gradient as surface decoration",
       "Reintroduce an icon set — labels are the icons",
-      "Tint a whole axis to signal left or right"
+      "Tint a whole axis to signal left or right",
+      "Give the stage a paper mat or the chrome a paper panel"
     ]
   }
 }
