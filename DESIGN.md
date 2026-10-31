@@ -181,6 +181,7 @@ Scales are drawn, not implied: the slider track is a 1px rule crossed by ticks e
 - **Imprint band**: the 20px goldenrod band across the whole page, `1971 · POCKET TIMETABLE No.04` in ink. The Chinese half of that imprint (`口袋时刻表斜架`) was cut at the owner's request — it named the world instead of the tool.
 - **Buttons**: transparent with an ivory border; hover fills ivory with ink. Primary is goldenrod fill with ink. Destructive hover is `#A83318`, never bare vermilion, so ivory text holds contrast.
 - **JSON strip**: the slate block with a hairline outline, goldenrod mono, no syntax colouring.
+- **Scrollbar**: drawn, never the system's. A 12px lane with a 1px hairline down its inner edge and a 4px square ivory thumb (4px transparent border inside `background-clip: content-box`, so the visible bar is narrower than its hit area). No buttons, no arrows, no rounded caps. Hover brightens to `.62`, drag fills it with the binding gold. Chromium ignores `::-webkit-scrollbar*` as soon as `scrollbar-width` or `scrollbar-color` is declared, so those standard properties are deliberately absent from the file.
 
 ## Do's and Don'ts
 

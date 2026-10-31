@@ -143,13 +143,34 @@
     color: var(--ink-soft);
   }
   .slab .panel-head .tag { color: var(--silk-dim); }
-  .panel-body { padding: 0 12px; overflow-y: auto; flex: 1; min-height: 0; scrollbar-width: thin; scrollbar-color: rgba(28,25,19,.45) transparent; }
-  .panel-body::-webkit-scrollbar { width: 9px; }
-  .panel-body::-webkit-scrollbar-thumb { background: rgba(28,25,19,.32); }
-  .slab .panel-body { scrollbar-color: rgba(242,234,214,.3) transparent; }
-  .panel-body::-webkit-scrollbar-thumb:hover { background: rgba(28,25,19,.55); }
-  .slab .panel-body::-webkit-scrollbar-thumb { background: rgba(242,234,214,.2); }
-  .panel-body::-webkit-scrollbar-track { background: transparent; }
+  .panel-body { padding: 0 12px; overflow-y: auto; flex: 1; min-height: 0; }
+
+  /* ---------- 滚动条：一条细轨 + 一枚方形齿，不用系统外观 ---------- */
+  .panel-body::-webkit-scrollbar, .json-box::-webkit-scrollbar { width: 12px; height: 12px; }
+  html::-webkit-scrollbar { width: 12px; height: 12px; }
+  .panel-body::-webkit-scrollbar-button, .json-box::-webkit-scrollbar-button,
+  html::-webkit-scrollbar-button { display: none; height: 0; }
+  .panel-body::-webkit-scrollbar-track, .json-box::-webkit-scrollbar-track {
+    background: transparent; border-left: 1px solid rgba(242,234,214,.12);
+  }
+  html::-webkit-scrollbar-track { background: transparent; }
+  .panel-body::-webkit-scrollbar-thumb, .json-box::-webkit-scrollbar-thumb {
+    background: rgba(242,234,214,.34); background-clip: content-box;
+    border: 4px solid transparent; min-height: 40px;
+  }
+  .panel-body::-webkit-scrollbar-thumb:hover, .json-box::-webkit-scrollbar-thumb:hover {
+    background: rgba(242,234,214,.62); background-clip: content-box;
+  }
+  .panel-body::-webkit-scrollbar-thumb:active, .json-box::-webkit-scrollbar-thumb:active {
+    background: var(--bed); background-clip: content-box;
+  }
+  html::-webkit-scrollbar-thumb {
+    background: rgba(28,25,19,.32); background-clip: content-box;
+    border: 4px solid transparent; min-height: 40px;
+  }
+  html::-webkit-scrollbar-thumb:hover { background: rgba(28,25,19,.55); background-clip: content-box; }
+  .panel-body::-webkit-scrollbar-corner, .json-box::-webkit-scrollbar-corner,
+  html::-webkit-scrollbar-corner { background: transparent; }
 
   /* ---------- 六轴：印在纸上的刻度 ---------- */
   .servo {
@@ -583,8 +604,6 @@
   }
   .stock .panel-head { color: var(--ivory); border-bottom-color: var(--rule-ivory); }
   .stock .panel-head .tag { color: var(--silk-dim); }
-  .stock .panel-body { scrollbar-color: rgba(242,234,214,.3) transparent; }
-  .stock .panel-body::-webkit-scrollbar-thumb { background: rgba(242,234,214,.2); }
   .stock .servo { border-bottom-color: var(--rule-ivory); }
   .stock .servo-idx, .stock .servo-help { color: var(--silk-dim); }
   .stock .servo-val { color: var(--ivory); }
