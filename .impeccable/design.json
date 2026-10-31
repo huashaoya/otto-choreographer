@@ -1,32 +1,32 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-31T12:05:00+08:00",
+  "generatedAt": "2026-10-31T12:20:00+08:00",
   "title": "Design System: Otto 在线编舞台",
   "extensions": {
     "colorMeta": {
-      "bed": {
+      "slate": {
         "role": "primary",
-        "displayName": "封面金菊 Goldenrod Cover",
-        "canonical": "#C8912C",
-        "tonalRamp": ["#8E6019", "#A9751F", "#C8912C", "#D6A34A"],
-        "purpose": "The cover only: the 8px page edge, the 44px header strip, the two footer lines. It is never a working surface."
+        "displayName": "青石板 Slate",
+        "canonical": "#2B3A40",
+        "tonalRamp": ["#1E2A30", "#2B3A40", "#3B484C", "#4A575C"],
+        "purpose": "The printed chrome, front to back: header strip, left column, right column and the status bar are this one tone, separated only by hairlines."
       },
       "ivory": {
         "role": "neutral",
         "displayName": "圣经象牙 Bible Ivory",
         "canonical": "#F2EAD6",
         "tonalRamp": ["#CFC4A8", "#B4A98D", "#F2EAD6", "#FFFBF0"],
-        "purpose": "The sheet: the left panel ground, the 3D stage ground, the selected frame row, the modal. The robot stands on the same paper the sliders are printed on."
+        "purpose": "The page: the stage ground, all primary text on slate, and the reversed selected row. Roughly 41% of the interface and deliberately almost empty."
       },
-      "carbon": {
-        "role": "neutral",
-        "displayName": "碳黑 Carbon",
-        "canonical": "#1C1913",
-        "tonalRamp": ["#14110D", "#1C1913", "#26221A", "#2C3A40"],
-        "purpose": "The printed block: the right column only (frame table, meter, code strip). #26221A is the second carbon used inside that column's inputs."
+      "bed": {
+        "role": "secondary",
+        "displayName": "装订金菊 Goldenrod Binding",
+        "canonical": "#C49031",
+        "tonalRamp": ["#8E6019", "#A87722", "#C49031", "#D6A850"],
+        "purpose": "The binding only: 6px page edge on all four sides, the 20px imprint band, the primary button fill, the playhead chip. Never a working surface."
       },
       "vermilion": {
-        "role": "secondary",
+        "role": "accent",
         "displayName": "朱红 Vermilion",
         "canonical": "#C4442B",
         "tonalRamp": ["#5E1A0B", "#A83318", "#C4442B", "#EE8A6A"],
@@ -37,7 +37,7 @@
         "displayName": "瓶绿 Bottle Green",
         "canonical": "#23503F",
         "tonalRamp": ["#16332A", "#23503F", "#2F6B4F", "#9FD3B6"],
-        "purpose": "The confirmed connection: the 8px dot only. At 3.29:1 on the cover it clears the 3:1 UI-graphic bar but not the text bar, so the status word beside it stays carbon."
+        "purpose": "The confirmed connection, as the 8px dot. On slate it holds 5.6:1, so the status word beside it stays ivory and the dot carries the whole signal."
       }
     },
     "typographyMeta": {
@@ -66,8 +66,8 @@
       },
       {
         "name": "focus-ring",
-        "value": "outline: 2px solid #F2EAD6 (offset 1px) + box-shadow: 0 0 0 4px #1C1913",
-        "purpose": "Two-tone, because one colour cannot survive two substances: ivory ring 14.62:1 on carbon, carbon halo 11.35:1 on the sheet. A single vermilion ring measured only 1.79:1 on the cover."
+        "value": "outline: 2px solid #F2EAD6 (offset 1px) + box-shadow: 0 0 0 4px #2B3A40",
+        "purpose": "Two-tone, because one colour cannot survive two substances: an ivory ring alone disappears on the page, a slate halo alone disappears on slate."
       }
     ],
     "motion": [
@@ -85,13 +85,13 @@
     "gradients": [
       {
         "name": "servo-scale",
-        "value": "repeating-linear-gradient(90deg, rgba(28,25,19,.45) 0 1px, transparent 1px 15px) over a 1px rule",
-        "purpose": "A graduation scale for 0–180°, one tick every 15°. Functional measurement, not decoration."
+        "value": "repeating-linear-gradient(90deg, rgba(242,234,214,.42) 0 1px, transparent 1px 15px) over a 1px rule",
+        "purpose": "A graduation scale for 0–180°, one tick every 15°, drawn in ivory on the slate chrome. Functional measurement, not decoration."
       },
       {
         "name": "ruler-scale",
         "value": "repeating-linear-gradient major every 50px / minor every 10px at rgba(28,25,19,.42) and .20",
-        "purpose": "The graduation under the stage, now drawn in carbon on paper because the stage is the paper."
+        "purpose": "The graduation under the stage, drawn in ink on the page rather than in ivory on a dark stage."
       }
     ],
     "breakpoints": [
@@ -103,12 +103,12 @@
       {
         "name": "stack",
         "value": "1100px",
-        "note": "One stack, stage first via order:-1; hairline dividers become block bottom edges."
+        "note": "One stack, stage first via order:-1; the chrome runs full width and the hairlines become block edges."
       },
       {
         "name": "captions",
         "value": "700px",
-        "note": "The stage's right-hand caption drops out and the two cover footers wrap instead of colliding."
+        "note": "The stage's right-hand caption drops out and the two footer bands wrap instead of colliding."
       },
       {
         "name": "handheld",
@@ -121,31 +121,31 @@
     {
       "name": "Section Head",
       "kind": "custom",
-      "refersTo": "panel-stock",
-      "description": "Uppercase tracked title with a right-aligned micro tag, separated by a single hairline. No background, no box.",
+      "refersTo": "page-chrome",
+      "description": "Uppercase tracked title in ivory with a right-aligned micro tag in secondary silk, separated by a single hairline. No background, no box.",
       "html": "<div class=\"panel-head\"><span>舵机姿态</span><span class=\"tag\">R1–R6 · 0–180</span></div>",
-      "css": ".panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 12px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#1C1913;border-bottom:1px solid rgba(28,25,19,.26)}.panel-head .tag{font-weight:400;letter-spacing:.1em;color:#3A2C08}"
+      "css": ".panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:3px 12px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.stock .panel-head{color:#F2EAD6;border-bottom:1px solid rgba(242,234,214,.15)}.panel-head .tag{font-weight:400;letter-spacing:.1em}.stock .panel-head .tag{color:#B4A98D}"
     },
     {
       "name": "Servo Row",
       "kind": "input",
-      "refersTo": "panel-stock",
-      "description": "One axis: name, reversed mono key chip, value, a ticked track with a 3px bar thumb, and the range description under it. Side is carried by the name and the chip only — the right-side vermilion value was removed because on paper it read as an alarm.",
-      "html": "<div class=\"servo\"><span class=\"servo-idx\">R2</span><div class=\"servo-main\"><div class=\"servo-head\"><label class=\"servo-name\">右腿<span class=\"servo-desc\">RL</span></label><span class=\"servo-val\" id=\"val-rl\">90°</span></div><input type=\"range\" id=\"rng-rl\" value=\"90\" max=\"180\"><div class=\"servo-help\">0内收 / 90中立 / 180外展</div></div></div>",
-      "css": ".servo{display:grid;grid-template-columns:20px minmax(0,1fr);gap:6px;padding:1px 0 0;border-bottom:1px solid rgba(28,25,19,.26)}.servo-idx{font-family:'Cascadia Mono',Consolas,monospace;color:#3A2C08}.servo-name{font-weight:700;display:flex;gap:6px}.servo-desc{font-family:'Cascadia Mono',Consolas,monospace;background:#1C1913;color:#C8912C;padding:0 4px;text-transform:uppercase}.servo-val{margin-left:auto;font-weight:700}.servo-help{color:#3A2C08;line-height:1.15}input[type=range]{-webkit-appearance:none;height:14px;margin:1px 0 0;background:transparent;width:100%}input[type=range]::-webkit-slider-runnable-track{height:14px;background:repeating-linear-gradient(90deg,rgba(28,25,19,.45) 0 1px,transparent 1px 15px) left center/100% 7px no-repeat,linear-gradient(rgba(28,25,19,.55),rgba(28,25,19,.55)) left center/100% 1px no-repeat}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:3px;height:14px;border-radius:0;background:#1C1913}"
+      "refersTo": "page-chrome",
+      "description": "Two lines, as in the printed original. Line one: name in 700, an outlined mono key chip, the range description inline in secondary silk, the value flush right. Line two: the ticked rule with a 3px ivory bar thumb.",
+      "html": "<div class=\"servo\"><span class=\"servo-idx\">R2</span><div class=\"servo-main\"><div class=\"servo-head\"><label class=\"servo-name\">右腿<span class=\"servo-desc\">RL</span></label><span class=\"servo-help\">0内收 / 90中立 / 180外展</span><span class=\"servo-val\">90°</span></div><input type=\"range\" value=\"90\" max=\"180\"></div></div>",
+      "css": ".servo{display:grid;grid-template-columns:20px minmax(0,1fr);gap:6px;padding:3px 0 1px;border-bottom:1px solid rgba(242,234,214,.15)}.servo-idx{font-family:'Cascadia Mono',Consolas,monospace;color:#B4A98D}.servo-head{display:flex;align-items:baseline;gap:8px}.servo-name{font-weight:700;display:flex;gap:6px;color:#F2EAD6}.servo-desc{font-family:'Cascadia Mono',Consolas,monospace;color:#CFC4A8;border:1px solid rgba(242,234,214,.3);padding:0 3px;text-transform:uppercase}.servo-help{color:#B4A98D;flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.servo-val{margin-left:auto;font-weight:700;color:#F2EAD6}input[type=range]{-webkit-appearance:none;height:14px;margin:1px 0 0;background:transparent;width:100%}input[type=range]::-webkit-slider-runnable-track{height:14px;background:repeating-linear-gradient(90deg,rgba(242,234,214,.42) 0 1px,transparent 1px 15px) left center/100% 7px no-repeat,linear-gradient(rgba(242,234,214,.5),rgba(242,234,214,.5)) left center/100% 1px no-repeat}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:3px;height:14px;border-radius:0;background:#F2EAD6}"
     },
     {
       "name": "Pose Cell",
       "kind": "button",
-      "refersTo": "panel-stock",
-      "description": "A printed table cell in a two-column grid, not a button: no border box, no fill, no radius. Name in 700, the number set in the cell's top-right corner, the description beneath in secondary ink.",
+      "refersTo": "page-chrome",
+      "description": "A printed table cell in a two-column grid, not a button: no border box, no fill, no radius. Name in 700, the number set in the cell's top-right corner, the description beneath in secondary silk.",
       "html": "<button class=\"preset-btn\"><span class=\"p-idx\">P01</span><span class=\"p-name\">站立</span><span class=\"p-desc\">真机 Home 姿态 lh45/rh135</span></button>",
-      "css": ".preset-grid{display:grid;grid-template-columns:1fr 1fr}.preset-btn{position:relative;display:flex;flex-direction:column;padding:2px 10px 2px 0;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(28,25,19,.26);border-radius:0}.preset-btn:nth-child(odd){border-right:1px solid rgba(28,25,19,.26)}.preset-btn:nth-child(even){padding-left:9px}.preset-btn .p-idx{position:absolute;top:5px;right:6px;font-family:'Cascadia Mono',Consolas,monospace;color:#3A2C08}.preset-btn .p-name{font-weight:700;line-height:1.15;padding-right:20px}.preset-btn .p-desc{color:#3A2C08;line-height:1.1}"
+      "css": ".preset-grid{display:grid;grid-template-columns:1fr 1fr}.preset-btn{position:relative;display:flex;flex-direction:column;padding:3px 10px 3px 0;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(242,234,214,.15);border-radius:0;color:#F2EAD6}.preset-btn:nth-child(odd){border-right:1px solid rgba(242,234,214,.15)}.preset-btn:nth-child(even){padding-left:9px}.preset-btn .p-idx{position:absolute;top:5px;right:6px;font-family:'Cascadia Mono',Consolas,monospace;color:#B4A98D}.preset-btn .p-name{font-weight:700;line-height:1.15;padding-right:20px}.preset-btn .p-desc{color:#B4A98D;line-height:1.14}"
     },
     {
       "name": "Frame Table Head",
       "kind": "custom",
-      "refersTo": "panel-slab",
+      "refersTo": "page-chrome",
       "description": "The row that makes the rack a timetable instead of a stack: 帧 / 类型 / 参数 · v / d, one hairline thick, in secondary silk.",
       "html": "<div class=\"ftable-head\" aria-hidden=\"true\"><span>帧</span><span>类型</span><span>参数 · v / d</span><span></span></div>",
       "css": ".ftable-head{display:grid;grid-template-columns:30px 40px minmax(0,1fr) auto;align-items:baseline;gap:8px;padding:2px 8px 4px 0;color:#B4A98D;letter-spacing:.14em;border-bottom:1px solid rgba(242,234,214,.42)}"
@@ -153,15 +153,15 @@
     {
       "name": "Frame Row",
       "kind": "row",
-      "refersTo": "panel-slab",
-      "description": "A table row, not a card. Mono index, type label (振荡 in goldenrod), one line of mono angle pairs with the timing after it, actions flush right behind hairlines. Selection reverses the whole row to an ivory sheet; previewing fills it with #8F2A12.",
+      "refersTo": "page-chrome",
+      "description": "A table row on the slate block, lifted with slate-2. Mono index, type label (振荡 in goldenrod), one line of mono angle pairs with the timing after it, actions flush right behind hairlines. Active reverses the whole row to the page; previewing fills it with #8F2A12.",
       "html": "<div class=\"frame active\"><span class=\"f-id\">F1</span><span class=\"f-type\">姿态</span><span class=\"f-params\"><em><span><b>ll</b>90</span></em><i>v=800ms · d=100ms</i></span><span class=\"f-acts\"><button>↑</button><button>↓</button><button>编辑</button><button>删除</button></span></div>",
-      "css": ".frame{display:grid;grid-template-columns:30px 40px minmax(0,1fr) auto;align-items:baseline;gap:8px;position:relative;padding:5px 8px 5px 0;cursor:pointer;background:transparent;color:#F2EAD6;border-bottom:1px solid rgba(242,234,214,.13)}.f-id{font-family:'Cascadia Mono',Consolas,monospace;color:#B4A98D}.f-type{letter-spacing:.1em;color:#CFC4A8}.frame.osc .f-type{color:#C8912C}.f-params{display:flex;flex-wrap:wrap;gap:4px 9px;font-family:'Cascadia Mono',Consolas,monospace}.f-params em{display:flex;flex-wrap:wrap;gap:8px;font-style:normal}.f-params b{color:#B4A98D;font-weight:400;margin-right:2px}.f-params i{color:#B4A98D;font-style:normal;white-space:nowrap}.frame.active{background:#F2EAD6;color:#1C1913}.frame.active .f-id,.frame.active .f-params b,.frame.active .f-params i{color:rgba(28,25,19,.78)}.frame.playing{background:#8F2A12}.f-acts{margin-left:auto;display:flex;white-space:nowrap}.f-acts button{padding:0 4px;border:0;border-left:1px solid rgba(242,234,214,.2);color:#CFC4A8;min-height:22px;line-height:20px}"
+      "css": ".frame{display:grid;grid-template-columns:30px 40px minmax(0,1fr) auto;align-items:baseline;gap:8px;position:relative;padding:5px 8px 5px 0;cursor:pointer;background:#3B484C;color:#F2EAD6;border-bottom:1px solid rgba(242,234,214,.13)}.f-id{font-family:'Cascadia Mono',Consolas,monospace;color:#B4A98D}.f-type{letter-spacing:.1em;color:#CFC4A8}.frame.osc .f-type{color:#C49031}.f-params{display:flex;flex-wrap:wrap;gap:4px 9px;font-family:'Cascadia Mono',Consolas,monospace}.f-params em{display:flex;flex-wrap:wrap;gap:8px;font-style:normal}.f-params b{color:#B4A98D;font-weight:400;margin-right:2px}.f-params i{color:#B4A98D;font-style:normal;white-space:nowrap}.frame.active{background:#F2EAD6;color:#1C1913}.frame.active .f-id,.frame.active .f-params b,.frame.active .f-params i{color:rgba(28,25,19,.78)}.frame.playing{background:#8F2A12}.f-acts{margin-left:auto;display:flex;white-space:nowrap}.f-acts button{padding:0 4px;border:0;border-left:1px solid rgba(242,234,214,.2);color:#CFC4A8;min-height:22px;line-height:20px}"
     },
     {
       "name": "Tick Rail",
       "kind": "custom",
-      "refersTo": "panel-slab",
+      "refersTo": "page-chrome",
       "description": "A 16px index column beside the frame table: one tick per frame, the current one wider and vermilion. Each tick is drawn by its own row so it cannot drift.",
       "html": "<div id=\"timeline\"><div class=\"frame\">…</div></div>",
       "css": "#timeline{position:relative;padding-left:16px}#timeline::before{content:'';position:absolute;left:6px;top:3px;bottom:8px;width:1px;background:rgba(242,234,214,.22)}.frame::before{content:'';position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:6px;height:2px;background:rgba(242,234,214,.34)}.frame.active::before{left:-19px;width:12px;height:4px;background:#C4442B}"
@@ -169,79 +169,74 @@
     {
       "name": "Ruler + Playhead",
       "kind": "custom",
-      "refersTo": "panel-stage",
-      "description": "A 26px graduated strip under the stage, drawn in carbon on paper with the stage. The playhead chip is a goldenrod tab riding it.",
+      "refersTo": "page-stage",
+      "description": "A 26px graduated strip under the stage, drawn in ink on the page. The playhead chip is a goldenrod tab riding it.",
       "html": "<div class=\"ruler\"><span class=\"playhead\">1 / 4</span></div>",
-      "css": ".ruler{position:relative;height:26px;display:flex;align-items:center;padding-right:58px;border-top:1px solid rgba(28,25,19,.22);border-bottom:1px solid rgba(28,25,19,.22);background:repeating-linear-gradient(90deg,rgba(28,25,19,.42) 0 1px,transparent 1px 50px) left bottom/100% 9px no-repeat,repeating-linear-gradient(90deg,rgba(28,25,19,.2) 0 1px,transparent 1px 10px) left bottom/100% 4px no-repeat}.playhead{margin:5px 0 5px auto;padding:0 7px;font-family:'Cascadia Mono',Consolas,monospace;color:#1C1913;background:#C8912C;line-height:16px}"
+      "css": ".ruler{position:relative;height:26px;display:flex;align-items:center;padding-right:58px;border-top:1px solid rgba(28,25,19,.22);border-bottom:1px solid rgba(28,25,19,.22);background:repeating-linear-gradient(90deg,rgba(28,25,19,.42) 0 1px,transparent 1px 50px) left bottom/100% 9px no-repeat,repeating-linear-gradient(90deg,rgba(28,25,19,.2) 0 1px,transparent 1px 10px) left bottom/100% 4px no-repeat}.playhead{margin:5px 0 5px auto;padding:0 7px;font-family:'Cascadia Mono',Consolas,monospace;color:#1C1913;background:#C49031;line-height:16px}"
     },
     {
       "name": "Page Caption",
       "kind": "custom",
-      "refersTo": "panel-stage",
+      "refersTo": "page-stage",
       "description": "Printed on the page rather than floating over it: the stage's two top corners and the line under the viewport that declares the projection, the grid and the servo limits.",
       "html": "<span class=\"page-label\">预览 · 正面</span><span class=\"page-meta\">真机标定 90° · 6 DOF · 正交投影</span>",
       "css": ".page-label,.page-meta{position:absolute;top:6px;z-index:2;pointer-events:none;letter-spacing:.12em;color:rgba(28,25,19,.68)}.page-label{left:9px;font-weight:700}.page-meta{right:9px;font-family:'Cascadia Mono',Consolas,monospace}.stage-foot{color:#3A2C08;font-family:'Cascadia Mono',Consolas,monospace;letter-spacing:.08em}"
     },
     {
-      "name": "Cover Foot",
+      "name": "Foot Bands",
       "kind": "custom",
-      "refersTo": "panel-stock",
-      "description": "Two mono lines under the sheet, on the cover: live state on the left (neutral angle, servo limits, the Home pose) and the imprint on the right (1971 · POCKET TIMETABLE No.04 · 口袋时刻表斜架).",
+      "refersTo": "page-binding",
+      "description": "Two bands at the foot. A slate status bar (neutral angle, servo limits, the Home pose in secondary silk) and, under it, the goldenrod imprint band: 1971 · POCKET TIMETABLE No.04 · 口袋时刻表斜架.",
       "html": "<footer class=\"page-foot\"><span>中立 90° · 舵机限位 0–180°</span><span>Home ll·rl 90 / lf·rf 90 / lh 45 / rh 135</span></footer><footer class=\"imprint\">1971 · POCKET TIMETABLE No.04 · 口袋时刻表斜架</footer>",
-      "css": ".page-foot,.imprint{display:flex;align-items:center;gap:10px;padding:0 2px;color:#3A2C08;font-family:'Cascadia Mono',Consolas,monospace;letter-spacing:.06em}.page-foot{height:20px}.imprint{height:16px;letter-spacing:.18em;color:rgba(28,25,19,.62)}"
+      "css": ".page-foot{height:24px;padding:0 12px;display:flex;align-items:center;gap:10px;background:#2B3A40;color:#CFC4A8;font-family:'Cascadia Mono',Consolas,monospace;letter-spacing:.06em}.imprint{height:20px;padding:0 12px;display:flex;align-items:center;background:#C49031;color:#3A2C08;font-family:'Cascadia Mono',Consolas,monospace;letter-spacing:.18em}"
     }
   ],
   "narrative": {
-    "northStar": "封面里的奶油纸时刻表 — The Pocket Timetable, Bound",
-    "overview": "The tool is a 1971 pocket timetable printed on a cream sheet and glued into a goldenrod hard cover. The cover is the frame you hold — an 8px edge, a 44px header strip, two mono footer lines. The sheet is the page you fill in, and it is continuous: six axes and a sixteen-pose library on the left, the robot standing on the same paper in the centre, divided only by hairlines. The right column is the one block printed in dark ink: frame table, meter, code strip.\n\nTwo substances, paper and ink, plus a cover. That is the whole system. One type size; rank from weight, case, tracking, reversal and rule. One radius: zero. No elevation, no icon set, no gradient used as surface treatment. Every colour names a job — cover, sheet, printed ink, reversal, armed, confirmed — and a colour that cannot name its job is decoration and does not ship.\n\nThe first build of this world got the ground backwards: it treated the goldenrod as the field and made the stage carbon, so the page read as a dark tool with gold trim rather than a cream timetable in a gold cover. The correction is the point of the system: paper is the working surface, gold is the binding, and the only dark thing is the block that was printed.",
+    "northStar": "石板边栏里的口袋时刻表 — The Pocket Timetable, Printed",
+    "overview": "The tool is a 1971 pocket timetable. Slate-printed chrome runs down both sides and across the head and foot; one cream page is bound between those margins, and the robot stands on it; a goldenrod binding holds the whole thing together. Three substances, and they never trade places.\n\nThe slate is where all the small type lives — six axes, sixteen poses, the frame table, the meter, the JSON — roughly 42% of the surface. The cream page is the stage alone, roughly 41%, and it is deliberately almost empty: that emptiness is what makes the two printed margins read as margins. The gold is about 6%: a 6px edge and one imprint band. The system is narrow on purpose: one type size, rank from weight, case, reversal and rule; one radius, zero; no elevation; no icon set; no gradient used as surface treatment.\n\nBoth earlier attempts failed the same way — they guessed the palette. The first read the gold as the field and the carbon as the stage, turning a cream timetable into a dark tool with gold trim; the second over-corrected and turned the left margin into paper. The ground truth came from measuring the reference: slate #2B3A40 at 42%, ivory #F2EAD6 at 41%, gold #C49031 at 6%. The palette in this file is a measurement, not a taste.",
     "keyCharacteristics": [
-      "Ivory sheet carrying the panels and the 3D stage alike — the robot stands on the same paper the sliders are printed on",
-      "Goldenrod only as the binding: 8px page edge, header strip, two footer lines",
-      "One dark printed block on the right, running the full height of the page",
-      "The frame rack is a table: a named header row, four fixed columns, hairline rows",
+      "One continuous slate chrome around a single cream page: header, both columns and the status bar share one tone",
+      "The cream page is the stage only, and it stays almost empty",
+      "Goldenrod only as the binding: a 6px edge on four sides and one imprint band",
+      "The frame rack is a table: a named header row, four fixed columns, hairline rows lifted in slate-2",
+      "Servo rows are two lines — name, key chip, range, value, then the ticked rule",
       "Rank by weight, case, tracking, reversal and rule — never by size",
-      "Drawn scales: a ticked slider track and a graduated ruler, both in carbon on paper",
       "One real shadow: the robot's own, cast by the key light onto the page"
     ],
     "rules": [
       {
-        "name": "Cover Is Visible Rule",
-        "body": "The goldenrod is binding, not background. It appears only as the page edge, the header strip and the footer lines, and it must be visible on all four sides. Spending it as a panel fill turns the cover into a field and inverts the world.",
+        "name": "Three Substances Rule",
+        "body": "Slate is the chrome, ivory is the page, gold is the binding. They never trade places: the stage is never dark, the chrome is never paper, and gold is never a working surface. Measured shares — 42 / 41 / 6 — are the check.",
+        "section": "colors"
+      },
+      {
+        "name": "Measured Palette Rule",
+        "body": "Every tone must be sampled from the reference image, not chosen by eye. #2B3A40, #F2EAD6 and #C49031 came from pixel measurements; a 'better contrast' substitution is what turned the ground inside out twice.",
+        "section": "colors"
+      },
+      {
+        "name": "Keep the Page Empty Rule",
+        "body": "The stage is the only calm surface in the interface. No cards, no docks, no floating chrome — only the two printed corner captions and the line under the viewport.",
         "section": "layout"
       },
       {
-        "name": "Paper Stage Rule",
-        "body": "The stage is the sheet, not a dark box. A white robot on cream is held by a real contact shadow and a faint 280-unit grid; putting it back on carbon makes it a different product with the same widgets.",
-        "section": "elevation"
-      },
-      {
         "name": "One Size Rule",
-        "body": "There is exactly one type size, 13px (15px below 600px). Hierarchy is spent on weight, case, tracking, reversal and rule. Adding a second size is the fastest way to make this interface look like the generic tool it replaced.",
+        "body": "There is exactly one type size, 13px (15px below 600px). Hierarchy is spent on weight, case, tracking, reversal and rule.",
         "section": "typography"
       },
       {
-        "name": "Named Job Rule",
-        "body": "Six hues, six jobs: gold is the cover, ivory is the sheet, carbon is the printed block, vermilion is a moving or destructive state, bottle green is the confirmed dot. A colour without a job is decoration.",
-        "section": "colors"
-      },
-      {
-        "name": "Solid Ink Rule",
-        "body": "Text on the cover uses solid ink (#1C1913 primary, #3A2C08 secondary), never an alpha tint. Alpha over a saturated ground cannot hold AA at any comfortable lightness.",
-        "section": "colors"
-      },
-      {
-        "name": "Table Rule",
-        "body": "The frame rack is one table: a header row naming the columns, four fixed column widths, a hairline under every row, and a tick rail down the left edge. Rows are never cards — no border box, no gap, no sheared edge.",
+        "name": "Printed Row Rule",
+        "body": "Rows are never cards: a 1px hairline, fixed columns, a header row that names them once, and no gap between rows. A row may be lifted with slate-2 or reversed to the page, never outlined.",
         "section": "shapes"
       },
       {
         "name": "No Elevation Rule",
-        "body": "Nothing floats and nothing has a blur. Depth is binding order — cover, sheet, printed block — and selection is a reversed sheet cut into the dark block.",
+        "body": "Nothing floats and nothing has a blur. Depth is printing order — binding, chrome, page — and selection is the page showing back through the chrome.",
         "section": "elevation"
       },
       {
         "name": "No Side Stripe Rule",
-        "body": "State is a filled row, a reversed sheet, or a drawn rule. An accent bar down one edge of a row or a toast is the generic pattern this world is trying to escape.",
+        "body": "State is a filled row, a reversed cell, or a drawn rule. An accent bar down one edge of a row or a toast is the generic pattern this world is trying to escape.",
         "section": "elevation"
       },
       {
@@ -251,23 +246,25 @@
       }
     ],
     "dos": [
-      "Keep the goldenrod binding visible on all four sides of the sheet",
-      "Print the stage captions on the page instead of floating chrome over it",
-      "Spend rank on weight, case, tracking, reversal and rule first",
-      "Draw a scale whenever a number has a range",
-      "Give the selected frame row the ivory reversal and nothing else",
+      "Keep the goldenrod binding visible on all four sides",
+      "Keep the slate chrome continuous from the header to the status bar",
+      "Leave the cream page almost empty",
+      "Sample every colour from the reference before using it",
       "Print the row number in the margin (R1–R6, P01–P16) when a head promises a count",
+      "Draw a scale whenever a number has a range",
       "Use the mono stack only for machine output, timings and inline axis tokens"
     ],
     "donts": [
+      "Pick a palette by eye or by contrast preference",
+      "Make the stage a dark box",
+      "Turn the left margin into paper or the right margin into a card stack",
       "Add a second type size for hierarchy",
-      "Turn the stage back into a carbon box",
-      "Round a corner, lift a row, or add a blurred shadow",
+      "Round a corner, lift a row with a shadow, or blur anything",
       "Put vermilion behind body text",
       "Let the frame table drift apart into floating cards",
       "Use a gradient as surface decoration",
       "Reintroduce an icon set — labels are the icons",
-      "Use an alpha tint for text on the cover"
+      "Tint a whole axis to signal left or right"
     ]
   }
 }

@@ -22,11 +22,12 @@
      金菊色床面 / 碳黑与石板灰幻灯片 / 圣经象牙反白面 / 单一字号靠字重与反白分级
      ========================================================================== */
   :root {
-    --bed:        #C8912C;   /* 灯台金菊纸：整个工作场 */
-    --bed-lip:    #A9751F;   /* 床面阴影侧 */
+    --bed:        #C49031;   /* 灯台金菊纸：整个工作场 */
+    --bed-lip:    #A87722;   /* 床面阴影侧 */
     --carbon:     #1C1913;   /* 碳黑板 */
     --carbon-2:   #26221A;
-    --slate:      #2C3A40;   /* 石板灰玻璃幻灯片 */
+    --slate:      #2B3A40;
+    --slate-2:    #3B484C;   /* 石板灰玻璃幻灯片 */
     --ivory:      #F2EAD6;   /* 圣经象牙 */
     --silk:       #CFC4A8;   /* 碳面正文 */
     --silk-dim:   #B4A98D;   /* 碳面次要字（4.5:1 起） */
@@ -51,7 +52,7 @@
     font: var(--fs)/1.45 var(--narrow);
     font-variant-numeric: tabular-nums;
     display: flex; flex-direction: column;
-    gap: 8px; padding: 8px; overflow: hidden;
+    gap: 0; padding: 6px; overflow: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -59,20 +60,20 @@
   header {
     flex: none; display: flex; align-items: center; gap: 14px;
     padding: 0 14px; height: 44px;
-    background: var(--bed); color: var(--carbon);
-    border-bottom: 1px solid rgba(28,25,19,.4);
+    background: var(--slate); color: var(--ivory);
+    border-bottom: 1px solid rgba(242,234,214,.16);
   }
   header h1 {
     font-size: var(--fs); font-weight: 700;
     letter-spacing: .2em; text-transform: uppercase;
-    color: var(--carbon); display: flex; align-items: center; gap: 10px;
+    color: var(--ivory); display: flex; align-items: center; gap: 10px;
     white-space: nowrap;
   }
   header h1::before {
     content: ""; width: 13px; height: 13px; flex: none;
-    background: var(--carbon);
-    box-shadow: inset 0 0 0 3px var(--bed);
-    outline: 1px solid var(--carbon); outline-offset: 1px;
+    background: var(--bed);
+    box-shadow: inset 0 0 0 3px var(--slate);
+    outline: 1px solid var(--bed); outline-offset: 1px;
   }
   .spacer { flex: 1; }
   .conn { display: flex; align-items: center; gap: 10px; }
@@ -84,15 +85,15 @@
   .dot.err { background: var(--verm);   box-shadow: 0 0 0 2px rgba(196,68,43,.35); }
   .connection-status {
     font-size: var(--fs); letter-spacing: .12em; text-transform: uppercase;
-    color: var(--carbon); max-width: 180px; overflow-wrap: anywhere;
+    color: var(--ivory); max-width: 180px; overflow-wrap: anywhere;
   }
   .conn input {
     width: 148px; padding: 5px 8px;
-    background: var(--ivory); color: var(--carbon);
-    border: 1px solid rgba(28,25,19,.45);
+    background: var(--slate-2); color: var(--ivory);
+    border: 1px solid rgba(242,234,214,.28);
     font: var(--fs)/1.2 var(--mono); letter-spacing: .04em;
   }
-  .conn input:focus { border-color: var(--carbon); }
+  .conn input:focus { border-color: var(--bed); }
 
   /* ---------- 印刷按钮 ---------- */
   button {
@@ -104,12 +105,12 @@
     border-radius: 0;
     transition: background .12s linear, color .12s linear;
   }
-  header button { color: var(--carbon); border-color: rgba(28,25,19,.45); }
-  header button:hover:not(:disabled) { background: var(--carbon); color: var(--bed); border-color: var(--carbon); }
+  header button { color: var(--ivory); border-color: rgba(242,234,214,.35); }
+  header button:hover:not(:disabled) { background: var(--ivory); color: var(--carbon); border-color: var(--ivory); }
   header button.primary {
-    background: var(--carbon); border-color: var(--carbon); color: var(--bed); font-weight: 700;
+    background: var(--bed); border-color: var(--bed); color: var(--carbon); font-weight: 700;
   }
-  header button.primary:hover:not(:disabled) { background: var(--ivory); border-color: var(--carbon); color: var(--carbon); }
+  header button.primary:hover:not(:disabled) { background: var(--ivory); border-color: var(--ivory); color: var(--carbon); }
   button:disabled { opacity: .32; cursor: not-allowed; }
   button:focus-visible, input:focus-visible, textarea:focus-visible,
   .frame:focus-visible, canvas:focus-visible, select:focus-visible {
@@ -129,10 +130,10 @@
   }
   .panel { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
   .stock { background: transparent; border: 0; border-right: 1px solid var(--rule); }
-  .slab  { background: var(--carbon); border: 0; }
+  .slab  { background: var(--slate); border: 0; }
   .panel-head {
     flex: none; display: flex; align-items: center; justify-content: space-between;
-    gap: 8px; padding: 4px 12px;
+    gap: 8px; padding: 3px 12px;
     font-size: var(--fs); font-weight: 700;
     letter-spacing: .16em; text-transform: uppercase;
   }
@@ -154,7 +155,7 @@
   /* ---------- 六轴：印在纸上的刻度 ---------- */
   .servo {
     display: grid; grid-template-columns: 20px minmax(0,1fr); gap: 6px;
-    padding: 1px 0 0; border-bottom: 1px solid var(--rule);
+    padding: 3px 0 1px; border-bottom: 1px solid var(--rule);
   }
   .servo:last-child { border-bottom: 0; }
   .servo-idx {
@@ -198,8 +199,9 @@
     width: 3px; height: 14px; border: 0; border-radius: 0; background: var(--carbon);
   }
       .servo-help {
-    font-size: var(--fs); color: var(--ink-soft);
-    letter-spacing: .02em; margin-top: 0; line-height: 1.15;
+    color: var(--silk-dim); letter-spacing: .02em;
+    flex: 1 1 auto; min-width: 0; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
   }
 
   /* ---------- 姿态库：印成表格，没有按钮外壳 ---------- */
@@ -207,7 +209,7 @@
   .preset-grid { display: grid; grid-template-columns: 1fr 1fr; }
   .preset-btn {
     position: relative; display: flex; flex-direction: column; gap: 0;
-    padding: 2px 10px 2px 0; text-align: left;
+    padding: 3px 10px 3px 0; text-align: left;
     background: transparent; border: 0; border-bottom: 1px solid var(--rule);
     border-radius: 0; color: inherit; letter-spacing: 0;
   }
@@ -221,7 +223,7 @@
     letter-spacing: .02em; user-select: none;
   }
   .preset-btn .p-name { font-size: var(--fs); font-weight: 700; letter-spacing: .04em; padding-right: 20px; line-height: 1.15; }
-  .preset-btn .p-desc { font-size: var(--fs); color: var(--ink-soft); line-height: 1.1; }
+  .preset-btn .p-desc { font-size: var(--fs); color: var(--ink-soft); line-height: 1.14; }
 
   /* ---------- 舞台：碳黑板上的灯池 ---------- */
   #robotStage {
@@ -458,10 +460,13 @@
     padding: 0 2px; color: var(--ink-soft);
     font-family: var(--mono); letter-spacing: .06em;
   }
-  .page-foot { height: 20px; }
+  .page-foot {
+    height: 24px; padding: 0 12px;
+    background: var(--slate); color: var(--silk);
+  }
   .imprint {
-    height: 16px; letter-spacing: .18em;
-    color: rgba(28,25,19,.62);
+    height: 20px; padding: 0 12px; letter-spacing: .18em;
+    background: var(--bed); color: var(--ink-soft);
   }
 
   /* ---------- 提示条 ---------- */
@@ -552,13 +557,51 @@
     .page-foot .spacer { display: none; }
     .imprint { height: auto; letter-spacing: .1em; }
   }
+  /* ---------- 深色印刷块：页眉、左栏、右栏是同一块青石板 ---------- */
+  .stock {
+    background: var(--slate); border-right-color: var(--rule-ivory);
+    color: var(--ivory);
+  }
+  .stock .panel-head { color: var(--ivory); border-bottom-color: var(--rule-ivory); }
+  .stock .panel-head .tag { color: var(--silk-dim); }
+  .stock .panel-body { scrollbar-color: rgba(242,234,214,.3) transparent; }
+  .stock .panel-body::-webkit-scrollbar-thumb { background: rgba(242,234,214,.2); }
+  .stock .servo { border-bottom-color: var(--rule-ivory); }
+  .stock .servo-idx, .stock .servo-help { color: var(--silk-dim); }
+  .stock .servo-val { color: var(--ivory); }
+  .stock .servo-desc {
+    background: transparent; color: var(--silk);
+    border: 1px solid rgba(242,234,214,.3); padding: 0 3px;
+  }
+  .stock input[type=range]::-webkit-slider-runnable-track,
+  .stock input[type=range]::-moz-range-track {
+    background:
+      repeating-linear-gradient(90deg, rgba(242,234,214,.42) 0 1px, transparent 1px 15px) left center/100% 7px no-repeat,
+      linear-gradient(rgba(242,234,214,.5), rgba(242,234,214,.5)) left center/100% 1px no-repeat;
+  }
+  .stock input[type=range]::-webkit-slider-thumb { background: var(--ivory); }
+  .stock input[type=range]::-moz-range-thumb { background: var(--ivory); }
+  .stock .preset-btn { border-bottom-color: var(--rule-ivory); }
+  .stock .preset-btn:nth-child(odd) { border-right-color: var(--rule-ivory); }
+  .stock .preset-btn:hover { background: rgba(242,234,214,.08); }
+  .stock .preset-btn:active { background: rgba(242,234,214,.14); }
+  .stock .preset-btn .p-idx, .stock .preset-btn .p-desc { color: var(--silk-dim); }
+
+  #robotStage { border-right-color: var(--rule-ivory); }
+
+  .frame { background: var(--slate-2); }
+  .frame:hover { background: #445055; }
+  .sequence-summary input, #frameTiming input { background: var(--slate-2); }
+  .json-box { background: transparent; border-color: rgba(242,234,214,.2); }
+  .json-box:focus { border-color: var(--ivory); }
+
 </style>
 </head>
 <body>
 
 <header>
   <h1>Otto 在线编舞台</h1>
-  <span class="tag" style="color:var(--ink-soft);letter-spacing:.16em;">六轴双足 · 离线单文件</span>
+  <span class="tag" style="color:var(--silk-dim);letter-spacing:.16em;">六轴双足 · 离线单文件</span>
   <div class="spacer"></div>
   <div class="conn">
     <span class="dot" id="connDot" aria-hidden="true"></span><span class="connection-status" id="connStatus" role="status">未连接</span>
@@ -1025,10 +1068,10 @@ function buildServoPanel() {
       <div class="servo-main">
         <div class="servo-head">
           <label class="servo-name" for="rng-${s.key}">${s.name}<span class="servo-desc">${s.key}</span></label>
+          <span class="servo-help">${s.desc}</span>
           <span class="servo-val" id="val-${s.key}">${STAND_POSE[s.key]}°</span>
         </div>
         <input type="range" min="0" max="180" step="1" value="${STAND_POSE[s.key]}" id="rng-${s.key}">
-        <div class="servo-help">${s.desc}</div>
       </div>
     `;
     panel.appendChild(wrap);
