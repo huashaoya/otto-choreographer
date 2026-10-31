@@ -618,7 +618,7 @@
 
 <header>
   <h1>Otto 在线编舞台</h1>
-  <span class="tag" style="color:var(--silk-dim);letter-spacing:.16em;">六轴双足 · 离线单文件</span>
+  <span class="tag" style="color:var(--silk-dim);letter-spacing:.16em;">六轴双足</span>
   <div class="spacer"></div>
   <div class="conn">
     <span class="dot" id="connDot" aria-hidden="true"></span><span class="connection-status" id="connStatus" role="status">未连接</span>
@@ -706,7 +706,7 @@
     </div>
   </aside>
 </main>
-<footer class="imprint">1971 · POCKET TIMETABLE No.04 · 口袋时刻表斜架</footer>
+<footer class="imprint">1971 · POCKET TIMETABLE No.04</footer>
 
 <!-- 振荡帧编辑 -->
 <div class="modal-bg" id="oscModal" role="dialog" aria-modal="true" aria-labelledby="oscTitle">
@@ -749,12 +749,12 @@ function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"f
    常量：舵机定义（顺序与固件一致）
    ============================================================ */
 const SERVOS = [
+  { key: 'lh', name: '左手', desc: '0下勾 45垂 90平举 180举', side: 'left'  },
+  { key: 'rh', name: '右手', desc: '0举 90平举 135垂 180勾', side: 'right' },
   { key: 'll', name: '左腿', desc: '0外展 90中立 180内收', side: 'left'  },
   { key: 'rl', name: '右腿', desc: '0内收 90中立 180外展', side: 'right' },
   { key: 'lf', name: '左脚', desc: '0翘起 90平放 180下压', side: 'left'  },
   { key: 'rf', name: '右脚', desc: '0下压 90平放 180翘起', side: 'right' },
-  { key: 'lh', name: '左手', desc: '0下勾 45垂 90平举 180举', side: 'left'  },
-  { key: 'rh', name: '右手', desc: '0举 90平举 135垂 180勾', side: 'right' },
 ];
 const SERVO_KEYS = SERVOS.map(s => s.key);
 

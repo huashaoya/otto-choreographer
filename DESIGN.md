@@ -168,7 +168,7 @@ Scales are drawn, not implied: the slider track is a 1px rule crossed by ticks e
 - **Printed chrome** (header, left column, right column, status bar): slate field, ivory ink, hairlines in `rgba(242,234,214,.15)`, no border boxes anywhere.
 - **Page** (stage): ivory field, ink `#1C1913`, a 1px hairline against the chrome, and nothing else — no card, no frame, no dock.
 - **Section head**: uppercase 700, `.16em` tracking, 3px padding, one hairline beneath, and a right-aligned micro tag in secondary silk (`R1–R6 · 0–180`, `P01–P16`).
-- **Servo row**: two lines. Line one is the name in 700 plus an outlined mono key chip (`LL`, ivory hairline on transparent — never a filled chip, which would compete with reversal), the range description inline in secondary silk, the value flush right in 700. Line two is the ticked 1px rule with a 3px ivory bar thumb.
+- **Servo row**: two lines. Line one is the name in 700 plus an outlined mono key chip (`LL`, ivory hairline on transparent — never a filled chip, which would compete with reversal), the range description inline in secondary silk, the value flush right in 700. Line two is the ticked 1px rule with a 3px ivory bar thumb. The six axes run `lh rh ll rl lf rf` — hands first, then legs, then feet: the hands are what a pose reads by, and the feet are what it stands on.
 - **Pose cell**: a printed table cell in a two-column grid, not a button — no border box, no fill, no radius; name in 700 on one line, its number (`P01`–`P16`) centred against the right edge, and the servo description carried by the cell's `title`/`aria-label` rather than printed. Sixteen cells of two-line descriptions were the densest wall in the interface; the name is what you pick by, the description is what you confirm by hovering.
 - **Frame table head**: one hairline-thick row, `帧 / 类型 / 参数 · v / d`, in secondary silk. It is what makes the rack a timetable instead of a stack.
 - **Frame row**: slate-2 row on the slate block — mono index (`F1`), type label (`姿态` ivory, `振荡` goldenrod), one line of mono angle pairs with the timing after it. Active reverses the whole row to the page; playing fills it with `#8F2A12`. Row actions do not live in the row: at 380px they cost a third of the width.
@@ -178,7 +178,7 @@ Scales are drawn, not implied: the slider track is a 1px rule crossed by ticks e
 - **Page captions**: `预览 · 正面` and `真机标定 90° · 6 DOF · 正交投影` sit inside the stage's top corners; `正视 1:1 · 网格 60px · 舵机限位 0–180°` sits under the viewport. They are printed on the page, not chrome over it.
 - **Playhead cell**: the last cell of the play row, `1 / 4` in mono ink, divided from 停止预览 by the same 1px rule as the buttons. The reference has no separate ruler strip, and neither does this build.
 - **Pane foot**: a 22px line closing each pane, in mono secondary silk behind a hairline — `中立 90° / 限位 0–180°` under the poses, `OTTO-SEQ v1 · 离线可编 / UTF-8 · N FRAMES` under the code strip.
-- **Imprint band**: the 20px goldenrod band across the whole page, `1971 · POCKET TIMETABLE No.04 · 口袋时刻表斜架` in ink.
+- **Imprint band**: the 20px goldenrod band across the whole page, `1971 · POCKET TIMETABLE No.04` in ink. The Chinese half of that imprint (`口袋时刻表斜架`) was cut at the owner's request — it named the world instead of the tool.
 - **Buttons**: transparent with an ivory border; hover fills ivory with ink. Primary is goldenrod fill with ink. Destructive hover is `#A83318`, never bare vermilion, so ivory text holds contrast.
 - **JSON strip**: the slate block with a hairline outline, goldenrod mono, no syntax colouring.
 
@@ -193,6 +193,7 @@ Scales are drawn, not implied: the slider track is a 1px rule crossed by ticks e
 - Give every colour a job: binding, chrome, page, lifted row, armed, confirmed. If a new colour cannot name its job, it is decoration.
 - Draw scales when a number has a range — sliders and the ruler both carry ticks.
 - Print the row number in the margin (R1–R6, P01–P16) when a section header promises a count.
+- Order the axes by how a pose is read — hands, legs, feet — not by the firmware's pin order.
 - Mark a state with a filled row, a reversed cell, or a drawn rule — not with a stripe down one side.
 
 **Don't**

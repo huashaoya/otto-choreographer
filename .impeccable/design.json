@@ -155,7 +155,7 @@
       "name": "Servo Row",
       "kind": "input",
       "refersTo": "page-chrome",
-      "description": "Two lines, as in the printed original. Line one: name in 700, an outlined mono key chip, the range description inline in secondary silk, the value flush right. Line two: the ticked rule with a 3px ivory bar thumb.",
+      "description": "Two lines, as in the printed original. Line one: name in 700, an outlined mono key chip, the range description inline in secondary silk, the value flush right. Line two: the ticked rule with a 3px ivory bar thumb. Axes run lh rh ll rl lf rf — hands first, then legs, then feet.",
       "html": "<div class=\"servo\"><span class=\"servo-idx\">R2</span><div class=\"servo-main\"><div class=\"servo-head\"><label class=\"servo-name\">右腿<span class=\"servo-desc\">RL</span></label><span class=\"servo-help\">0内收 / 90中立 / 180外展</span><span class=\"servo-val\">90°</span></div><input type=\"range\" value=\"90\" max=\"180\"></div></div>",
       "css": ".servo{display:grid;grid-template-columns:20px minmax(0,1fr);gap:6px;padding:3px 0 1px;border-bottom:1px solid rgba(242,234,214,.15)}.servo-idx{font-family:'Cascadia Mono',Consolas,monospace;color:#B4A98D}.servo-head{display:flex;align-items:baseline;gap:8px}.servo-name{font-weight:700;display:flex;gap:6px;color:#F2EAD6}.servo-desc{font-family:'Cascadia Mono',Consolas,monospace;color:#CFC4A8;border:1px solid rgba(242,234,214,.3);padding:0 3px;text-transform:uppercase}.servo-help{color:#B4A98D;flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.servo-val{margin-left:auto;font-weight:700;color:#F2EAD6}input[type=range]{-webkit-appearance:none;height:14px;margin:1px 0 0;background:transparent;width:100%}input[type=range]::-webkit-slider-runnable-track{height:14px;background:repeating-linear-gradient(90deg,rgba(242,234,214,.42) 0 1px,transparent 1px 15px) left center/100% 7px no-repeat,linear-gradient(rgba(242,234,214,.5),rgba(242,234,214,.5)) left center/100% 1px no-repeat}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:3px;height:14px;border-radius:0;background:#F2EAD6}"
     },
@@ -219,7 +219,7 @@
       "name": "Pane Foot + Imprint",
       "kind": "custom",
       "refersTo": "page-binding",
-      "description": "Each pane closes with its own 22px status line behind a hairline — 中立 90° / 限位 0–180° under the poses, OTTO-SEQ v1 · 离线可编 / UTF-8 · N FRAMES under the code strip — and the whole page closes with the goldenrod imprint band.",
+      "description": "Each pane closes with its own 22px status line behind a hairline — 中立 90° / 限位 0–180° under the poses, OTTO-SEQ v1 · 离线可编 / UTF-8 · N FRAMES under the code strip — and the whole page closes with the goldenrod imprint band: 1971 · POCKET TIMETABLE No.04.",
       "html": "<footer class=\"page-foot\"><span>中立 90° · 舵机限位 0–180°</span><span>Home ll·rl 90 / lf·rf 90 / lh 45 / rh 135</span></footer><footer class=\"imprint\">1971 · POCKET TIMETABLE No.04 · 口袋时刻表斜架</footer>",
       "css": ".page-foot{height:24px;padding:0 12px;display:flex;align-items:center;gap:10px;background:#2B3A40;color:#CFC4A8;font-family:'Cascadia Mono',Consolas,monospace;letter-spacing:.06em}.imprint{height:20px;padding:0 12px;display:flex;align-items:center;background:#C49031;color:#3A2C08;font-family:'Cascadia Mono',Consolas,monospace;letter-spacing:.18em}"
     }
@@ -286,7 +286,8 @@
       "Sample every colour from the reference before using it",
       "Print the row number in the margin (R1–R6, P01–P16) when a head promises a count",
       "Draw a scale whenever a number has a range",
-      "Use the mono stack only for machine output, timings and inline axis tokens"
+      "Use the mono stack only for machine output, timings and inline axis tokens",
+      "Order the axes by how a pose is read — hands, legs, feet — not by pin order"
     ],
     "donts": [
       "Pick a palette by eye or by contrast preference",
