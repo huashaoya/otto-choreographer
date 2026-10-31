@@ -230,6 +230,14 @@
       "description": "A drawn scrollbar, never the system's: 12px lane, 1px hairline on its inner edge, 4px square ivory thumb, no buttons or arrows. Hover brightens; dragging fills it with the binding gold. Chromium ignores ::-webkit-scrollbar* once scrollbar-width/scrollbar-color exist, so those properties are kept out of the file on purpose.",
       "html": "<div class=\"panel-body\">…</div>",
       "css": ".panel-body::-webkit-scrollbar,.json-box::-webkit-scrollbar{width:12px;height:12px}.panel-body::-webkit-scrollbar-track,.json-box::-webkit-scrollbar-track{background:transparent;border-left:1px solid rgba(242,234,214,.12)}.panel-body::-webkit-scrollbar-thumb,.json-box::-webkit-scrollbar-thumb{background:rgba(242,234,214,.34);background-clip:content-box;border:4px solid transparent;min-height:40px}.panel-body::-webkit-scrollbar-button,.json-box::-webkit-scrollbar-button{display:none;height:0}"
+    },
+    {
+      "name": "Hover Note",
+      "kind": "custom",
+      "refersTo": "page-chrome",
+      "description": "A 276px ivory card, 1px ink border, square corners, no shadow, hanging 7px under the two frame buttons and joined to the hovered button by an 8px connector line. Shown on hover and on keyboard focus via :focus-within and aria-describedby. Explains 姿态帧 and 振荡帧; the variable names set in mono vermilion so they match the tokens in the rows.",
+      "html": "<span class=\"tip-wrap\"><button id=\"addFrame\" aria-describedby=\"tipPose\">+ 姿态帧</button></span><span class=\"pop\" id=\"tipPose\" role=\"tooltip\"><b>姿态帧</b> 一个定格的姿势 + 移动时长。…</span>",
+      "css": ".tip-wrap{display:inline-flex;position:relative}.tip-wrap::after{content:'';position:absolute;left:50%;top:100%;width:1px;height:8px;background:#1C1913;opacity:0;transition:opacity .12s linear}.tip-wrap:hover::after,.tip-wrap:focus-within::after{opacity:1}.pop{position:absolute;top:calc(100% + 7px);right:12px;z-index:30;width:276px;padding:9px 11px;background:#F2EAD6;color:#1C1913;border:1px solid #1C1913;text-transform:none;line-height:1.55;white-space:normal;pointer-events:none;opacity:0;transition:opacity .12s linear}.tip-wrap:hover + .pop,.tip-wrap:focus-within + .pop{opacity:1}.pop i{font-style:normal;font-family:'Cascadia Mono',Consolas,monospace;color:#5E1A0B}"
     }
   ],
   "narrative": {

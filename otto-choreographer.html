@@ -131,6 +131,7 @@
   .stock { background: transparent; border: 0; border-right: 1px solid var(--rule); }
   .slab  { background: var(--slate); border: 0; }
   .panel-head {
+    position: relative;
     flex: none; display: flex; align-items: center; justify-content: space-between;
     gap: 8px; padding: 6px 12px;
     font-size: var(--fs); font-weight: 700;
@@ -144,6 +145,27 @@
   }
   .slab .panel-head .tag { color: var(--silk-dim); }
   .panel-body { padding: 0 12px; overflow-y: auto; flex: 1; min-height: 0; }
+
+  /* ---------- 按钮旁的 hover 说明：一张印在纸上的小注 ---------- */
+  .tip-wrap { display: inline-flex; position: relative; }
+  .tip-wrap::after {
+    content: ""; position: absolute; left: 50%; top: 100%; width: 1px; height: 8px;
+    background: var(--carbon); opacity: 0; transition: opacity .12s linear;
+  }
+  .tip-wrap:hover::after, .tip-wrap:focus-within::after { opacity: 1; }
+  .pop {
+    position: absolute; top: calc(100% + 7px); right: 12px; z-index: 30;
+    width: 276px; padding: 9px 11px; text-align: left;
+    background: var(--ivory); color: var(--carbon);
+    border: 1px solid var(--carbon);
+    text-transform: none; letter-spacing: .02em; line-height: 1.55;
+    white-space: normal; pointer-events: none;
+    opacity: 0; transition: opacity .12s linear;
+  }
+  .pop b { font-weight: 700; letter-spacing: .06em; margin-right: 4px; }
+  .pop i { font-style: normal; font-family: var(--mono); color: var(--verm-deep); }
+  .tip-wrap:hover + .pop,
+  .tip-wrap:focus-within + .pop { opacity: 1; }
 
   /* ---------- 滚动条：一条细轨 + 一枚方形齿，不用系统外观 ---------- */
   .panel-body::-webkit-scrollbar, .json-box::-webkit-scrollbar { width: 12px; height: 12px; }
@@ -691,8 +713,20 @@
     <div class="panel-head">
       <span>时间轴</span>
       <div style="display:flex;gap:6px;">
-        <button id="addFrame" style="padding:2px 8px;letter-spacing:.1em;">+ 姿态帧</button>
-        <button id="addOsc" style="padding:2px 8px;letter-spacing:.1em;">+ 振荡帧</button>
+        <span class="tip-wrap">
+          <button id="addFrame" aria-describedby="tipPose" style="padding:2px 8px;letter-spacing:.1em;">+ 姿态帧</button>
+        </span>
+        <span class="pop" id="tipPose" role="tooltip">
+          <b>姿态帧</b> 一个定格的姿势 + 移动时长。机器人用 <i>v</i> 毫秒从上一帧转过来，停住 <i>d</i> 毫秒。
+          摆造型、走位、定格用它。
+        </span>
+        <span class="tip-wrap">
+          <button id="addOsc" aria-describedby="tipOsc" style="padding:2px 8px;letter-spacing:.1em;">+ 振荡帧</button>
+        </span>
+        <span class="pop" id="tipOsc" role="tooltip">
+          <b>振荡帧</b> 绕一个中心姿态往返摆动。<i>c</i> 是每秒摆几次，<i>p</i> 是一整轮多少毫秒，
+          <i>d</i> 是摆完停多久。抖腿、挥手、原地晃用它。
+        </span>
       </div>
     </div>
     <div class="panel-body" id="rackWrap" style="flex:0 1 auto;max-height:50%;">
